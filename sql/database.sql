@@ -53,6 +53,7 @@ CREATE TABLE curriculum(
     especialidad varchar(50) null,
     sobreMi varchar(150) null,
     CONSTRAINT fk_idUsuario2 FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Create the table Idioma
 CREATE TABLE idioma(
@@ -67,8 +68,8 @@ CREATE TABLE curriculum_idioma(
     idCurriculum int unsigned not null,
     idIdioma int unsigned not null,
     CONSTRAINT pk_curriculum_idioma PRIMARY KEY (idCurriculum,idIdioma),
-    CONSTRAINT fk_idCurriculum FOREIGN KEY (idCurriculum) REFERENCES curriculum(idCurriculum),
-    CONSTRAINT fk_idIdioma FOREIGN KEY (idIdioma) REFERENCES idioma(idIdioma)
+    CONSTRAINT fk_idCurriculum FOREIGN KEY (idCurriculum) REFERENCES curriculum(idCurriculum) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_idIdioma FOREIGN KEY (idIdioma) REFERENCES idioma(idIdioma) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Create the table Formacion_complementaria
 CREATE TABLE formacion_complementaria(
@@ -82,8 +83,8 @@ CREATE TABLE curriculum_formacioncomplementaria(
     idCurriculum int unsigned not null,
     idFormacionComplementaria int unsigned not null,
     CONSTRAINT pk_curriculum_formacioncomplementaria PRIMARY KEY (idCurriculum,idFormacionComplementaria),
-    CONSTRAINT fk_idCurriculum2 FOREIGN KEY (idCurriculum) REFERENCES curriculum(idCurriculum),
-    CONSTRAINT fk_idFormacionComplementaria FOREIGN KEY (idFormacionComplementaria) REFERENCES formacion_complementaria(idFormacionComplementaria)
+    CONSTRAINT fk_idCurriculum2 FOREIGN KEY (idCurriculum) REFERENCES curriculum(idCurriculum) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_idFormacionComplementaria FOREIGN KEY (idFormacionComplementaria) REFERENCES formacion_complementaria(idFormacionComplementaria) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Create the table ExperienciaLaboral
 CREATE TABLE experienciaLaboral(
@@ -93,6 +94,7 @@ CREATE TABLE experienciaLaboral(
     fechaInicio date not null,
     fechaFin date not null,
     CONSTRAINT fk_idCurriculum3 FOREIGN KEY (idCurriculum) REFERENCES curriculum(idCurriculum)
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Create the table Estudios
 CREATE TABLE estudios(
@@ -101,4 +103,57 @@ CREATE TABLE estudios(
     estudios varchar(500) not null,
     fecha date not null,
     CONSTRAINT fk_idCurriculum4 FOREIGN KEY (idCurriculum) REFERENCES curriculum(idCurriculum)
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+-- Create the table Empresas
+CREATE TABLE empresas(
+    idEmpresa int unsigned auto_increment not null primary key,
+    nombreEmpresa varchar(200) not null unique,
+    telefono char(15) not null,
+    password varchar(255) not null,
+    correoEmpresa varchar(255) not null,
+    personaContacto varchar(150) null
+);
+-- Create the table Empresa de Empleo
+CREATE TABLE eEmpleo(
+    idEmpresa int unsigned not null primary key,
+    CONSTRAINT fk_idEmpresa FOREIGN KEY (idEmpresa) REFERENCES empresas(idEmpresa) ON DELETE CASCADE ON UPDATE CASCADE
+);
+-- Create the table Empresa de FCT
+CREATE TABLE eFct(
+    idEmpresa int unsigned not null primary key,
+    numeroConvenio smallint not null,
+    CONSTRAINT fk_idEmpresa2 FOREIGN KEY (idEmpresa) REFERENCES empresas(idEmpresa) ON DELETE CASCADE ON UPDATE CASCADE
+);
+-- Create the table Ofertas
+CREATE TABLE ofertas(
+    idOferta int unsigned not null primary key,
+    idEmpresa int unsigned not null,
+    localizacion varchar(100) null,
+    tituloOferta varchar(255) not null,
+    mensaje varchar(500) not null,
+    salario int null,
+    contrato varchar(100) null,
+    jornada varchar(100) not null,
+    pdf blob null,
+    urlOferta varchar(255) null,
+    fechaHoraPublicacion datetime not null,
+    duracion datetime not null,
+    CONSTRAINT fk_idEmpresa3 FOREIGN KEY (idEmpresa) REFERENCES empresas(idEmpresa)
+);
+-- Create the table Ofertas_FamiliasProfesionales
+CREATE TABLE ofertas_familiasProfesionales(
+    idOferta int unsigned not null,
+    idFamilia tinyint unsigned not null,
+    CONSTRAINT pk_ofertas_familiasProfesionales PRIMARY KEY (idOferta,idFamilia),
+    CONSTRAINT fk_idOferta FOREIGN KEY (idOferta) REFERENCES ofertas(idOferta),
+    CONSTRAINT fk_idFamilia2 FOREIGN KEY (idFamilia) REFERENCES familiasProfesionales(idFamilia)
+);
+-- Create the table Usuarios_Ofertas
+CREATE TABLE usuarios_ofertas(
+    idOferta int unsigned not null,
+    idUsuario int unsigned not null,
+    CONSTRAINT pk_usuarios_ofertas PRIMARY KEY (idOferta, idUsuario),
+    CONSTRAINT fk_idOferta2 FOREIGN KEY (idOferta) REFERENCES ofertas(idOferta),
+    CONSTRAINT fk_idUsuario3 FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
 );
