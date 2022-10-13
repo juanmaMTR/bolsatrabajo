@@ -47,11 +47,14 @@ CREATE TABLE ciclos_usuarios(
 CREATE TABLE curriculum(
     idCurriculum int unsigned not null auto_increment primary key,
     idUsuario int unsigned not null,
-    nombreCompleto varchar(200) not null,
+    nombreContacto varchar(100) not null,
+    apellidoContacto varchar(100) not null,
+    fechaNacimiento date not null,
     correoContacto varchar(255) not null,
     telefonoContacto char(9) not null,
     especialidad varchar(50) null,
     sobreMi varchar(150) null,
+    pdf blob null,
     CONSTRAINT fk_idUsuario2 FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
     ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -59,6 +62,7 @@ CREATE TABLE curriculum(
 CREATE TABLE idioma(
     idIdioma int unsigned not null auto_increment primary key,
     titulo varchar(200) not null,
+    certificacionOficial varchar(50) null,
     nivelOral smallint  not null,
     nivelEscrito smallint not null,
     nivelEscucha smallint not null
@@ -112,7 +116,9 @@ CREATE TABLE empresas(
     telefono char(15) not null,
     password varchar(255) not null,
     correoEmpresa varchar(255) not null,
-    personaContacto varchar(150) null
+    nombreContacto varchar(100) null,
+    apellidoContacto varchar(100) null,
+    nif char(9) null
 );
 -- Create the table Empresa de Empleo
 CREATE TABLE eEmpleo(
@@ -138,7 +144,11 @@ CREATE TABLE ofertas(
     pdf blob null,
     urlOferta varchar(255) null,
     fechaHoraPublicacion datetime not null,
-    duracion datetime not null,
+    duracionContrato varchar(100) null,
+    fechaExpiracion datetime not null,
+    nombreContacto varchar(200) null,
+    telefonoContacto char(15) null,
+    correoContacto varchar(255) null,
     CONSTRAINT fk_idEmpresa3 FOREIGN KEY (idEmpresa) REFERENCES empresas(idEmpresa)
 );
 -- Create the table Ofertas_FamiliasProfesionales
