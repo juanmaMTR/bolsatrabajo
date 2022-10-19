@@ -1,31 +1,28 @@
-import React, {useRef} from "react";
+import {useRef} from "react";
 import ErrorForms from "../componentesBasicos/ErrorForms";
+import Service from "../componentesBasicos/Service"
 
 
-const Login  = () => {   
-    
+const Login  = () => {    
 
     const inputUsuario = useRef(null)
     const inputContrasenia = useRef(null)
 
     const handleSubmit = async event => {
         event.preventDefault()
-        
-        const datosPeticion = {
-            titulo: 'Datos formulario login', 
-            usuario: inputUsuario.current.value, 
-            contrasenia: inputContrasenia.current.value
-        }
-        const opcionesPeticion = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(datosPeticion)
-        }
-        fetch('/php/controller/controller.php', opcionesPeticion)
-           .then(response => response.json())
 
-        console.log(inputUsuario.current.value);
-        console.log(inputContrasenia.current.value);
+        const parametros = {
+            method: 'POST',
+            url: '../src/php/controller/controller.php',
+            inputs : {
+                inputUsuario : inputUsuario.current.value,
+                inputContrasenia: inputContrasenia.current.value
+            }
+        }
+
+        Service(parametros)
+
+
     }
     return(
         <main>
