@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Composer
 
-Para instalar la librería de JWT y de .env.
+Para instalar la librería de Firebase JWT y de .env.
 
 ### `composer install`
 
