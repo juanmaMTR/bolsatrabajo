@@ -1,12 +1,13 @@
 import React from "react";
 import ErrorForms from "../componentesBasicos/ErrorForms";
+import Service from "../componentesBasicos/Service";
 
 const validate = values => {
     const errors={}
     if(!values.nombreUsuario){
         errors.nombreUsuario = "*Este campo es obligatorio"
     }else{
-        if(values.nombreUsuario == null || /^\s*$/.test(values.nombreUsuario)){
+        if(values.nombreUsuario == null || values.nombreUsuario.includes(" ")){
             errors.nombreUsuario = "*Este campo no puede estar vacío o incluir caracteres en blanco"
         }
         if(Object.keys(values.nombreUsuario).length >100){
@@ -30,7 +31,7 @@ const validate = values => {
                 //DNI correcto
             }
         }else{
-            errors.dni='Dni erroneo, formato no válido'
+            errors.dni='*Dni erroneo, formato no válido'
         }
     }
     if(!values.correo){
@@ -65,6 +66,17 @@ class Alta_usuarios extends React.Component{
         if(!Object.keys(result).length) {
             //Envio el formulario porque no me llega ningún error
             console.log("Formulario Enviado");
+            const datos = {
+                nombre: this.state.nombre,
+                apellidos: this.state.apellidos,
+                nombreUsuario: this.state.nombreUsuario,
+                estado: this.state.estado,
+                dni: this.state.dni,
+                correo: this.state.correo
+            }
+            console.log(datos);
+            const response=<Service datos={datos}/> //Llamo al servicio para que haga el fetch al php
+            console.log(response);
         }
     }
     render(){
