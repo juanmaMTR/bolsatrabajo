@@ -1,4 +1,4 @@
-const Service = (parametros) => {
+const Service = async parametros => {
 
     console.log(parametros)
 
@@ -9,9 +9,8 @@ const Service = (parametros) => {
         headers: {'Content-Type': 'application/json'},
         body: inputs
     }
-    fetch(url, opcionesPeticion)
-       .then(response => response)
-        
+
+    await fetch(url, opcionesPeticion)        
     
 
 }

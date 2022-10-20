@@ -11,17 +11,11 @@
     
     if ($datos['inputUsuario'] == 'hola' and $datos['inputContrasenia'] == 'hola') {
         $arrayRespuesta['resultado'] = 'Sesión iniciada';
-        sesion();
     }else{
         $arrayRespuesta['resultado'] = 'Error';
     }    
     
-    function sesion(){
-        session_start();
-        $_SESSION['nombre'] = 'Pepe';
-        $_SESSION['tipo'] = 'Admin';
-    }
-    
+  
 
     
     if (isset($arrayRespuesta)) {
