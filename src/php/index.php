@@ -1,9 +1,21 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: *");
+    header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Headers: *");
+    header('Content-Type: application/json;');
 
-$datosRecibidos = json_decode(file_get_contents("php://input"));
-//echo json_encode($datosRecibidos->nombre);
+
+    $json = file_get_contents('php://input');
+    $datos = json_decode($json, true);
+    
+    switch ($datos["accion"]) {
+        case 'comprobarSesion':
+            # llamar al controlador inicio
+            break;
+        
+        default:
+            # code...
+            break;
+    }
 
 ?>
