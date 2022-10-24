@@ -3,7 +3,14 @@ import ErrorForms from "../componentesBasicos/ErrorForms";
 import Service from "../componentesBasicos/Service";
 
 const validate = values => {
+    //Realizo las validaciones de los campos del formulario
     const errors={}
+    if(!values.nombre){
+        errors.nombre = "*Este campo es obligatorio"
+    }
+    if(!values.apellidos){
+        errors.apellidos = "*Este campo es obligatorio"
+    }
     if(!values.nombreUsuario){
         errors.nombreUsuario = "*Este campo es obligatorio"
     }else{
@@ -66,17 +73,19 @@ class Alta_usuarios extends React.Component{
         if(!Object.keys(result).length) {
             //Envio el formulario porque no me llega ningún error
             console.log("Formulario Enviado");
-            const datos = {
-                nombre: this.state.nombre,
-                apellidos: this.state.apellidos,
-                nombreUsuario: this.state.nombreUsuario,
-                estado: this.state.estado,
-                dni: this.state.dni,
-                correo: this.state.correo
+            const parametros = {
+                method: 'POST',
+                inputs: {
+                    accion: 'alta_usuarios',
+                    nombre: this.state.nombre,
+                    apellidos: this.state.apellidos,
+                    nombreUsuario: this.state.nombreUsuario,
+                    estado: this.state.estado,
+                    dni: this.state.dni,
+                    correo: this.state.correo
+                }
             }
-            console.log(datos);
-            const response=<Service datos={datos}/> //Llamo al servicio para que haga el fetch al php
-            console.log(response);
+            Service(parametros)
         }
     }
     render(){
@@ -85,8 +94,10 @@ class Alta_usuarios extends React.Component{
             <main>
                 <h1>Alta de Usuarios</h1>
                 <form action="#" method="POST" onSubmit={this.handleSubmit}>
+                    {errors.nombre && <ErrorForms message={errors.nombre}/>}
                     <label>Nombre: </label>
                     <input type="text" name="nombre" onChange={this.handleChange}/><br/>
+                    {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
                     <label>Apellidos: </label>
                     <input type="text" name="apellidos" onChange={this.handleChange}/><br/>
                     {errors.nombreUsuario && <ErrorForms message={errors.nombreUsuario}/>}
