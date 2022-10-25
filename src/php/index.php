@@ -5,11 +5,12 @@
 
   $json = file_get_contents('php://input');
   $datos = json_decode($json, true); 
-  echo json_encode("sdasdasdas");
+
+  require_once __DIR__. '/controller/c_usuarios.php';
+  $controlador = new ControladorUsuarios();
   switch ($datos['accion']) {
     case 'alta_usuarios':
-        $datosRespuesta["respuesta"]= "LLego alta usuario";
-        echo json_encode($datosRespuesta);
+        $controlador->altaUsuarios($datos);
         break;
     
     default:
