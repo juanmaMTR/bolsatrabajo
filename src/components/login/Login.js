@@ -1,7 +1,7 @@
 import {useRef} from "react";
-import ErrorForms from "../componentesBasicos/ErrorForms";
 import Service from "../componentesBasicos/Service"
 import ServiceJWT from "../componentesBasicos/ServiceJWT"
+import Auth from "../componentesBasicos/Auth"
 
 
 const Login  = () => {    
@@ -14,15 +14,15 @@ const Login  = () => {
 
         const parametros = {
             method: 'POST',
-            // url: '../src/php/controller/controller.php',
-            url: '../src/php/authentication/autentificacion.php',
+            url: '../src/php/index.php',
             inputs : {
+                accion: 'login',
                 inputUsuario : inputUsuario.current.value,
                 inputContrasenia: inputContrasenia.current.value
             }
         }
 
-        ServiceJWT(parametros)        
+        Auth(parametros)        
 
     }
     return(
