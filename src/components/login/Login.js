@@ -1,15 +1,18 @@
 import {useRef} from "react";
 import Service from "../componentesBasicos/Service"
 import ServiceJWT from "../componentesBasicos/ServiceJWT"
+import DecodeCookie from '../componentesBasicos/DecodeCookie'
 import Auth from "../componentesBasicos/Auth"
 
 
 const Login  = () => {    
 
+    console.log(DecodeCookie())  
+
     const inputUsuario = useRef(null)
     const inputContrasenia = useRef(null)
 
-    const handleSubmit = async event => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
         const parametros = {
@@ -22,8 +25,9 @@ const Login  = () => {
             }
         }
 
-        Auth(parametros)        
-
+        Auth(parametros)   
+        //Recarga la página     
+        window.location.reload()
     }
     return(
         <main>

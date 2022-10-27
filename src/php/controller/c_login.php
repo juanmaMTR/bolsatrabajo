@@ -9,8 +9,7 @@
 
             if ($datos['inputUsuario'] == 'hola' and $datos['inputContrasenia'] == 'hola') {
                 $arrayRespuesta['resultado'] = 'Sesión iniciada';
-                $arrayRespuesta['token'] = $this->crearToken();
-                
+                $this->crearCookie();
             }else{
                 $arrayRespuesta['resultado'] = 'Error';
             }    
@@ -45,7 +44,12 @@
             );
             
             return $jwt;
-        }        
+        }
+        function crearCookie(){
+
+            $jwt = $this->crearToken();
+            setcookie("token", $jwt, 0, "/", secure:true);
+        }       
     }
     
 ?>
