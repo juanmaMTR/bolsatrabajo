@@ -5,10 +5,21 @@
 
     class ControladorLogin{
         
+        function __construct(){
+            require_once('./model/m_login.php');
+            $this->m_login = new ModeloLogin;
+        }
+
         function login($datos){
 
             if ($datos['inputUsuario'] == 'hola' and $datos['inputContrasenia'] == 'hola') {
-                $arrayRespuesta['resultado'] = 'Sesión iniciada';
+                $datosUsuario = $this->m_login->sacarUsuarioLogin();
+                print_r($datosUsuario);
+                if($datosUsuario['Loguea'] == '1'){
+                    $arrayRespuesta['resultado'] = 'Sesión iniciada.';
+                }else{
+                    $arrayRespuesta['resultado'] = 'No ha iniciado bien sesión, inténtelo de nuevo.';
+                }
                 $this->crearCookie();
             }else{
                 $arrayRespuesta['resultado'] = 'Error';

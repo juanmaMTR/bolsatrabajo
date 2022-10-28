@@ -1,4 +1,3 @@
-import DecodeCookie from '../componentesBasicos/DecodeCookie'
 const Auth = async (parametros) => {
 
     console.log(parametros)

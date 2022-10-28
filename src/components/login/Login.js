@@ -27,7 +27,7 @@ const Login  = () => {
 
         Auth(parametros)   
         //Recarga la página     
-        window.location.reload()
+        //window.location.reload()
     }
     return(
         <main>
