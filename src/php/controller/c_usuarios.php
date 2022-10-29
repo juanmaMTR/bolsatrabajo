@@ -21,61 +21,77 @@
         function altaUsuarios($datos) {
             if(isset($datos['nombre'])){
                 if(empty($datos['nombre'])){
-                    echo json_encode("El nombre está vacío");
+                    echo "El nombre está vacío";
+                    die();
                 }else{
-                    $nombre = $datos['nombre'];
+                    $nombre = "'".$datos['nombre']."'";
                 }
             }else{
-                echo json_encode("No existe el nombre");
+                echo "No existe el nombre";
+                die();
             }
             if(isset($datos['apellidos'])){
                 if(empty($datos['apellidos'])){
-                    echo json_encode("El apellido está vacío");
+                    echo "El apellido está vacío";
+                    die();
                 }else{
-                    $apellidos = $datos['apellidos'];
+                    $apellidos = "'".$datos['apellidos']."'";
                 }
             }else{
-                echo json_encode("No existe el apellido");
+                echo "No existe el apellido";
+                die();
             }
             if(isset($datos['nombreUsuario'])){
                 if(empty($datos['nombreUsuario'])){
-                    echo json_encode("El nombre de usuario está vacío");
+                    echo "El nombre de usuario está vacío";
+                    die();
                 }else{
-                    $nombreUsuario = $datos['nombreUsuario'];
-                    $password = $datos['nombreUsuario'];
+                    $nombreUsuario = "'".$datos['nombreUsuario']."'";
+                    $password = "'".$datos['nombreUsuario']."'";
                 }
             }else{
-                echo json_encode("No existe el nombre de usuario");
+                echo "No existe el nombre de usuario";
+                die();
             }
             if(isset($datos['estado'])){
                 if(empty($datos['estado'])){
-                    echo json_encode("El estado está vacío");
+                    echo "El estado está vacío";
+                    die();
                 }else{
                     $estado = $datos['estado'];
                 }
             }else{
-                echo json_encode("No existe el estado");
+                echo "No existe el estado";
+                die();
             }
             if(isset($datos['dni'])){
                 if(empty($datos['dni'])){
-                    echo json_encode("El dni está vacío");
+                    echo "El dni está vacío";
+                    die();
                 }else{
-                    $dni = $datos['dni'];
+                    $dni = "'".$datos['dni']."'";
                 }
             }else{
-                echo json_encode("No existe el dni");
+                echo "No existe el dni";
+                die();
             }
             if(isset($datos['correo'])){
                 if(empty($datos['correo'])){
-                    echo json_encode("El correo está vacío");
+                    echo "El correo está vacío";
+                    die();
                 }else{
-                    $correo = $datos['correo'];
+                    $correo = "'".$datos['correo']."'";
                 }
             }else{
-                echo json_encode("No existe el correo");
+                echo "No existe el correo";
+                die();
             }
-            $primeraVez= true;
-            $this->modelo->alta($nombre,$apellidos,$nombreUsuario,$password,$estado,$dni,$correo,$primeraVez);
+            if(isset($datos['tipo'])){
+                $tipo = "'".$datos['tipo']."'";
+            }else{
+                $tipo = "'".'a'."'";
+            }
+            $this->modelo->alta($nombre,$apellidos,$nombreUsuario,$password,$estado,$dni,$correo,$tipo);
         }
      }
 

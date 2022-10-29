@@ -12,10 +12,10 @@ const Service = async parametros => {
         body: inputs
     }
     await fetch(url, opcionesPeticion)
-        //.then(response => response)
-       .then(response =>{
-        console.log(response);
-       })
+        .then(response => response)
+       /*.then(response =>{
+        console.log(response.text().PromiseResult);
+       })*/
         
     
 
