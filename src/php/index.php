@@ -1,9 +1,21 @@
 <?php
+  header('Access-Control-Allow-Origin: *');
+  header("Access-Control-Allow-Headers: *");
+  header('Content-Type: application/json;');
 
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: *");
+  $json = file_get_contents('php://input');
+  $datos = json_decode($json, true); 
 
-$datosRecibidos = json_decode(file_get_contents("php://input"));
-//echo json_encode($datosRecibidos->nombre);
+  require_once __DIR__. '/controller/c_usuarios.php';
+  $controlador = new ControladorUsuarios();
+  switch ($datos['accion']) {
+    case 'alta_usuarios':
+        $controlador->altaUsuarios($datos);
+        break;
+    
+    default:
+        # code...
+        break;
+  }
 
 ?>
