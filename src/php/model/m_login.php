@@ -6,8 +6,8 @@
             $this->conex = new mysqli(SERVER, USER, PW, DB);
         } 
         
-        function sacarUsuarioLogin(){
-            $validarUsuario = "SELECT * FROM usuarios WHERE nombreUsuario = 'juanito23';";
+        function sacarUsuarioLogin($user){
+            $validarUsuario = "SELECT * FROM usuarios WHERE nombreUsuario = '$user';";
             $resultado = $this->conex->query($validarUsuario);
             $usuarioSacado = $resultado->fetch_assoc();
             //Compara los valores en el array buscando si hay coincidencias, si no las hay, saca la diferencia. 
@@ -22,7 +22,7 @@
                                                                 ["primeraVez" => 'nada']);
                                                             }
             $encuentraUsuario = $resultado->num_rows;
-            $usuarioSacado['Loguea'] = $encuentraUsuario;
+            $usuarioSacado['Existe'] = $encuentraUsuario;
             return $usuarioSacado;
         }
     }

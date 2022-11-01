@@ -1,4 +1,5 @@
 <?php
+  session_start();
   header('Access-Control-Allow-Origin: *');
   header("Access-Control-Allow-Headers: *");
   header('Content-Type: application/json;');
@@ -13,12 +14,11 @@
 
   switch ($datos['accion']) {
     case 'login':
-        $controladorLogin->login($datos);
-        break;
+      $controladorLogin->login($datos);
+      break;
     
     default:
 
-        break;
+      break;
   }
-
 ?>

@@ -12,18 +12,19 @@
 
         function login($datos){
 
-            if ($datos['inputUsuario'] == 'hola' and $datos['inputContrasenia'] == 'hola') {
-                $datosUsuario = $this->m_login->sacarUsuarioLogin();
-                print_r($datosUsuario);
-                if($datosUsuario['Loguea'] == '1'){
+            $datosUsuario = $this->m_login->sacarUsuarioLogin($datos['inputUsuario']);
+            print_r($datosUsuario);
+            if ($datosUsuario['Existe'] == 1) {
+                if($datos['inputUsuario'] == $datosUsuario['nombreUsuario'] && $datos['inputContrasenia'] == $datosUsuario['password']){
                     $arrayRespuesta['resultado'] = 'Sesión iniciada.';
+                    $this->crearCookie($datos);
+                    $this->crearSesion($datosUsuario);
                 }else{
-                    $arrayRespuesta['resultado'] = 'No ha iniciado bien sesión, inténtelo de nuevo.';
+                    $arrayRespuesta['resultado'] = 'Contraseña incorrecta, inténtelo de nuevo.';
                 }
-                $this->crearCookie();
             }else{
-                $arrayRespuesta['resultado'] = 'Error';
-            }    
+                $arrayRespuesta['resultado'] = 'Usuario no encontrado.';
+            }
             
           
         
@@ -35,12 +36,15 @@
         
             
         }
-        function crearToken(){
+        function crearToken($datos){
             // mirar https://github.com/vlucas/phpdotenv para poner la secret key en un .env
             
+            $datosUsuario = $this->m_login->sacarUsuarioLogin($datos['inputUsuario']);
+
+
             $secretkey = 'test1234';
-            $user = "pepe";
-            $type = "admin";
+            $user = $datosUsuario['nombreUsuario'];
+            $type = $datosUsuario['tipo'];
     
             $data = [
                 'userName' => $user,
@@ -56,11 +60,16 @@
             
             return $jwt;
         }
-        function crearCookie(){
+        function crearCookie($datos){
+            $jwt = $this->crearToken($datos);
+            setcookie("token", $jwt, 0, "/", "localhost", true, true);
+        }
+        function crearSesion($datosUsuario){
+            $_SESSION['usuario'] = $datosUsuario['nombreUsuario'];
+            $_SESSION['tipo'] = $datosUsuario['tipo'];
 
-            $jwt = $this->crearToken();
-            setcookie("token", $jwt, 0, "/", secure:true);
-        }       
+            print_r($_SESSION);
+        }      
     }
     
 ?>
