@@ -1,8 +1,6 @@
 import {useRef} from "react";
 import Service from "../componentesBasicos/Service"
-import ServiceJWT from "../componentesBasicos/ServiceJWT"
 import DecodeCookie from '../componentesBasicos/DecodeCookie'
-import Auth from "../componentesBasicos/Auth"
 
 
 const Login  = () => {    
@@ -25,7 +23,7 @@ const Login  = () => {
             }
         }
 
-        Auth(parametros)   
+        Service(parametros)   
         //Recarga la página     
         //window.location.reload()
     }

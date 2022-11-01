@@ -1,13 +1,9 @@
-const Auth = async (parametros) => {
+const Auth = async () => {
 
-    console.log(parametros)
-
-    const inputs = JSON.stringify(parametros.inputs)
-    const url = parametros.url
+    const url = '../src/php/index.php'
     const opcionesPeticion = {
-        method: parametros.method,
-        headers: {'Content-Type': 'application/json'},
-        body: inputs
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
     }
 
     await fetch(url, opcionesPeticion)
