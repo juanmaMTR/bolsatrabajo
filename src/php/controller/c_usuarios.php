@@ -91,7 +91,16 @@
             }else{
                 $tipo = "'".'a'."'";
             }
-            $this->modelo->alta($nombre,$apellidos,$nombreUsuario,$password,$estado,$dni,$correo,$tipo);
+            $respuesta=$this->modelo->alta($nombre,$apellidos,$nombreUsuario,$password,$estado,$dni,$correo,$tipo);
+            echo $respuesta;
+        }
+        /**
+         * @function listadoUsuarios
+         * @description Funcion para listar los usuarios
+         */
+        function listadoUsuarios(){
+            $usuarios = $this->modelo->listar();
+            print_r(json_encode($usuarios)) ;
         }
      }
 

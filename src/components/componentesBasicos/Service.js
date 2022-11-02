@@ -11,11 +11,12 @@ const Service = async parametros => {
         headers: {'Content-Type': 'application/json'},
         body: inputs
     }
-    await fetch(url, opcionesPeticion)
-        .then(response => response)
+    const response = await fetch(url, opcionesPeticion)
+        //.then(response => response)
        /*.then(response =>{
         console.log(response.text().PromiseResult);
        })*/
+    return response;
         
     
 

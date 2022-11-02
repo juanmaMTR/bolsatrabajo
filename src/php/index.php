@@ -10,12 +10,14 @@
   $controlador = new ControladorUsuarios();
   switch ($datos['accion']) {
     case 'alta_usuarios':
-        $controlador->altaUsuarios($datos);
-        break;
-    
+      $controlador->altaUsuarios($datos);
+      break;
+    case 'listado_usuarios':
+      $controlador->listadoUsuarios();
+      break;
     default:
-        # code...
-        break;
+      # code...
+      break;
   }
 
 ?>

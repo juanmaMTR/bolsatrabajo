@@ -16,12 +16,39 @@
         }
         /**
          * @function alta
-         * @description Función para dar de alta a los usuarios
+         * @description Función para dar de alta a los usuarios en la base de datos
          */
         function alta($nombre,$apellidos,$nombreUsuario,$password,$estado,$dni,$correo,$tipo){
             $sql = "INSERT INTO usuarios(nombreUsuario, estado, dni, correo, password, tipo, nombre, apellidos, primeraVez) VALUES ($nombreUsuario,$estado,$dni,$correo,$password,$tipo,$nombre,$apellidos,true);";
-            echo $sql;
-            $this->conexion->query($sql);
+            if($this->conexion->query($sql)){
+                return 'Usuario dado de alta.';
+            }else{
+                return 'Ha surgido un error';
+            }
+        }
+        /**
+         * @function listar
+         * @description Función para recoger los datos de los usuarios de la base de datos
+         */
+        function listar(){
+            $sql= "SELECT * FROM `usuarios` WHERE tipo != 's' and tipo != 't';";
+            //$sql= "SELECT * FROM `usuarios` WHERE tipo != 's';"; para cuando es administrador
+            $usuarios= array();
+            if($resultado = $this->conexion->query($sql)){
+                for($i=0;$i<$resultado->num_rows;$i++){
+                    $fila = $resultado->fetch_assoc();
+                    $usuarios[$i]=[
+                        $fila['nombreUsuario'],
+                        $fila['estado'],
+                        $fila['dni'],
+                        $fila['correo'],
+                        $fila['nombre'],
+                        $fila['apellidos'],
+                        $fila['primeraVez']
+                    ];
+                }
+                return $usuarios;
+            }
         }
     }
 
