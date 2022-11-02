@@ -67,20 +67,22 @@ form input:hover {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
 }
-form input[type=email]:focus, form input[type=password]:focus {
+form input[type=text]:focus, form input[type=password]:focus {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
 }
-form input[type=button] {
+form input[type=submit] {
   margin-top: 10px;
   width: 150px;
   font-size: 1rem;
+  background: #d93c;
+
 }
-form input[type=button]:hover {
+form input[type=submit]:hover {
   cursor: pointer;
 }
-form input[type=button]:active {
-  background: rgba(255, 255, 255, 0.2);
+form input[type=submit]:active {
+  background: rgba(233, 190, 126, 0.8);
 }
 form:hover {
   margin: 4px;
@@ -156,6 +158,6 @@ a,
 input:focus,
 select:focus,
 textarea:focus,
-button:focus {
+submit:focus {
   outline: none;
 }
