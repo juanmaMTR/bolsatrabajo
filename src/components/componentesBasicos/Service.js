@@ -10,8 +10,9 @@ const Service = async parametros => {
         body: inputs
     }
 
-    await fetch(url, opcionesPeticion)        
+    const response = await fetch(url, opcionesPeticion)        
     
+    return response
 
 }
 export default Service
