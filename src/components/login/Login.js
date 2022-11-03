@@ -1,5 +1,5 @@
 import '../../css/login.css'
-import {useRef, useState, useEffect} from "react";
+import {useRef, useState, useEffect, useCallback} from "react";
 import Service from "../componentesBasicos/Service"
 import Auth from '../componentesBasicos/Auth';
 import DecodeCookie from '../componentesBasicos/DecodeCookie';
@@ -9,41 +9,12 @@ const Login  = () => {
     const inputUsuario = useRef(null)
     const inputContrasenia = useRef(null)
     const [texto, setTexto] = useState(0);
-    // para ignorar el callback durante el primer render del componente
-    // const didMount = useRef(false);
     
-    // useEffect(()=>{
-    //     // para ignorar el callback durante el primer render del componente
-    //     // if (!didMount.current ) {
-    //     //     return didMount.current = true;
-    //     // }
-    //     const responseJson = Auth()
-    //     const respuestaTexto = responseJson.Respuesta
-    //     console.log(respuestaTexto)
-
-    //     let datos = {
-    //         userName : '',
-    //         type : '',
-    //         message : respuestaTexto
-    //     }
-    //     if (respuestaTexto == 'OK') {
-    //         const datosCookie = DecodeCookie()
-    //         datos = {
-    //             userName : datosCookie.userName,
-    //             type : datosCookie.type,
-    //             message : respuestaTexto
-    //         }
-    //         console.log(datos);
-    //         setTexto(datos)
-    //     }else{
-    //         setTexto(datos)
-    //     }
-    // }, [texto])
-    const actualizarTexto = async () => {
-        // para ignorar el callback durante el primer render del componente
-        // if (!didMount.current ) {
-        //     return didMount.current = true;
-        // }
+    useEffect(() =>{
+        actualizarTexto()
+    }, [])
+    
+    const actualizarTexto = useCallback( async () =>{
         const responseJson = await Auth()
         const respuestaTexto = responseJson.Respuesta
         console.log(respuestaTexto)
@@ -64,9 +35,11 @@ const Login  = () => {
             setTexto(datos)
         }else{
             setTexto(datos)
-        }
+        }        
+    }, [texto])
+
         
-    }
+    
     const handleSubmit = async (event) => {
         event.preventDefault()
         
@@ -81,16 +54,19 @@ const Login  = () => {
         }
         
 
-        actualizarTexto()
-        Service(parametros)   
+        Service(parametros)
+        
         //Recarga la página     
         //window.location.reload()
+        setTimeout(() => {
+            actualizarTexto()
+        }, 300);
     }
     return(
         <div className="container">
             <p>Usuario: {texto.userName}</p>
             <p>Tipo: {texto.type}</p>
-            <p>{texto.message}</p>
+            <p>Mensaje: {texto.message}</p>
             <form action="#" method="POST" onSubmit={handleSubmit}>
                 <p>Login</p>
                 <input type="text" name="nombre" placeholder="Usuario" ref={inputUsuario}/><br/>
