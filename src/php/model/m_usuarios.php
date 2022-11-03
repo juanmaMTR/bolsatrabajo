@@ -50,6 +50,15 @@
                 return $usuarios;
             }
         }
+
+        function borrar($nombreUsuario){
+            $sql = "DELETE FROM `usuarios` WHERE nombreUsuario =". $nombreUsuario.";";
+            if($this->conexion->query($sql)){
+                return 'Usuario eliminado correctamente';
+            }else{
+                return 'Ha surgido un error';
+            }
+        }
     }
 
 ?>

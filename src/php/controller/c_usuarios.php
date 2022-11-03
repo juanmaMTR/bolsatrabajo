@@ -102,6 +102,25 @@
             $usuarios = $this->modelo->listar();
             print_r(json_encode($usuarios)) ;
         }
+        /**
+         * @function borrarUsuario
+         * @description Función para borrar el usuario
+         */
+        function borrarUsuario($datos){
+            if(isset($datos['nombreUsuario'])){
+                if(empty($datos['nombreUsuario'])){
+                    echo "El nombre de usuario está vacío";
+                    die();
+                }else{
+                    $nombreUsuario = "'".$datos['nombreUsuario']."'";
+                }
+            }else{
+                echo "No existe el nombre de usuario";
+                die();
+            }
+            $respuesta = $this->modelo->borrar($nombreUsuario);
+            print_r(json_encode($respuesta));
+        }
      }
 
 

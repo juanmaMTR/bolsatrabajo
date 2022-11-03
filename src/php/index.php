@@ -15,6 +15,9 @@
     case 'listado_usuarios':
       $controlador->listadoUsuarios();
       break;
+    case 'borrar_usuario':
+      $controlador->borrarUsuario($datos);
+      break;
     default:
       # code...
       break;

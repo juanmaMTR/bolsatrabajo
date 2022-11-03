@@ -22,8 +22,21 @@ const ListadoUsaurios = () =>{
         const datosResponse = await response.json();
         console.log(datosResponse);
         setLista(datosResponse)
-        handleUsuario()
+        {BorrarUsuario(lista[1]['nombreUsuario'])}
+        //handleUsuario()
         //return await datosResponse
+    }
+    const BorrarUsuario = async (nombreUsuario)=>{
+        const parametros = {
+            method: 'POST',
+            inputs:{
+                accion: 'borrar_usuario',
+                nombreUsuario: nombreUsuario
+            }
+        }
+        const response = await Service(parametros)
+        const datosResponse = await response.json()
+        console.log(datosResponse);
     }
     const handleUsuario= ()=> {
         for (let index = 0; index < lista.length; index++) {
@@ -37,7 +50,7 @@ const ListadoUsaurios = () =>{
             Click me
             </button>
             
-            {usuario => usuario && (
+            {/* {usuario => usuario && (
                 <dl>
                     <dt>Title:</dt>
                     <dd>{album.title}</dd>
@@ -46,7 +59,7 @@ const ListadoUsaurios = () =>{
                     <dt>Genre:</dt>
                     <dd>{album.genre}</dd>
                 </dl>
-            )}
+            )} */}
         </div>
     )
     
