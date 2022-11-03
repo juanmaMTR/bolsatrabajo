@@ -1,13 +1,16 @@
-import React from "react";
+import {useState} from "react";
 import Service from "../componentesBasicos/Service";
 
 
-class ListadoUsaurios extends React.Component {
-    constructor(){
-        super()
-        this.ListarUsuarios()
-    }
-    async ListarUsuarios(){
+const ListadoUsaurios = () =>{
+    
+    // async actualizarLista(datosResponse){
+    //     this.setState({lista: datosResponse})
+    // }
+    const [lista, setLista] = useState(0);
+    const [usuario,setUsuario] = useState(1);
+
+    const ListarUsuarios = async ()=>{
         const parametros = {
             method: 'POST',
             inputs: {
@@ -15,15 +18,38 @@ class ListadoUsaurios extends React.Component {
             }
         }
         const response = await Service(parametros)
-        const datosResponse = await response.text();
-        // Cambiar a este cuando sea json //const datosResponse = await response.json();
+        //const datosResponse = await response.text();
+        const datosResponse = await response.json();
         console.log(datosResponse);
+        setLista(datosResponse)
+        handleUsuario()
+        //return await datosResponse
     }
-    render(){
-        return(
-            console.log('nada (quitar esto)')
-        )
+    const handleUsuario= ()=> {
+        for (let index = 0; index < lista.length; index++) {
+            setUsuario(lista[index])
+        }
     }
+    return(
+        <div>
+            <p>You clicked {lista} times</p>
+            <button onClick={ListarUsuarios}>
+            Click me
+            </button>
+            
+            {usuario => usuario && (
+                <dl>
+                    <dt>Title:</dt>
+                    <dd>{album.title}</dd>
+                    <dt>Artist:</dt>
+                    <dd>{album.artist}</dd>
+                    <dt>Genre:</dt>
+                    <dd>{album.genre}</dd>
+                </dl>
+            )}
+        </div>
+    )
+    
 }
 
 export default ListadoUsaurios

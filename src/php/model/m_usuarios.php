@@ -38,13 +38,13 @@
                 for($i=0;$i<$resultado->num_rows;$i++){
                     $fila = $resultado->fetch_assoc();
                     $usuarios[$i]=[
-                        $fila['nombreUsuario'],
-                        $fila['estado'],
-                        $fila['dni'],
-                        $fila['correo'],
-                        $fila['nombre'],
-                        $fila['apellidos'],
-                        $fila['primeraVez']
+                        "nombreUsuario" => $fila['nombreUsuario'],
+                        "estado" => $fila['estado'],
+                        "dni" => $fila['dni'],
+                        "correo" => $fila['correo'],
+                        "nombre" => $fila['nombre'],
+                        "apellidos" => $fila['apellidos'],
+                        "primeraVez" => $fila['primeraVez']
                     ];
                 }
                 return $usuarios;
