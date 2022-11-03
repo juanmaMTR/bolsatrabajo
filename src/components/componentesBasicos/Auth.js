@@ -1,13 +1,14 @@
 const Auth = async () => {
 
-    const url = '../src/php/index.php'
+    const url = '../src/php/authentication/autenticacion.php'
     const opcionesPeticion = {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json'}
+        method: 'GET'
     }
 
-    await fetch(url, opcionesPeticion)
+    const response = await fetch(url, opcionesPeticion)    
 
+    const responseJson = await response.json()
+    return responseJson
 }
 
 export default Auth

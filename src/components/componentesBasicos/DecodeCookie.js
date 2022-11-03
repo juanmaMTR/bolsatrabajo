@@ -10,7 +10,7 @@ const DecodeCookie = () =>{
         return "Debe iniciar sesión para recibir el token."
     }else{
         const decodedCookie = jwt_decode(cookieToken)
-        return JSON.stringify(decodedCookie)
+        return decodedCookie
     }
 }
 export default DecodeCookie
