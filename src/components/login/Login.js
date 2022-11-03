@@ -13,7 +13,7 @@ const Login  = () => {
     useEffect(() =>{
         actualizarTexto()
     }, [])
-    
+
     const actualizarTexto = useCallback( async () =>{
         const responseJson = await Auth()
         const respuestaTexto = responseJson.Respuesta
@@ -56,8 +56,8 @@ const Login  = () => {
 
         Service(parametros)
         
-        //Recarga la página     
-        //window.location.reload()
+        
+        //Se puede bajar el tiempo para que sea más rápida la actualización del texto
         setTimeout(() => {
             actualizarTexto()
         }, 300);
