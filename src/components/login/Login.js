@@ -60,7 +60,7 @@ const Login  = () => {
         //Se puede bajar el tiempo para que sea más rápida la actualización del texto
         setTimeout(() => {
             actualizarTexto()
-        }, 300);
+        }, 100);
     }
     return(
         <div className="container">
