@@ -31,8 +31,8 @@
          * @description Función para recoger los datos de los usuarios de la base de datos
          */
         function listar(){
-            $sql= "SELECT * FROM `usuarios` WHERE tipo != 's' and tipo != 't';";
-            //$sql= "SELECT * FROM `usuarios` WHERE tipo != 's';"; para cuando es administrador
+            //$sql= "SELECT * FROM `usuarios` WHERE tipo != 's' and tipo != 't';";
+            $sql= "SELECT * FROM `usuarios` WHERE tipo != 's';"; //para cuando es administrador
             $usuarios= array();
             if($resultado = $this->conexion->query($sql)){
                 for($i=0;$i<$resultado->num_rows;$i++){
