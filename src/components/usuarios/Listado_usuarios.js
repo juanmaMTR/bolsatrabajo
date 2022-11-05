@@ -21,7 +21,7 @@ const ListadoUsaurios = () =>{
         //const datosResponse = await response.text();
         const datosResponse = await response.json();
         console.log(datosResponse);
-        setLista(datosResponse)
+        setLista(datosResponse[0]['nombreUsuario'])
         console.log(lista);
         //{BorrarUsuario(lista[1]['nombreUsuario'])}
         //handleUsuario()
