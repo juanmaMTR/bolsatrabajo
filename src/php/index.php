@@ -18,6 +18,12 @@
     case 'borrar_usuario':
       $controlador->borrarUsuario($datos);
       break;
+    case 'listar_usuario':
+      $controlador->listarUsuario($datos);
+      break;
+    case 'editar_usuario':
+      $controlador->editar_usuario($datos);
+      break;
     default:
       # code...
       break;

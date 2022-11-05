@@ -64,7 +64,7 @@ class Alta_usuarios extends React.Component{
         const {name,value}=target
         this.setState({[name]:value})
     }
-    handleSubmit=event=>{
+    handleSubmit=async (event)=>{
         event.preventDefault()
         const { errors, ...sinErrors}=this.state
         const result = validate(sinErrors)
@@ -85,7 +85,9 @@ class Alta_usuarios extends React.Component{
                     correo: this.state.correo
                 }
             }
-            Service(parametros)
+            const response = await Service(parametros)
+            const datosResponse = await response.json();
+            console.log(datosResponse);
         }
     }
     render(){
