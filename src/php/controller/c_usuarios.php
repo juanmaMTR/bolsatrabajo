@@ -183,7 +183,7 @@
                 print_r(json_encode("No existe el nombre de usuario"));
                 die();
             }
-            if(isset($datos['estado'])){
+            if(isset($datos['estado']) && $datos['estado'] != 'Abrir menú'){
                 if(empty($datos['estado'])){
                     print_r(json_encode("El estado está vacío"));
                     die();
