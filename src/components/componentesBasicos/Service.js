@@ -5,7 +5,7 @@ const Service = async parametros => {
     console.log(parametros)
 
     const inputs = JSON.stringify(parametros.inputs)
-    const url = parametros.url
+    const url = environment.apiURL
     const opcionesPeticion = {
         method: parametros.method,
         headers: {'Content-Type': 'application/json'},
