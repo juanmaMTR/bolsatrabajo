@@ -1,13 +1,17 @@
 <?php
-
-class c_inicio{
-    public function __construct()
-    {
-      require_once __DIR__ . "/../modelo/m_Inicio.php";
-      $this->conexion = new M_Etapas();
-      header("Access-Control-Allow-Origin:*");
-      header('Content-Type: application/json; charset=utf-8');
-    }
-  
+  /**
+   * @file c_inicio.php
+   * @description Controlador de inicio
+   */
+  class ControladorInicio{
+    public $modelo;
+    /**
+     * @function __construct
+     * @description Constructor de la clase donde instancio el modelo
+     */
+    function __construct() {
+        require_once __DIR__. '/../model/m_inicio.php';
+        $this->modelo = new ModeloInicio();
+  }
   
 }

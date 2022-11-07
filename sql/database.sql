@@ -19,8 +19,8 @@ CREATE TABLE usuarios(
     correo varchar(255) not null,
     password varchar(255) not null,
     tipo char(1) not null default 'a' check (tipo in ('s','t','a')) ,
-    nombre varchar(100) null,
-    apellidos varchar(100) null,
+    nombre varchar(100) not null,
+    apellidos varchar(100) not null,
     primeraVez boolean not null
 );
 -- Create table Familias Profesionales

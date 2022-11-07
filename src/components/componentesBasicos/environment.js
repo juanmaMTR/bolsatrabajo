@@ -3,6 +3,6 @@
  * @description Variables de entornos del proyecto
  */
 
-export const environment = {
-    apiURL: "http://localhost/bolsatrabajo/src/php/"
+ export const environment = {
+    apiURL: "../src/php/index.php"
 }
