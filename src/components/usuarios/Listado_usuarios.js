@@ -26,7 +26,6 @@ const ListadoUsuarios = () =>{
     const ListarUsuarios = async ()=>{
         const parametros = {
             method: 'POST',
-            url: '../../../../src/php/index.php',
             inputs: {
                 accion: 'listado_usuarios'
             }
@@ -56,7 +55,6 @@ const ListadoUsuarios = () =>{
                 const peticionBorrar = () =>{
                     const parametrosPeticion = {
                         method: 'POST',
-                        url: '../src/php/index.php',
                         inputs: {
                             accion: 'borrar_usuario',
                             nombreUsuario: arrayDatos.nombreUsuario
@@ -118,7 +116,6 @@ const ListadoUsuarios = () =>{
                     const peticionEditar = () =>{
                         const parametrosPeticion = {
                             method: 'POST',
-                            url: '../src/php/index.php',
                             inputs: {
                                 accion: 'editar_usuario',
                                 nombre: iNombre.current.value,
