@@ -26,7 +26,7 @@ const ListadoUsuarios = () =>{
     const ListarUsuarios = async ()=>{
         const parametros = {
             method: 'POST',
-            url: '../src/php/index.php',
+            url: '../../../../src/php/index.php',
             inputs: {
                 accion: 'listado_usuarios'
             }
@@ -37,8 +37,7 @@ const ListadoUsuarios = () =>{
         console.log(datosResponse);
         
         let estadoTrabajo
-        datosResponse.forEach(arrayDatos => {           
-                                
+        datosResponse.forEach(arrayDatos => {   
             
             const borrarUsuario = () =>{
                 const ModalBorrar = <div class="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
@@ -177,7 +176,6 @@ const ListadoUsuarios = () =>{
                     </td>
                 </tr>
             )
-            
         });
         console.log(resultado);
         setLista(resultado)
