@@ -7,8 +7,8 @@ import ListadoUsuarios from './components/usuarios/Listado_usuarios';
 function App() {
   return (
     <div className="App">
-      {/* <Alta_usuarios/> */}
-      <ListadoUsuarios/>
+      <Alta_usuarios/>
+      {/* <ListadoUsuarios/> */}
     </div>
   );
 }
