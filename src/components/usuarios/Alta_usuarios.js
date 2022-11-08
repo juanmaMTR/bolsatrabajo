@@ -78,7 +78,6 @@ class Alta_usuarios extends React.Component{
         this.setState({errors:result})
         if(!Object.keys(result).length) {
             //Envio el formulario porque no me llega ningún error
-            console.log("Formulario Enviado");
             const parametros = {
                 method: 'POST',
                 inputs: {
@@ -99,32 +98,50 @@ class Alta_usuarios extends React.Component{
     render(){
         const { errors } = this.state
         return(
-            <main>
-                <h1>Alta de Usuarios</h1>
-                <form action="#" method="POST" onSubmit={this.handleSubmit}>
-                    {errors.nombre && <ErrorForms message={errors.nombre}/>}
-                    <label>Nombre: </label>
-                    <input type="text" name="nombre" onChange={this.handleChange}/><br/>
-                    {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
-                    <label>Apellidos: </label>
-                    <input type="text" name="apellidos" onChange={this.handleChange}/><br/>
-                    {errors.nombreUsuario && <ErrorForms message={errors.nombreUsuario}/>}
-                    <label>Nombre Usuario: </label>
-                    <input type="text" name="nombreUsuario" onChange={this.handleChange}/><br/>
-                    <label>Estado: </label>
-                    <select name="estado" onChange={this.handleChange}>
-                        <option value="true" selected>Trabajando</option>
-                        <option value="false">No trabajando</option>
-                    </select><br/>
-                    {errors.dni && <ErrorForms message={errors.dni}/>}
-                    <label>DNI o NIE: </label>
-                    <input type="text" name="dni" onChange={this.handleChange}/><br/>
-                    {errors.correo && <ErrorForms message={errors.correo}/>}
-                    <label>Correo: </label>
-                    <input type="text" name="correo" onChange={this.handleChange}/><br/>
-                    <input type="submit" value="Añadir" name="enviar"/>
-                </form>
-            </main>
+            <div class="bg-white-800 bg-opacity-50 flex justify-center items-center">
+
+                <div class="w-full max-w-xs">
+                    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Alta de Usuarios</h1>
+                    <form action="#" method="POST" onSubmit={this.handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Nombre: </label>
+                            <input type="text" name="nombre" placeholder="nombre" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            {errors.nombre && <ErrorForms message={errors.nombre}/>}
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Apellidos: </label>
+                            <input type="text" name="apellidos" placeholder="apellidos" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Nombre Usuario: </label>
+                            <input type="text" name="nombreUsuario" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            {errors.nombreUsuario && <ErrorForms message={errors.nombreUsuario}/>}
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Estado: </label>
+                            <select name="estado" onChange={this.handleChange} class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring-blue-200 focus:border-blue-300">
+                                <option value="true" selected>Trabajando</option>
+                                <option value="false">No trabajando</option>
+                            </select><br/>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">DNI o NIE: </label>
+                            <input type="text" name="dni" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            {errors.dni && <ErrorForms message={errors.dni}/>}
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Correo: </label>
+                            <input type="text" name="correo" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            {errors.correo && <ErrorForms message={errors.correo}/>}
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <input type="submit" value="Añadir" name="enviar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
         )
     }
 }
