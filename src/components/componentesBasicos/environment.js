@@ -4,5 +4,7 @@
  */
 
 export const environment = {
-    apiURL: "http://localhost/BolsaTrabajo/src/php/index.php"
+    apiURL: "http://localhost/BolsaTrabajo/src/php/index.php",
+    authUrl : 'http://localhost/BolsaTrabajo/src/php/authentication/autenticacion.php'
+
 }
