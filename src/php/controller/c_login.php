@@ -62,9 +62,10 @@
         }
         function crearCookie($datos){
             $jwt = $this->crearToken($datos);
-            setcookie("token", $jwt, 0, "/", "localhost:3000", true, false);
+            setcookie("token", $jwt, 0, "http://localhost:3000", "localhost:3000", true, false);
         }
         function crearSesion($datosUsuario){
+            session_set_cookie_params(0, "http://localhost:3000", "localhost:3000");
             $_SESSION['usuario'] = $datosUsuario['nombreUsuario'];
             $_SESSION['tipo'] = $datosUsuario['tipo'];
 
