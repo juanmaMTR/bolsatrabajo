@@ -1,6 +1,8 @@
+import { environment } from "./environment"
+
 const Auth = async () => {
 
-    const url = '../src/php/authentication/autenticacion.php'
+    const url = environment.authUrl
     const opcionesPeticion = {
         method: 'GET'
     }
