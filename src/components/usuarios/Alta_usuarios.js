@@ -25,6 +25,7 @@ const validate = values => {
         errors.dni = "*Este campo es obligatorio"
     }else{
         const expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+        const expresion_regular_nie = /^[XYZ]\d{7,8}[A-Z]$/;
 
         if(expresion_regular_dni.test (values.dni) == true){
             let numero = values.dni.substr(0,values.dni.length-1);
@@ -33,12 +34,17 @@ const validate = values => {
             let letra='TRWAGMYFPDXBNJZSQVHLCKET';
             letra=letra.substring(numero,numero+1);
             if (letra!=letr.toUpperCase()) {
-                errors.dni='*Dni erroneo, la letra del NIF no se corresponde'
+                errors.dni='*DNI erroneo, la letra del DNI no se corresponde'
             }else{
                 //DNI correcto
             }
         }else{
-            errors.dni='*Dni erroneo, formato no válido'
+            if(expresion_regular_nie.test(values.dni) == true){
+                //NIE correcto
+            }else{
+                errors.dni = '*DNI o NIE erroneo'
+            }
+            //errors.dni='*Dni erroneo, formato no válido'
         }
     }
     if(!values.correo){
@@ -64,7 +70,7 @@ class Alta_usuarios extends React.Component{
         const {name,value}=target
         this.setState({[name]:value})
     }
-    handleSubmit=event=>{
+    handleSubmit=async (event)=>{
         event.preventDefault()
         const { errors, ...sinErrors}=this.state
         const result = validate(sinErrors)
@@ -85,7 +91,9 @@ class Alta_usuarios extends React.Component{
                     correo: this.state.correo
                 }
             }
-            Service(parametros)
+            const response = await Service(parametros)
+            const datosResponse = await response.json();
+            console.log(datosResponse);
         }
     }
     render(){
@@ -105,11 +113,11 @@ class Alta_usuarios extends React.Component{
                     <input type="text" name="nombreUsuario" onChange={this.handleChange}/><br/>
                     <label>Estado: </label>
                     <select name="estado" onChange={this.handleChange}>
-                        <option value="true">Trabajando</option>
+                        <option value="true" selected>Trabajando</option>
                         <option value="false">No trabajando</option>
                     </select><br/>
                     {errors.dni && <ErrorForms message={errors.dni}/>}
-                    <label>DNI: </label>
+                    <label>DNI o NIE: </label>
                     <input type="text" name="dni" onChange={this.handleChange}/><br/>
                     {errors.correo && <ErrorForms message={errors.correo}/>}
                     <label>Correo: </label>

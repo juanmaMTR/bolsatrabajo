@@ -1,40 +1,87 @@
-import {useRef} from "react";
-import ErrorForms from "../componentesBasicos/ErrorForms";
+import '../../css/login.css'
+import {useRef, useState, useEffect, useCallback} from "react";
 import Service from "../componentesBasicos/Service"
+import Auth from '../componentesBasicos/Auth';
+import DecodeCookie from '../componentesBasicos/DecodeCookie';
 
-
-const Login  = () => {    
-
+const Login  = () => {
+        
     const inputUsuario = useRef(null)
     const inputContrasenia = useRef(null)
+    const [texto, setTexto] = useState(0);
+    
+    useEffect(() =>{
+        actualizarTexto()
+    }, [])
 
-    const handleSubmit = async event => {
+    const actualizarTexto = useCallback( async () =>{
+        const responseJson = await Auth()
+        const respuestaTexto = responseJson.Respuesta
+        console.log(respuestaTexto)
+
+        let datos = {
+            userName : '',
+            type : '',
+            message : respuestaTexto
+        }
+        if (respuestaTexto == 'OK') {
+            const datosCookie = DecodeCookie()
+            datos = {
+                userName : datosCookie.userName,
+                type : datosCookie.type,
+                message : respuestaTexto
+            }
+            console.log(datos);
+            setTexto(datos)
+        }else{
+            setTexto(datos)
+        }        
+    }, [texto])
+
+        
+    
+    const handleSubmit = async (event) => {
         event.preventDefault()
-
+        
         const parametros = {
             method: 'POST',
-            url: '../src/php/controller/controller.php',
             inputs : {
+                accion: 'login',
                 inputUsuario : inputUsuario.current.value,
                 inputContrasenia: inputContrasenia.current.value
             }
         }
+        
 
         Service(parametros)
-
-
+        
+        
+        //Se puede bajar el tiempo para que sea más rápida la actualización del texto
+        setTimeout(() => {
+            actualizarTexto()
+        }, 100);
     }
     return(
-        <main>
-            <h1>Login</h1>
+        <div className="container">
+            <p>Usuario: {texto.userName}</p>
+            <p>Tipo: {texto.type}</p>
+            <p>Mensaje: {texto.message}</p>
             <form action="#" method="POST" onSubmit={handleSubmit}>
-                <label>Usuario</label><br/>
-                <input type="text" name="nombre" placeholder="Introduzca el usuario" ref={inputUsuario}/><br/>
-                <label>Contraseña</label><br/>
-                <input type="password" name="contrasenia" placeholder="Introduzca la contraseña" ref={inputContrasenia}/><br/>
-                <input type="submit" value="Acceder" name="Login"/>
+                <p>Login</p>
+                <input type="text" name="nombre" placeholder="Usuario" ref={inputUsuario}/><br/>
+                <input type="password" name="contrasenia" placeholder="Contraseña" ref={inputContrasenia}/><br/>
+                <input type="submit" value="Acceder" name="Login"/><br/>
+                <a href="">¿Olvidó la contraseña?</a>
             </form>
-        </main>
+
+            <div className="drops">
+                <div className="drop drop-1"></div>
+                <div className="drop drop-2"></div>
+                <div className="drop drop-3"></div>
+                <div className="drop drop-4"></div>
+                <div className="drop drop-5"></div>
+            </div>
+        </div>
     )
         
     

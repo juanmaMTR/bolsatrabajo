@@ -4,5 +4,5 @@
  */
 
 export const environment = {
-    apiURL: "../src/php/"
+    apiURL: "http://localhost/BolsaTrabajo/src/php/index.php"
 }
