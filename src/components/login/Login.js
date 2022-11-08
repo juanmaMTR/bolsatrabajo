@@ -45,7 +45,6 @@ const Login  = () => {
         
         const parametros = {
             method: 'POST',
-            url: '../src/php/index.php',
             inputs : {
                 accion: 'login',
                 inputUsuario : inputUsuario.current.value,

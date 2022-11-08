@@ -7,10 +7,15 @@
   $datos = json_decode($json, true); 
 
   require_once __DIR__. '/controller/c_usuarios.php';
+  require_once __DIR__. '/controller/c_login.php';
   $controlador = new ControladorUsuarios();
+  $controladorlogin = new ControladorLogin();
   switch ($datos['accion']) {
     case 'alta_usuarios':
       $controlador->altaUsuarios($datos);
+      break;
+    case 'login':
+      $controladorlogin->login($datos);
       break;
     case 'listado_usuarios':
       $controlador->listadoUsuarios();
