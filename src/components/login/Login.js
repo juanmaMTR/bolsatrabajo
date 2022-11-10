@@ -61,24 +61,34 @@ const Login  = () => {
         }, 100);
     }
     return(
-        <div className="container">
-            <p>Usuario: {texto.userName}</p>
-            <p>Tipo: {texto.type}</p>
-            <p>Mensaje: {texto.message}</p>
-            <form action="#" method="POST" onSubmit={handleSubmit}>
-                <p>Login</p>
-                <input type="text" name="nombre" placeholder="Usuario" ref={inputUsuario}/><br/>
-                <input type="password" name="contrasenia" placeholder="Contraseña" ref={inputContrasenia}/><br/>
-                <input type="submit" value="Acceder" name="Login"/><br/>
-                <a href="">¿Olvidó la contraseña?</a>
-            </form>
+        <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center">
+            <div class="w-full max-w-xs">
+                <p>Usuario: {texto.userName}</p>
+                <p>Tipo: {texto.type}</p>
+                <p>Mensaje: {texto.message}</p>
+                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Login</h1>
+                <form action="#" method="POST" onSubmit={handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Usuario</label>
+                        <input type="text" name="nombre" placeholder="Usuario" ref={inputUsuario} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                        <input type="password" name="contrasenia" placeholder="Contraseña" ref={inputContrasenia} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <input type="submit" value="Acceder" name="Login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/><br/>
+                        <a href="" class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker">¿Olvidó la contraseña?</a>
+                    </div>
+                </form>
 
-            <div className="drops">
-                <div className="drop drop-1"></div>
-                <div className="drop drop-2"></div>
-                <div className="drop drop-3"></div>
-                <div className="drop drop-4"></div>
-                <div className="drop drop-5"></div>
+                <div className="drops">
+                    <div className="drop drop-1"></div>
+                    <div className="drop drop-2"></div>
+                    <div className="drop drop-3"></div>
+                    <div className="drop drop-4"></div>
+                    <div className="drop drop-5"></div>
+                </div>
             </div>
         </div>
     )
