@@ -1,7 +1,7 @@
 <?php
     use Firebase\JWT\JWT;
 
-    require_once('../../vendor/autoload.php');
+    require_once('../vendor/autoload.php');
 
     class ControladorLogin{
         
@@ -24,8 +24,7 @@
                 }
             }else{
                 $arrayRespuesta['resultado'] = 'Usuario no encontrado.';
-            }
-            
+            }           
           
         
             
@@ -62,7 +61,7 @@
         }
         function crearCookie($datos){
             $jwt = $this->crearToken($datos);
-            setcookie("token", $jwt, 0, "/", "localhost:3000", true, false);
+            setcookie("token", $jwt, 0, "/", "localhost", false, false);
         }
         function crearSesion($datosUsuario){
             $_SESSION['usuario'] = $datosUsuario['nombreUsuario'];

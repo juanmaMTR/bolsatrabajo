@@ -1,4 +1,6 @@
 <?php
+  session_start();
+
   header('Access-Control-Allow-Origin: *');
   header("Access-Control-Allow-Headers: *");
   header('Content-Type: application/json;');
@@ -8,14 +10,19 @@
 
   require_once __DIR__. '/controller/c_usuarios.php';
   require_once __DIR__. '/controller/c_login.php';
+  require_once './authentication/autenticacion.php';
   $controlador = new ControladorUsuarios();
   $controladorlogin = new ControladorLogin();
+  $autenticacion = new Autenticacion();
   switch ($datos['accion']) {
     case 'alta_usuarios':
       $controlador->altaUsuarios($datos);
       break;
     case 'login':
       $controladorlogin->login($datos);
+      break;
+    case 'autenticar':
+      $autenticacion->autenticar();
       break;
     case 'listado_usuarios':
       $controlador->listadoUsuarios();

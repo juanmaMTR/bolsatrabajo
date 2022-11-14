@@ -24,22 +24,22 @@ function App() {
 
               <nav id="navbar" className="navbar">
                 <ul>
-                  <li><a className="nav-link scrollto active"><Link to="/">Inicio</Link></a></li>
-                  <li><a className="nav-link scrollto"><Link to="/listar_u">Listado de usuarios</Link></a></li>
-                  <li><a className="nav-link scrollto"><Link to="/alta_u">Alta de usuarios</Link></a></li>
+                  <li><a className="nav-link scrollto active"><Link to="/21/">Inicio</Link></a></li>
+                  <li><a className="nav-link scrollto"><Link to="/21/listar_u">Listado de usuarios</Link></a></li>
+                  <li><a className="nav-link scrollto"><Link to="/21/alta_u">Alta de usuarios</Link></a></li>
                   <li><a className="nav-link scrollto">Ofertas</a></li>
                   <li><a className="nav-link scrollto">Empresas</a></li>
                   <li><a className="nav-link scrollto" href="">Contacto</a></li>
-                  <li><a className="getstarted scrollto"><Link to="/login">Login</Link></a></li>
+                  <li><a className="getstarted scrollto"><Link to="/21/login">Login</Link></a></li>
                 </ul>
                 <i className="bi bi-list mobile-nav-toggle"></i>
               </nav>
             </div>
           </header>
           <Routes>
-            <Route path='/listar_u' element={<ListadoUsuarios/>}></Route>
-            <Route path='/alta_u' element={<Alta_usuarios/>}></Route>
-            <Route path='/login' element={<Login/>}></Route>
+            <Route path='/21/listar_u' element={<ListadoUsuarios/>}></Route>
+            <Route path='/21/alta_u' element={<Alta_usuarios/>}></Route>
+            <Route path='/21/login' element={<Login/>}></Route>
             <Route path="*" element={<PageNotFound/>}></Route>
           </Routes>
         </div>
