@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer(){
     return(
-        <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900">
+        <footer className="p-4 bg-white sm:p-6">
             <div className="md:flex md:justify-between">
                 <div className="mb-6 md:mb-0">
                     <a href="https://fundacionloyola.com/vguadalupe/" className="flex items-center">

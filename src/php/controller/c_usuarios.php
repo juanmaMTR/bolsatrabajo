@@ -12,7 +12,7 @@
          */
         function __construct() {
             require_once __DIR__. '/../model/m_usuarios.php';
-            $this->modelo = new ModeloUsuarios();
+            $this->modelo = new ModeloUsuarios;
         }
         /**
          * @function altaUsuarios

@@ -23,6 +23,7 @@
                                                             }
             $encuentraUsuario = $resultado->num_rows;
             $usuarioSacado['Existe'] = $encuentraUsuario;
+            print_r($usuarioSacado);
             return $usuarioSacado;
         }
     }
