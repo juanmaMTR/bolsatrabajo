@@ -56,7 +56,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Header() {
+export default function Header({inicioSesion}) {
+  console.log(inicioSesion);
+  let booleanSesion;
+  if (inicioSesion.message == 'OK') {
+    booleanSesion = true;
+  }else{
+    booleanSesion = false;
+  }
+  console.log(booleanSesion);
   return (
     <Popover className="relative bg-white">
       <div className="mx-auto px-4 sm:px-6">

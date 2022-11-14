@@ -13,6 +13,10 @@ const Login  = () => {
         actualizarTexto()
     }, [])
 
+    if(texto.message == 'OK'){
+        window.location.href = "/21/"
+    }
+
     const actualizarTexto = useCallback( async () =>{
         const responseJson = await Auth()
         const respuestaTexto = responseJson.Respuesta
@@ -58,7 +62,7 @@ const Login  = () => {
         //Se puede bajar el tiempo para que sea más rápida la actualización del texto
         setTimeout(() => {
             actualizarTexto()
-        }, 100);
+        }, 200);
     }
     return(
         <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center">
@@ -81,17 +85,10 @@ const Login  = () => {
                         <a href="" class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker">¿Olvidó la contraseña?</a>
                     </div>
                 </form>
-
-                <div className="drops">
-                    <div className="drop drop-1"></div>
-                    <div className="drop drop-2"></div>
-                    <div className="drop drop-3"></div>
-                    <div className="drop drop-4"></div>
-                    <div className="drop drop-5"></div>
-                </div>
             </div>
         </div>
     )
+
         
     
 }
