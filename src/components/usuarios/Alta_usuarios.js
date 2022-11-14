@@ -102,7 +102,7 @@ class Alta_usuarios extends React.Component{
 
                 <div class="w-full max-w-xs">
                     <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Alta de Usuarios</h1>
-                    <form action="#" method="POST" onSubmit={this.handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <form action="#" method="POST" onSubmit={this.handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-left">
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Nombre: </label>
                             <input type="text" name="nombre" placeholder="nombre" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
