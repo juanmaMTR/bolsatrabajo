@@ -19,7 +19,7 @@ export default function Home(){
                         </div>
                     </div>
                 </div>
-                <img className="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12" src="../../src/assets/imgs/busquedaTrabajo.png" alt="..." style={{maxHeight:860+'px',zIndex:-1}} />
+                <img className="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12" src="https://raw.githubusercontent.com/juanmaMTR/bolsatrabajo/jdBranch/src/assets/imgs/busqueda_trabajo_asesoramiento.png" alt="..." style={{maxHeight:860+'px',zIndex:-1}} />
             </section>
             <section className="mt-40 pb-40 relative bg-slate-100">
                 <div className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute" style={{height:80+'px'}}>
