@@ -11,6 +11,7 @@ import {
   Link,
   BrowserRouter
 } from "react-router-dom";
+import PageNotFound from './components/404/404';
 
 function App() { 
   return (
@@ -39,10 +40,11 @@ function App() {
             <Route path='/21/listar_u' element={<ListadoUsuarios/>}></Route>
             <Route path='/21/alta_u' element={<Alta_usuarios/>}></Route>
             <Route path='/21/login' element={<Login/>}></Route>
+            <Route path="*" element={<PageNotFound/>}></Route>
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
+    </BrowserRouter>  
   );
 }
 
