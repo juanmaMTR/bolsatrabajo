@@ -68,7 +68,12 @@
             $_SESSION['tipo'] = $datosUsuario['tipo'];
 
             print_r($_SESSION);
-        }      
+        }
+        function borrarCookies(){
+            setcookie('token', "", time() - 3600);
+            setcookie('PHPSESSID', "", time() - 3600);
+            session_destroy();
+        }    
     }
     
 ?>

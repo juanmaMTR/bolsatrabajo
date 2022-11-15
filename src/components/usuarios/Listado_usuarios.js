@@ -102,7 +102,7 @@ const ListadoUsuarios = () =>{
                                                         <button onClick={()=>{setMostrarEditar(false); peticionEditar()}} className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Enviar</button>
                                                         <button onClick={()=>{setMostrarEditar(false)}} className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">Cancelar</button>
                                                     </div>
-                                                    <button onClick={()=>{setMostrarEditar(false)}}  className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" aria-label="close modal" role="button">
+                                                    <button onClick={()=>{setMostrarEditar(false)}}  className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-sky-200 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" aria-label="close modal" role="button">
                                                         <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" />
                                                             <line x1="18" y1="6" x2="6" y2="18" />
@@ -143,19 +143,19 @@ const ListadoUsuarios = () =>{
                 estadoTrabajo = <span className="bg-red-400 text-gray-50 rounded-md px-2">{arrayDatos.estado}</span>
             }            
             resultado.push(
-                <tr className="bg-gray-800">
+                <tr className="bg-sky-600">
                     <td className="p-3">
                         <div className="flex align-items-center">
                             <img className="rounded-full h-12 w-12  object-cover" src="https://www.safa.edu/images/galerias/home/4-fundacion-Loyola.jpg" alt="unsplash image"/>
                             <div className="ml-3">
                                 <div className="">{arrayDatos.nombreUsuario}</div>
-                                <div className="text-gray-500">{arrayDatos.correo}</div>
+                                <div className="text-neutral-800">{arrayDatos.correo}</div>
                             </div>
                         </div>
                     </td>
                     <td className="p-3">
                         <div className="">{arrayDatos.nombre}</div>
-                        <div className="text-gray-500">{arrayDatos.apellidos}</div>
+                        <div className="text-neutral-800">{arrayDatos.apellidos}</div>
                     </td>
                     <td className="p-3 font-bold">
                         {arrayDatos.dni}
@@ -164,10 +164,10 @@ const ListadoUsuarios = () =>{
                         {estadoTrabajo}
                     </td>
                     <td className="p-3 ">
-                        <button onClick={()=>{setMostrarEditar(true); editarUsuario();}} href="#" className="text-gray-400 hover:text-gray-100  mx-2">
+                        <button onClick={()=>{setMostrarEditar(true); editarUsuario();}} href="#" className="text-sky-200 hover:text-gray-100  mx-2">
                             <i className="material-icons-outlined text-base">edit</i>
                         </button>
-                        <button onClick={()=>{setMostrarListar(true); borrarUsuario();}} className="text-gray-400 hover:text-gray-100  ml-2">
+                        <button onClick={()=>{setMostrarListar(true); borrarUsuario();}} className="text-sky-200 hover:text-gray-100  ml-2">
                             <i className="material-icons-round text-base">delete_outline</i>
                         </button>
                     </td>
@@ -184,7 +184,7 @@ const ListadoUsuarios = () =>{
             <div className="col-span-12">
                 <div className="overflow-auto lg:overflow-visible ">
                     <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Listado de Usuarios</h1>
-                    <table className="table text-gray-400 border-separate space-y-6 text-sm">
+                    <table className="table text-sky-200 border-separate space-y-6 text-sm">
                         <thead className="bg-sky-800 text-sky-200">
                             <tr>
                                 <th className="p-3">Usuario</th>

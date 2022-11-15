@@ -57,9 +57,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function handleClickLogout(){
-  Logout();
-}
+
 
 export default function Header({inicioSesion}) {
   console.log(inicioSesion);
@@ -78,6 +76,9 @@ export default function Header({inicioSesion}) {
     transform: "translate(0px, 10px)"
   }
 
+  function handleClickLogout(){
+    Logout(inicioSesion);
+  }
 
   return (
     <Popover className="relative bg-white">
@@ -190,7 +191,7 @@ export default function Header({inicioSesion}) {
                       )}
                     >
                       <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full cursor-pointer" src="https://raw.githubusercontent.com/juanmaMTR/bolsatrabajo/jdBranch/src/assets/imgs/LogoVirgendeGuadalupe.png" alt="User dropdown"/>
-                      <span>{inicioSesion.username}</span>
+                      <span>{inicioSesion.userName}</span>
                       <ChevronDownIcon
                         className={classNames(
                           open ? 'text-gray-600' : 'text-gray-400',
@@ -213,7 +214,7 @@ export default function Header({inicioSesion}) {
                         <div class="my-10">
                           <div class="bg-white rounded overflow-hidden shadow-lg">
                             <div class="text-center p-6  border-b">
-                              <p class="pt-2 text-lg font-semibold">{inicioSesion.username}</p>
+                              <p class="pt-2 text-lg font-semibold">{inicioSesion.userName}</p>
                               <p class="text-sm text-gray-600">mirar-si-cambiar-o-no@gmail.com</p>
                             </div>
                             <div class="border-b">

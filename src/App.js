@@ -26,33 +26,26 @@ function App() {
     }, [])
 
     const actualizarsesion = useCallback( async () =>{
-        // Comentado para probar 
-        // const responseJson = await Auth()
-        // const respuestasesion = responseJson.Respuesta
+        const responseJson = await Auth()
+        const respuestasesion = responseJson.Respuesta
 
-        // let datos = {
-        //     userName : '',
-        //     type : '',
-        //     message : respuestasesion
-        // }
-        // if (respuestasesion == 'OK') {
-        //     const datosCookie = DecodeCookie()
-        //     datos = {
-        //         userName : datosCookie.userName,
-        //         type : datosCookie.type,
-        //         message : respuestasesion
-        //     }
-        //     setsesion(datos)
-        // }else{
-        //     setsesion(datos)
-        // } 
-        
-        let datosPrueba = {
-          username: 'Admin',
-          type: 's',
-          message: 'OK'
+        let datos = {
+            userName : '',
+            type : '',
+            message : respuestasesion
         }
-        setsesion(datosPrueba)
+        if (respuestasesion == 'OK') {
+            const datosCookie = DecodeCookie()
+            datos = {
+                userName : datosCookie.userName,
+                type : datosCookie.type,
+                message : respuestasesion
+            }
+            setsesion(datos)
+        }else{
+            setsesion(datos)
+        } 
+        
     }, [sesion])
     
     let booleanLogin;

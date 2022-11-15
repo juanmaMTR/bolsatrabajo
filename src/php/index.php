@@ -6,6 +6,7 @@
   header("Access-Control-Allow-Headers: *");
   header('Content-Type: application/json;');
 
+    
 
   $json = file_get_contents('php://input');
   $datos = json_decode($json, true); 
@@ -23,6 +24,9 @@
     case 'login':
       $controladorlogin->login($datos);
       break;
+    case 'borrar_cookies':
+      $controladorlogin->borrarCookies();
+      break;
     case 'autenticar':
       $autenticacion->autenticar();
       break;
@@ -33,7 +37,7 @@
       $controlador->borrarUsuario($datos);
       break;
     case 'listar_usuario':
-      $controlador->listarUsuario($datos);
+      $controlador->listarUsuario($datos);      
       break;
     case 'editar_usuario':
       $controlador->editar_usuario($datos);
