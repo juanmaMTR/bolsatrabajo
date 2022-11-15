@@ -4,5 +4,5 @@
  */
 
 export const environment = {
-    apiURL: "../php/index.php"
+    apiURL: "./php/index.php"
 }
