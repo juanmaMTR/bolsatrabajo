@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 
 const Listado_ciclos = () => {
     const [ciclos, setCiclos] = useState([]);

@@ -6,9 +6,10 @@ const validarCiclos = values => {
     const errors = {}
     if (!values.nombre) {
         errors.nombre = '*El nombre es obligatorio'
-    }
-    if(values.nombre.length > 100){
-        errors.nombre = '*El nombre debe tener menos de 100 caracteres'
+    }else{
+        if(values.nombre.length > 100){
+            errors.nombre = '*El nombre debe tener menos de 100 caracteres'
+        }
     }
     return errors
 }
@@ -21,11 +22,11 @@ const Alta_ciclos = () => {
         errors: {}
     })
     const errors = state.errors
-    /*useEffect(() => {
+    useEffect(() => {
         ObtenerFamiliasProfesionales()
-    }, [])*/
+    }, [])
 
-    /*const ObtenerFamiliasProfesionales = async() => {
+    const ObtenerFamiliasProfesionales = async() => {
         const parametros ={
             method: 'POST',
             inputs: {
@@ -34,18 +35,8 @@ const Alta_ciclos = () => {
         }
         const response = await Service(parametros)
         const datosFamilias = await response.json();
-        console.log(datosFamilias);
-    }*/
-    const datosFamiliasPrueba = [
-        {
-            id: 1,
-            nombre: 'Informática'
-        },
-        {
-            id: 2,
-            nombre: 'Administración y Gestión'
-        }
-    ]
+        setFamilias(datosFamilias)
+    }
     const handleSubmit= async (event) => {
         event.preventDefault()
         const { errors, ...sinErrors}=state
@@ -55,17 +46,17 @@ const Alta_ciclos = () => {
         if(!Object.keys(result).length) {
             console.log('envio el formulario');
             console.log(state);
-            // const parametros = {
-            //     method: 'POST',
-            //     inputs: {
-            //         accion: 'alta_ciclos',
-            //         nombre: this.state.nombre,
-            //         familiaProfesional: this.state.familiaProfesional,
-            //     }
-            // }
-            // const response = await Service(parametros)
-            // const datosResponse = await response.json();
-            // console.log(datosResponse);
+            const parametros = {
+                method: 'POST',
+                inputs: {
+                    accion: 'altaCiclos',
+                    nombre: state.nombre,
+                    familiaProfesional: state.familiaProfesional,
+                }
+            }
+            const response = await Service(parametros)
+            const datosResponse = await response.json();
+            console.log(datosResponse);
         }
     }
     const handleChange = () => {
@@ -88,7 +79,7 @@ const Alta_ciclos = () => {
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Familia Profesional: </label>
                         <select name="familiaProfesional" onChange={handleChange} ref={inputFamilia} className="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring-blue-200 focus:border-blue-300">
-                            {datosFamiliasPrueba.map((familia) => (
+                            {familias.map((familia) => (
                                 <option value={familia.id}>{familia.nombre}</option>
                             ))}
                         </select><br/>
