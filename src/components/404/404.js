@@ -16,7 +16,7 @@ const PageNotFound = ()=>{
                 ></span>
 
                 <span class="relative block px-8 py-3 bg-[#1A2238] border border-current">
-                <Link to="/">Go Home</Link>
+                <Link to="/21/">Go Home</Link>
                 </span>
             </a>
             </button>

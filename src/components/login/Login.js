@@ -66,7 +66,7 @@ const Login  = () => {
     }
     return(
         <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center">
-            <div class="w-full max-w-xs h-768px">
+            <div class="w-full max-w-xs h-768px flex justify-center flex-col">
                 <p>Usuario: {texto.userName}</p>
                 <p>Tipo: {texto.type}</p>
                 <p>Mensaje: {texto.message}</p>
