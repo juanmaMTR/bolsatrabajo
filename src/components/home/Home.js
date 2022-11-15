@@ -7,7 +7,7 @@ export default function Home(){
                 <div className="container mx-auto items-center flex flex-wrap">
                     <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
                         <div className="pt-32 sm:pt-0">
-                            <h2 className="font-semibold text-4xl text-slate-600">A beautiful extension for TailwindCSS.</h2>
+                            <h2 className="font-semibold text-4xl text-slate-600">Frase texto de ejemplo motivadora.</h2>
                             <p className="mt-4 text-lg leading-relaxed text-slate-500">
                                 Tailwind Starter Kit is Free and Open Source. It does not change or add any CSS to the already one from 
                                 <a href="https://tailwindcss.com/?ref=creativetim" className="text-slate-600" target="_blank">TailwindCSS</a>. It features multiple HTML elements and it comes with dynamic components for ReactJS, Vue and Angular.
