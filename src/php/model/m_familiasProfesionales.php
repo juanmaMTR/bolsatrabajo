@@ -32,4 +32,22 @@ class ModeloFamilias{
             return 'Ha surgido un error';
         }
     }
+    /**
+     * @function listarConId
+     * @description Función para recoger los datos de una familia profesional concreta con el id de la base de datos
+     * @return string
+     */
+    function listarConId($id){
+        $sql="SELECT * FROM `familiasprofesionales` WHERE idFamilia = $id";
+        if($resultado = $this->conexion->query($sql)){
+            $fila = $resultado->fetch_assoc();
+            $familiaProfesional=[
+                "nombre" => $fila['nombreFamilia'],
+            ];
+            return $familiaProfesional;
+        }
+        else{
+            return 'Ha surgido un error';
+        }
+    }
 }

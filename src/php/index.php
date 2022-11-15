@@ -46,8 +46,14 @@
     case 'listadoFamiliasProfesionales':
       $controladorFamilias->listadoFamilias();
       break;
+    case 'obtenerFamiliaProfesionalConId':
+      $controladorFamilias->listarFamiliaConId($datos);
+      break;
     case 'altaCiclos':
       $controladorCiclos->altaCiclos($datos);
+      break;
+    case 'listadoCiclos':
+      $controladorCiclos->listadoCiclos();
       break;
     default:
       # code...

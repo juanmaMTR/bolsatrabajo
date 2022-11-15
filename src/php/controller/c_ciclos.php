@@ -41,4 +41,12 @@ class ControladorCiclos{
         $respuesta = $this->modelo->alta($nombre, $familiaProfesional);
         print_r(json_encode($respuesta));
     }
+    /**
+     * @function listadoCiclos
+     * @description Función para listar los ciclos de la base de datos
+     */
+    function listadoCiclos(){
+        $respuesta = $this->modelo->listar();
+        print_r(json_encode($respuesta));
+    }
 }

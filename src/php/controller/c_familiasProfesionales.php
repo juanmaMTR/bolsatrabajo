@@ -18,4 +18,24 @@ class ControladorFamilias{
         $resultado = $this->modelo->listar();
         print_r(json_encode($resultado));
     }
+    /**
+     * @function listarFamiliaConId
+     * @description Función para listar una familia profesional concreta con el id
+     * @param mixed $datos
+     */
+    function listarFamiliaConId($datos){
+        if(isset($datos['id'])){
+            if(empty($datos['id'])){
+                print_r(json_encode("El id está vacío"));
+                die();
+            }else{
+                $id = intval($datos['id']);
+            }
+        }else{
+            print_r(json_encode("No existe el id"));
+            die();
+        }
+        $resultado = $this->modelo->listarConId($id);
+        print_r(json_encode($resultado));
+    }
 }
