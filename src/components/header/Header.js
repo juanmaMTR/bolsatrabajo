@@ -56,7 +56,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Header() {
+export default function Header({inicioSesion}) {
+  console.log(inicioSesion);
+  let booleanSesion;
+  if (inicioSesion.message == 'OK') {
+    booleanSesion = true;
+  }else{
+    booleanSesion = false;
+  }
+  console.log(booleanSesion);
   return (
     <Popover className="relative bg-white">
       <div className="mx-auto px-4 sm:px-6">
@@ -232,7 +240,7 @@ export default function Header() {
             <a
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-blue-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-600"
             >
-              <Link className='w-full' to="/21/login">Sign in</Link>
+              <Link className='w-full' to="/21/login">Login</Link>
             </a>
           </div>
         </div>
@@ -254,7 +262,7 @@ export default function Header() {
                 <div>
                   <img
                     className="h-8 w-auto"
-                    src="https://moodle.fundacionloyola.com/pluginfile.php/188/mod_label/intro/Logo%20Virgen%20de%20Guadalupe.png"
+                    src="https://raw.githubusercontent.com/juanmaMTR/bolsatrabajo/jdBranch/src/assets/imgs/LogoVirgendeGuadalupe.png"
                     alt="BolsaTrabajo"
                   />
                 </div>
@@ -341,7 +349,7 @@ export default function Header() {
                   href="#"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-sky-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-sky-700"
                 >
-                  <Link className='w-full' to="/21/login">Sign in</Link>
+                  <Link className='w-full' to="/21/login">Login</Link>
                 </a>
               </div>
             </div>

@@ -7,7 +7,7 @@ export default function Home(){
                 <div className="container mx-auto items-center flex flex-wrap">
                     <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
                         <div className="pt-32 sm:pt-0">
-                            <h2 className="font-semibold text-4xl text-slate-600">A beautiful extension for TailwindCSS.</h2>
+                            <h2 className="font-semibold text-4xl text-slate-600">Frase texto de ejemplo motivadora.</h2>
                             <p className="mt-4 text-lg leading-relaxed text-slate-500">
                                 Tailwind Starter Kit is Free and Open Source. It does not change or add any CSS to the already one from 
                                 <a href="https://tailwindcss.com/?ref=creativetim" className="text-slate-600" target="_blank">TailwindCSS</a>. It features multiple HTML elements and it comes with dynamic components for ReactJS, Vue and Angular.
@@ -256,31 +256,6 @@ export default function Home(){
                         </div>
                         <div className="w-full md:w-4/12 px-4 mr-auto ml-auto mt-32 relative">
                             <i className="fab fa-github text-slate-700" style={{fontSize:55+'em',position:"absolute",top:-150+'px',right:-100+'%',left:"auto",opacity:.8}}></i>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="pb-16 bg-slate-200 relative pt-32">
-                <div className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute" style={{height:80+'px'}}>
-                    <svg className="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-                        <polygon className="text-slate-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
-                    </svg>
-                </div>
-                <div className="container mx-auto">
-                    <div className="flex flex-wrap justify-center bg-white shadow-xl rounded-lg -mt-64 py-16 px-12 relative z-10">
-                        <div className="w-full text-center lg:w-8/12">
-                            <p className="text-4xl text-center"><span role="img" aria-label="love">😍</span></p>
-                            <h3 className="font-semibold text-3xl">Do you love this Starter Kit?</h3>
-                            <p className="text-slate-500 text-lg leading-relaxed mt-4 mb-4">Cause if you do, it can be yours now. Hit the buttons below to navigate to get the Free version for your next project. Build a new web app or give an old project a new look!</p>
-                            <div className="sm:block flex flex-col mt-10">
-                                <a className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-2 bg-pink-500 active:bg-pink-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" href="/learning-lab/tailwind-starter-kit/documentation/quick-start">Get started</a>
-                                <a href="https://github.com/creativetimofficial/tailwind-starter-kit" target="_blank" className="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg">
-                                    <i className="fab fa-github text-lg mr-1"></i><span>Help With a Star</span>
-                                </a>
-                            </div>
-                            <div className="text-center mt-16">
-
-                            </div>
                         </div>
                     </div>
                 </div>

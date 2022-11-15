@@ -25,7 +25,7 @@
             if (isset($response)) {
                 echo json_encode($response);
             }else{
-                $error['Respuesta'] = 'No iniciado';
+                $error['Respuesta'] = 'ERROR';
                 echo json_encode($error);
             }
         }
