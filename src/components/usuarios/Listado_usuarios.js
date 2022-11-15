@@ -77,18 +77,19 @@ const ListadoUsuarios = () =>{
     const iEstado = useRef(null)
     const iDNI = useRef(null)
     const iCorreo = useRef(null)
-    state = {
-        errors: {}
-    }
-    handleChange= ({target})=>{
-        const {name,value}=target
-        this.setState({[name]:value})
-    }
+    
    
     useEffect(()=>{
         ListarUsuarios()
     }, [])
     const ListarUsuarios = async ()=>{
+        const state = {
+            errors: {}
+        }
+        const handleChange = ({target})=>{
+            const {name,value}=target
+            this.setState({[name]:value})
+        }
         const parametros = {
             method: 'POST',
             inputs: {
@@ -133,10 +134,8 @@ const ListadoUsuarios = () =>{
             
                 setPopUpBorrar(ModalBorrar)
             }
-                
+            const { errors } = this.state   
             const editarUsuario = ()=>{
-                
-                const { errors } = this.state
 
                 const ModalEditar = <div>
                                         <div className="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
@@ -144,18 +143,18 @@ const ListadoUsuarios = () =>{
                                                 <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                                                     <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Editar usuario {arrayDatos.nombreUsuario}</h1>
                                                     <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
-                                                    <input ref={iNombre} id="name" onChange={this.handleChange} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.nombre} />
+                                                    <input ref={iNombre} id="name" onChange={handleChange()} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.nombre} />
                                                     {errors.nombre && <ErrorForms message={errors.nombre}/>}
                                                     <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Apellidos</label>
-                                                    <input ref={iApellidos} id="name" onChange={this.handleChange} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.apellidos} />
+                                                    <input ref={iApellidos} id="name" onChange={handleChange()} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.apellidos} />
                                                     {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
                                                     <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre usuario</label>
-                                                    <input ref={iNombreUsuario} id="name" onChange={this.handleChange} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.nombreUsuario} />
+                                                    <input ref={iNombreUsuario} id="name" onChange={handleChange()} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.nombreUsuario} />
                                                     {errors.nombreUsuario && <ErrorForms message={errors.nombreUsuario}/>}
                                                     <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Estado</label>
                                                     <div className="flex justify-center">
                                                         <div className="mb-3 w-full">
-                                                            <select ref={iEstado} onChange={this.handleChange} className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                                                            <select ref={iEstado} onChange={handleChange()} className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
                                                                 <option selected>Abrir menú</option>
                                                                 <option value="True">Trabajando</option>
                                                                 <option value="False">No trabajando</option>
@@ -164,10 +163,10 @@ const ListadoUsuarios = () =>{
                                                     </div>
 
                                                     <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">DNI</label>
-                                                    <input ref={iDNI} id="name" onChange={this.handleChange} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.dni} />
+                                                    <input ref={iDNI} id="name" onChange={handleChange()} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.dni} />
                                                     {errors.dni && <ErrorForms message={errors.dni}/>}
                                                     <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Correo</label>
-                                                    <input ref={iCorreo} id="name" onChange={this.handleChange} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.correo} />
+                                                    <input ref={iCorreo} id="name" onChange={handleChange()} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.correo} />
                                                     {errors.correo && <ErrorForms message={errors.correo}/>}
                                                     <div className="flex items-center justify-start w-full">
                                                         <button onClick={()=>{setMostrarEditar(false); peticionEditar()}} className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Enviar</button>
