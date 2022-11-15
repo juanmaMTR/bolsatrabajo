@@ -9,6 +9,7 @@ import Home from './components/home/Home';
 import Auth from './components/componentesBasicos/Auth';
 import DecodeCookie from './components/componentesBasicos/DecodeCookie';
 import Alta_ciclos from './components/ciclos/Alta_ciclos';
+import Listado_ciclos from './components/ciclos/Listado_ciclos';
 import React, {useState, useEffect, useCallback} from "react";
 import {
   Routes,
@@ -65,6 +66,7 @@ function App() {
             <Route path='/21/alta_u' element={<Alta_usuarios/>}></Route>
             {booleanLogin ? <Route path='/21/login' element={<Login/>}></Route> : <Route path='/21/logout' element={<Logout/>}></Route>}
             <Route path="/21/alta_c" element={<Alta_ciclos/>}></Route>
+            <Route path="/21/listar_c" element={<Listado_ciclos/>}></Route>
             <Route path="*" element={<PageNotFound/>}></Route>
           </Routes>
           <Footer></Footer>
