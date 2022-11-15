@@ -3,3 +3,4 @@
     define('USER', 'root');
     define('PW', '');
     define('DB', 'BolsaTrabajo');
+?>

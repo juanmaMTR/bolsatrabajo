@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Composer
+
+Para instalar la librería de Firebase JWT y de .env.
+
+### `composer install`
+
 ## Available Scripts
 
 In the project directory, you can run:
