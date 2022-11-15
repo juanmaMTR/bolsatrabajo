@@ -1,11 +1,12 @@
-import React from "react";
 
-const Login = () =>{
-    return(
-        <>
-        </>
-    )
+
+const Logout = () =>{
+    let mensaje = "CORRECTO"
+    console.log(mensaje);
+    if(mensaje == "CORRECTO"){
+        window.location.href = "/21/"
+    }
 }
-export default Login
+export default Logout
 
 

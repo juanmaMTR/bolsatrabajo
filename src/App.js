@@ -26,27 +26,35 @@ function App() {
     }, [])
 
     const actualizarsesion = useCallback( async () =>{
-        const responseJson = await Auth()
-        const respuestasesion = responseJson.Respuesta
+        // Comentado para probar 
+        // const responseJson = await Auth()
+        // const respuestasesion = responseJson.Respuesta
 
-        let datos = {
-            userName : '',
-            type : '',
-            message : respuestasesion
+        // let datos = {
+        //     userName : '',
+        //     type : '',
+        //     message : respuestasesion
+        // }
+        // if (respuestasesion == 'OK') {
+        //     const datosCookie = DecodeCookie()
+        //     datos = {
+        //         userName : datosCookie.userName,
+        //         type : datosCookie.type,
+        //         message : respuestasesion
+        //     }
+        //     setsesion(datos)
+        // }else{
+        //     setsesion(datos)
+        // } 
+        
+        let datosPrueba = {
+          username: 'Admin',
+          type: 's',
+          message: 'OK'
         }
-        if (respuestasesion == 'OK') {
-            const datosCookie = DecodeCookie()
-            datos = {
-                userName : datosCookie.userName,
-                type : datosCookie.type,
-                message : respuestasesion
-            }
-            setsesion(datos)
-        }else{
-            setsesion(datos)
-        }        
+        setsesion(datosPrueba)
     }, [sesion])
-    console.log(sesion);
+    
     let booleanLogin;
     if (sesion.message == 'OK') {
       booleanLogin = false;
@@ -63,7 +71,7 @@ function App() {
             <Route path='/21/' element={<Home />}></Route>
             <Route path='/21/listar_u' element={<ListadoUsuarios/>}></Route>
             <Route path='/21/alta_u' element={<Alta_usuarios/>}></Route>
-            {booleanLogin ? <Route path='/21/login' element={<Login/>}></Route> : <Route path='/21/logout' element={<Logout/>}></Route>}
+            {booleanLogin && <Route path='/21/login' element={<Login/>}></Route>}
             <Route path="*" element={<PageNotFound/>}></Route>
           </Routes>
           <Footer></Footer>
