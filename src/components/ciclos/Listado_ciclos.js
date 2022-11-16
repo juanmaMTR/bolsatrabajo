@@ -47,7 +47,7 @@ const Listado_ciclos = () => {
                         <div className="">{datosFamilia.nombre}</div>
                     </td>
                     <td className="p-3 ">
-                        <button onClick={()=>{setMostrarEditar(true); setCicloEditar();}} href="#" className="text-sky-200 hover:text-gray-100  mx-2">
+                        <button onClick={()=>{setMostrarEditar(true); setCicloEditar(ciclo);}} href="#" className="text-sky-200 hover:text-gray-100  mx-2">
                             <i className="material-icons-outlined text-base">edit</i>
                         </button>
                         <button onClick={()=>{setMostrarBorrar(true); setCicloBorrar(ciclo)}} className="text-sky-200 hover:text-gray-100  ml-2">
