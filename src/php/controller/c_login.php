@@ -72,7 +72,6 @@
             setcookie('token', "", time() - 3600);
             setcookie('PHPSESSID', "", time() - 3600);
             session_destroy();
-            header("Refresh:0.5");
         }    
     }
     

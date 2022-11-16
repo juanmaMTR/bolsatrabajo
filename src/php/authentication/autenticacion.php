@@ -24,7 +24,6 @@
         
             if (isset($response)) {
                 echo json_encode($response);
-                header("Refresh:0.5");
             }else{
                 $error['Respuesta'] = 'ERROR';
                 echo json_encode($error);

@@ -39,9 +39,9 @@ const Login  = () => {
         }     
     }, [texto])
 
-    // if(texto.message == 'OK'){
-    //     window.location.href = "/21/"
-    // }  
+    if(texto.message == 'OK'){
+        window.location.href = "/21/"
+    }  
         
     
     const handleSubmit = async (event) => {

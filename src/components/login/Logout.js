@@ -1,11 +1,6 @@
 import Service from "../componentesBasicos/Service";
 const Logout = (inicioSesion) =>{
-    let mensaje = "CORRECTO"
-    console.log(inicioSesion);
-    // if(mensaje == "CORRECTO"){
-    //     window.location.href = "/21/"
-    // }
-
+    
     const parametros = {
         method: 'POST',
         inputs : {
@@ -14,6 +9,8 @@ const Logout = (inicioSesion) =>{
     }
     Service(parametros)
     
-    window.location.href = "/21/"
+    if(inicioSesion.message == "OK"){
+        window.location.href = "/21/"
+    }
 }
 export default Logout
