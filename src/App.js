@@ -45,9 +45,10 @@ function App() {
             setsesion(datos)
         }else{
             setsesion(datos)
-        }        
+        } 
+        
     }, [sesion])
-    console.log(sesion);
+    
     let booleanLogin;
     if (sesion.message == 'OK') {
       booleanLogin = false;
@@ -64,7 +65,7 @@ function App() {
             <Route path='/21/' element={<Home />}></Route>
             <Route path='/21/listar_u' element={<ListadoUsuarios/>}></Route>
             <Route path='/21/alta_u' element={<Alta_usuarios/>}></Route>
-            {booleanLogin ? <Route path='/21/login' element={<Login/>}></Route> : <Route path='/21/logout' element={<Logout/>}></Route>}
+            {booleanLogin && <Route path='/21/login' element={<Login/>}></Route>}
             <Route path="/21/alta_c" element={<Alta_ciclos/>}></Route>
             <Route path="/21/listar_c" element={<Listado_ciclos/>}></Route>
             <Route path="*" element={<PageNotFound/>}></Route>

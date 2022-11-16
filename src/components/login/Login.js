@@ -13,9 +13,7 @@ const Login  = () => {
         actualizarTexto()
     }, [])
 
-    if(texto.message == 'OK'){
-        window.location.href = "/21/"
-    }
+    
 
     const actualizarTexto = useCallback( async () =>{
         const responseJson = await Auth()
@@ -38,9 +36,12 @@ const Login  = () => {
             setTexto(datos)
         }else{
             setTexto(datos)
-        }        
+        }     
     }, [texto])
 
+    if(texto.message == 'OK'){
+        window.location.href = "/21/"
+    }  
         
     
     const handleSubmit = async (event) => {
@@ -62,7 +63,7 @@ const Login  = () => {
         //Se puede bajar el tiempo para que sea más rápida la actualización del texto
         setTimeout(() => {
             actualizarTexto()
-        }, 200);
+        }, 150);
     }
     return(
         <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center">
