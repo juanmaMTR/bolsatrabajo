@@ -13,9 +13,14 @@
 
   require_once __DIR__. '/controller/c_usuarios.php';
   require_once __DIR__. '/controller/c_login.php';
+  require_once __DIR__. '/controller/c_familiasProfesionales.php';
   require_once './authentication/autenticacion.php';
+  require_once __DIR__. '/controller/c_ciclos.php';
+
   $controlador = new ControladorUsuarios;
   $controladorlogin = new ControladorLogin;
+  $controladorFamilias = new ControladorFamilias;
+  $controladorCiclos = new ControladorCiclos;
   $autenticacion = new Autenticacion;
   switch ($datos['accion']) {
     case 'alta_usuarios':
@@ -41,6 +46,18 @@
       break;
     case 'editar_usuario':
       $controlador->editar_usuario($datos);
+      break;
+    case 'listadoFamiliasProfesionales':
+      $controladorFamilias->listadoFamilias();
+      break;
+    case 'obtenerFamiliaProfesionalConId':
+      $controladorFamilias->listarFamiliaConId($datos);
+      break;
+    case 'altaCiclos':
+      $controladorCiclos->altaCiclos($datos);
+      break;
+    case 'listadoCiclos':
+      $controladorCiclos->listadoCiclos();
       break;
     default:
       # code...
