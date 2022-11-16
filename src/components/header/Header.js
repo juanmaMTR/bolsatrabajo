@@ -84,15 +84,9 @@ export default function Header({inicioSesion}) {
   }
   console.log(booleanSesion);
 
-  const estiloPerfil = {
-    position: "absolute",
-    inset: "0px auto auto 0px",
-    margin: "0px",
-    transform: "translate(0px, 10px)"
-  }
 
   function handleClickLogout(){
-    Logout(inicioSesion);
+    Logout();
   }
 
   return (
@@ -100,13 +94,12 @@ export default function Header({inicioSesion}) {
       <div className="mx-auto px-4 sm:px-6">
         <div className="flex items-center border-b-2 border-gray-100 justify-between py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="/21/">
-              <span className="sr-only">BolsaTrabajo</span>
-              <img
+            <a>
+              <Link to="/21/"><img
                 className="h-8 w-auto sm:h-10"
                 src="https://raw.githubusercontent.com/juanmaMTR/bolsatrabajo/jdBranch/src/assets/imgs/LogoVirgendeGuadalupe.png"
                 alt=""
-              />
+              /></Link>              
             </a>
           </div>
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
@@ -115,6 +108,12 @@ export default function Header({inicioSesion}) {
                     <HomeIcon className="h-6 w-6 flex-shrink-0 text-sky-600" aria-hidden="true" />
                     <Link className='w-full' to="/21/">Inicio</Link>
                 </a>
+            </div>
+            <div className="-my-2 -mr-2 md:hidden">
+              <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <span className="sr-only">Open menu</span>
+                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              </Popover.Button>
             </div>
             {/* USUARIOS */}
             <Popover className="relative">
@@ -271,7 +270,7 @@ export default function Header({inicioSesion}) {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen w-64 transform px-2 sm:px-0 lg:ml-0 lg:-translate-x-1/2">
+                      <Popover.Panel className="absolute z-10 -ml-4 mt-80 w-screen w-64 transform px-2 sm:px-0 lg:ml-0 lg:-translate-x-0">
                         <div class="my-10">
                           <div class="bg-white rounded overflow-hidden shadow-lg">
                             <div class="text-center p-6  border-b">
