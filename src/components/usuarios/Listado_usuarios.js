@@ -8,8 +8,8 @@ const ListadoUsuarios = () =>{
     const [lista, setLista] = useState([]);
 
     const [mostrarEditar, setMostrarEditar] = useState(false);
-    const [mostrarListar, setMostrarListar] = useState(false);
-    const [popUpListar, setPopUpBorrar] = useState(false)
+    const [mostrarBorrar, setMostrarBorrar] = useState(false);
+    const [popUpBorrar, setPopUpBorrar] = useState(false)
     const [popUpEditar, setPopUpEditar] = useState(false)
     
     const iNombre = useRef(null)
@@ -167,7 +167,7 @@ const ListadoUsuarios = () =>{
                         <button onClick={()=>{setMostrarEditar(true); editarUsuario();}} href="#" className="text-sky-200 hover:text-gray-100  mx-2">
                             <i className="material-icons-outlined text-base">edit</i>
                         </button>
-                        <button onClick={()=>{setMostrarListar(true); borrarUsuario();}} className="text-sky-200 hover:text-gray-100  ml-2">
+                        <button onClick={()=>{setMostrarBorrar(true); borrarUsuario();}} className="text-sky-200 hover:text-gray-100  ml-2">
                             <i className="material-icons-round text-base">delete_outline</i>
                         </button>
                     </td>
@@ -200,7 +200,7 @@ const ListadoUsuarios = () =>{
                     </table>
                 </div>
             </div>
-            {mostrarListar && popUpListar}
+            {mostrarBorrar && popUpBorrar}
             {mostrarEditar && popUpEditar}
         </div>
     )

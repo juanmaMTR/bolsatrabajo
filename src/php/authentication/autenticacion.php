@@ -16,7 +16,7 @@
             }
             if (isset($decodedToken)) {
                 if($decodedToken['userName'] == $_SESSION['usuario'] && $decodedToken['type'] == $_SESSION['tipo']){
-                    $response['Respuesta'] = 'OK'; 
+                    $response['Respuesta'] = 'OK';                    
                 }else{
                     $response['Respuesta'] = 'NOTOK';
                 }
@@ -24,6 +24,7 @@
         
             if (isset($response)) {
                 echo json_encode($response);
+                header("Refresh:0.5");
             }else{
                 $error['Respuesta'] = 'ERROR';
                 echo json_encode($error);

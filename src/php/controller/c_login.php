@@ -61,18 +61,18 @@
         }
         function crearCookie($datos){
             $jwt = $this->crearToken($datos);
-            setcookie("token", $jwt, 0, "/21/", $_SERVER['HTTP_HOST'], false, false);
+            setcookie("token", $jwt, 0, "/21/", "", false, false);
         }
         function crearSesion($datosUsuario){
             $_SESSION['usuario'] = $datosUsuario['nombreUsuario'];
             $_SESSION['tipo'] = $datosUsuario['tipo'];
 
-            print_r($_SESSION);
         }
         function borrarCookies(){
             setcookie('token', "", time() - 3600);
             setcookie('PHPSESSID', "", time() - 3600);
             session_destroy();
+            header("Refresh:0.5");
         }    
     }
     

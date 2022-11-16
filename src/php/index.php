@@ -1,5 +1,5 @@
 <?php
-  session_set_cookie_params(0, "/21/", $_SERVER['HTTP_HOST']);
+  session_set_cookie_params(0, "/21/", "");
   session_start();
 
   header('Access-Control-Allow-Origin: *');
