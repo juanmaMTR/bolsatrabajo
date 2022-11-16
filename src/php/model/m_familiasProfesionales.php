@@ -16,7 +16,7 @@ class ModeloFamilias{
      * @return mixed
      */
     function listar(){
-        $sql="SELECT * FROM `familiasprofesionales`";
+        $sql="SELECT * FROM `familiasProfesionales`";
         $familiasProfesionales = array();
         if($resultado = $this->conexion->query($sql)){
             for($i=0;$i<$resultado->num_rows;$i++){
@@ -38,7 +38,7 @@ class ModeloFamilias{
      * @return string
      */
     function listarConId($id){
-        $sql="SELECT * FROM `familiasprofesionales` WHERE idFamilia = $id";
+        $sql="SELECT * FROM `familiasProfesionales` WHERE idFamilia = $id";
         if($resultado = $this->conexion->query($sql)){
             $fila = $resultado->fetch_assoc();
             $familiaProfesional=[
