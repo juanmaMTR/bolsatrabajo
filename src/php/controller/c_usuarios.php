@@ -129,7 +129,7 @@
          *  @description Función para listar un usuario
          *  @param  mixed $datos
          */
-        function listarUsuario($datos){
+        function listarUsuario($datos){            
             if(isset($datos['nombreUsuario'])){
                 if(empty($datos['nombreUsuario'])){
                     echo "El nombre de usuario está vacío";

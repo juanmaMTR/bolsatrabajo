@@ -16,7 +16,7 @@
             }
             if (isset($decodedToken)) {
                 if($decodedToken['userName'] == $_SESSION['usuario'] && $decodedToken['type'] == $_SESSION['tipo']){
-                    $response['Respuesta'] = 'OK'; 
+                    $response['Respuesta'] = 'OK';                    
                 }else{
                     $response['Respuesta'] = 'NOTOK';
                 }
