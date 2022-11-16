@@ -17,7 +17,7 @@ class ControladorCiclos{
      */
     function altaCiclos($datos){
         if(isset($datos['nombre'])){
-            if(empty($datos['nombre'])){
+            if(empty(trim($datos['nombre']))){
                 print_r(json_encode("El nombre está vacío"));
                 die();
             }else{
@@ -47,6 +47,26 @@ class ControladorCiclos{
      */
     function listadoCiclos(){
         $respuesta = $this->modelo->listar();
+        print_r(json_encode($respuesta));
+    }
+    /**
+     * @function borrarCiclo
+     * @description Función para borrar un ciclo de la base de datos
+     * @param mixed $datos
+     */
+    function borrarCiclo($datos){
+        if(isset($datos['nombre'])){
+            if(empty($datos['nombre'])){
+                print_r(json_encode("El nombre está vacío"));
+                die();
+            }else{
+                $nombre = "'".$datos['nombre']."'";
+            }
+        }else{
+            print_r(json_encode("No existe el nombre"));
+            die();
+        }
+        $respuesta = $this->modelo->borrar($nombre);
         print_r(json_encode($respuesta));
     }
 }

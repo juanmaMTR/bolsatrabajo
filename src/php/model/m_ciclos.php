@@ -45,4 +45,18 @@ class ModeloCiclos{
             return 'Ha surgido un error';
         }
     }
+    /**
+     * @function borrar
+     * @description Función para borrar un ciclo de la base de datos
+     * @param string
+     * @return string
+     */
+    function borrar($nombre){
+        $sql="DELETE FROM `ciclos` WHERE nombreCiclo = $nombre;";
+        if($this->conexion->query($sql)){
+            return 'Ciclo borrado.';
+        }else{
+            return 'Ha surgido un error';
+        }
+    }
 }

@@ -55,6 +55,9 @@
     case 'listadoCiclos':
       $controladorCiclos->listadoCiclos();
       break;
+    case 'borrarCiclo':
+      $controladorCiclos->borrarCiclo($datos);
+      break;
     default:
       # code...
       break;
