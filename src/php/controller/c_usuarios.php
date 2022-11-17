@@ -12,7 +12,7 @@
          */
         function __construct() {
             require_once __DIR__. '/../model/m_usuarios.php';
-            $this->modelo = new ModeloUsuarios();
+            $this->modelo = new ModeloUsuarios;
         }
         /**
          * @function altaUsuarios
@@ -129,7 +129,7 @@
          *  @description Función para listar un usuario
          *  @param  mixed $datos
          */
-        function listarUsuario($datos){
+        function listarUsuario($datos){            
             if(isset($datos['nombreUsuario'])){
                 if(empty($datos['nombreUsuario'])){
                     echo "El nombre de usuario está vacío";

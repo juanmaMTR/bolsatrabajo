@@ -3,6 +3,6 @@
  * @description Variables de entornos del proyecto
  */
 
- export const environment = {
-    apiURL: "../src/php/index.php"
+export const environment = {
+    apiURL: "/21/php/index.php"
 }
