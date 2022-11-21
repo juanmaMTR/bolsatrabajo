@@ -9,6 +9,7 @@ const Listado_ciclos = () => {
     const [mostrarBorrar, setMostrarBorrar] = useState(false);
     const [cicloBorrar, setCicloBorrar] = useState(false)
     const [cicloEditar, setCicloEditar] = useState(false)
+    const [familias, setFamilias] = useState([]);
     const resultado = [];
 
     useEffect(() => {
@@ -25,7 +26,17 @@ const Listado_ciclos = () => {
         const response = await Service(parametros)
         const datosCiclos = await response.json();
         console.log(datosCiclos);
-
+        const ObtenerFamiliasProfesionales = async() => {
+            const parametros ={
+                method: 'POST',
+                inputs: {
+                    accion: 'listadoFamiliasProfesionales',
+                }
+            }
+            const response = await Service(parametros)
+            const datosFamilias = await response.json();
+            setFamilias(datosFamilias)
+        }
         datosCiclos.forEach(async (ciclo) => {
             const parametros = {
                 method: 'POST',
@@ -47,7 +58,7 @@ const Listado_ciclos = () => {
                         <div className="">{datosFamilia.nombre}</div>
                     </td>
                     <td className="p-3 ">
-                        <button onClick={()=>{setMostrarEditar(true); setCicloEditar(ciclo);}} href="#" className="text-sky-200 hover:text-gray-100  mx-2">
+                        <button onClick={()=>{ObtenerFamiliasProfesionales(); setMostrarEditar(true); setCicloEditar(ciclo);}} href="#" className="text-sky-200 hover:text-gray-100  mx-2">
                             <i className="material-icons-outlined text-base">edit</i>
                         </button>
                         <button onClick={()=>{setMostrarBorrar(true); setCicloBorrar(ciclo)}} className="text-sky-200 hover:text-gray-100  ml-2">
@@ -82,7 +93,7 @@ const Listado_ciclos = () => {
                 </div>
             </div>
             {mostrarBorrar && <BorrarCiclos mostrar={setMostrarBorrar} ciclo={cicloBorrar}></BorrarCiclos>}
-            {mostrarEditar && <EditarCiclos mostrar={setMostrarEditar} ciclo={cicloEditar}></EditarCiclos>}
+            {mostrarEditar && <EditarCiclos mostrar={setMostrarEditar} ciclo={cicloEditar} familias={familias}></EditarCiclos>}
         </div>
     )
 
