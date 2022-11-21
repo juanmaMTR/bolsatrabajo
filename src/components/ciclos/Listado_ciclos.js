@@ -25,7 +25,7 @@ const Listado_ciclos = () => {
         }
         const response = await Service(parametros)
         const datosCiclos = await response.json();
-        console.log(datosCiclos);
+        
         const ObtenerFamiliasProfesionales = async() => {
             const parametros ={
                 method: 'POST',
@@ -48,7 +48,6 @@ const Listado_ciclos = () => {
             const response = await Service(parametros)
             const datosFamilia = await response.json();
 
-            console.log(datosFamilia);
             resultado.push(
                 <tr className="bg-sky-600">
                     <td className="p-3">
