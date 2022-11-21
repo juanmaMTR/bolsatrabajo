@@ -62,6 +62,9 @@
     case 'borrarCiclo':
       $controladorCiclos->borrarCiclo($datos);
       break;
+    case 'editarCiclo':
+      $controladorCiclos->editarCiclo($datos);
+      break;
     default:
       # code...
       break;
