@@ -1,5 +1,5 @@
 import Service from "../componentesBasicos/Service";
-const Logout = (inicioSesion) =>{
+const Logout = () =>{
     
     const parametros = {
         method: 'POST',
@@ -9,8 +9,6 @@ const Logout = (inicioSesion) =>{
     }
     Service(parametros)
     
-    if(inicioSesion.message == "OK"){
-        window.location.href = "/21/"
-    }
+    window.location.href = "/21/"
 }
 export default Logout

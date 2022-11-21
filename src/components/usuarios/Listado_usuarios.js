@@ -1,6 +1,7 @@
 import React,{useState, useEffect, useRef} from "react";
 import Service from "../componentesBasicos/Service";
 import '../../css/listado.css'
+import Editar_usuario from "./Editar_usuario";
 
 
 const ListadoUsuarios = () =>{
@@ -10,14 +11,8 @@ const ListadoUsuarios = () =>{
     const [mostrarEditar, setMostrarEditar] = useState(false);
     const [mostrarBorrar, setMostrarBorrar] = useState(false);
     const [popUpBorrar, setPopUpBorrar] = useState(false)
-    const [popUpEditar, setPopUpEditar] = useState(false)
+    const [usuarioEditar, setUsuarioEditar] = useState(false);
     
-    const iNombre = useRef(null)
-    const iApellidos = useRef(null)
-    const iNombreUsuario = useRef(null)
-    const iEstado = useRef(null)
-    const iDNI = useRef(null)
-    const iCorreo = useRef(null)
 
    
     useEffect(()=>{
@@ -36,8 +31,7 @@ const ListadoUsuarios = () =>{
         console.log(datosResponse);
         
         let estadoTrabajo
-        datosResponse.forEach(arrayDatos => {   
-            
+        datosResponse.forEach(arrayDatos => {             
             const borrarUsuario = () =>{
                 const ModalBorrar = <div className="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
                                         <div className="bg-white px-16 py-14 rounded-md text-center">
@@ -67,81 +61,16 @@ const ListadoUsuarios = () =>{
                 }             
             
                 setPopUpBorrar(ModalBorrar)
-            }
-                
-            const editarUsuario = ()=>{
-                const ModalEditar = <div>
-                                        <div className="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
-                                            <div role="alert" className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-                                                <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                                                    <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Editar usuario {arrayDatos.nombreUsuario}</h1>
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
-                                                    <input ref={iNombre} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.nombre} />
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Apellidos</label>
-                                                    <input ref={iApellidos} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.apellidos} />
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre usuario</label>
-                                                    <input ref={iNombreUsuario} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.nombreUsuario} />
-                                                    
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Estado</label>
-                                                    <div className="flex justify-center">
-                                                        <div className="mb-3 w-full">
-                                                            <select ref={iEstado} className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                                                                <option selected>Abrir menú</option>
-                                                                <option value="True">Trabajando</option>
-                                                                <option value="False">No trabajando</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">DNI</label>
-                                                    <input ref={iDNI} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.dni} />
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Correo</label>
-                                                    <input ref={iCorreo} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.correo} />
-
-                                                    <div className="flex items-center justify-start w-full">
-                                                        <button onClick={()=>{setMostrarEditar(false); peticionEditar()}} className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Enviar</button>
-                                                        <button onClick={()=>{setMostrarEditar(false)}} className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">Cancelar</button>
-                                                    </div>
-                                                    <button onClick={()=>{setMostrarEditar(false)}}  className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-sky-200 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" aria-label="close modal" role="button">
-                                                        <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                    const peticionEditar = () =>{
-                        const parametrosPeticion = {
-                            method: 'POST',
-                            inputs: {
-                                accion: 'editar_usuario',
-                                nombre: iNombre.current.value,
-                                apellidos: iApellidos.current.value,
-                                nombreUsuario: iNombreUsuario.current.value,
-                                estado: iEstado.current.value,
-                                dni: iDNI.current.value,
-                                correo: iCorreo.current.value,
-                                nombreUsuarioAntiguo: arrayDatos.nombreUsuario
-                            }
-                        }
-                        Service(parametrosPeticion)
-                        setTimeout(() => {
-                            ListarUsuarios()
-                        }, 200);  
-                    }
-                        
-                setPopUpEditar(ModalEditar)
-            }
+            }               
+            
             if (arrayDatos.estado == 1) {
                 arrayDatos.estado = "Trabajando"                        
                 estadoTrabajo = <span className="bg-green-400 text-gray-50 rounded-md px-2">{arrayDatos.estado}</span>
             }else{
                 arrayDatos.estado = "No trabajando"
                 estadoTrabajo = <span className="bg-red-400 text-gray-50 rounded-md px-2">{arrayDatos.estado}</span>
-            }            
+            }
+            
             resultado.push(
                 <tr className="bg-sky-600">
                     <td className="p-3">
@@ -164,7 +93,7 @@ const ListadoUsuarios = () =>{
                         {estadoTrabajo}
                     </td>
                     <td className="p-3 ">
-                        <button onClick={()=>{setMostrarEditar(true); editarUsuario();}} href="#" className="text-sky-200 hover:text-gray-100  mx-2">
+                        <button onClick={()=>{setUsuarioEditar(arrayDatos); setMostrarEditar(true);}} className="text-sky-200 hover:text-gray-100  mx-2">
                             <i className="material-icons-outlined text-base">edit</i>
                         </button>
                         <button onClick={()=>{setMostrarBorrar(true); borrarUsuario();}} className="text-sky-200 hover:text-gray-100  ml-2">
@@ -173,8 +102,8 @@ const ListadoUsuarios = () =>{
                     </td>
                 </tr>
             )
+            
         });
-        console.log(resultado);
         setLista(resultado)
     }    
    
@@ -201,7 +130,7 @@ const ListadoUsuarios = () =>{
                 </div>
             </div>
             {mostrarBorrar && popUpBorrar}
-            {mostrarEditar && popUpEditar}
+            {mostrarEditar && <Editar_usuario mostrarEditar={setMostrarEditar} usuario={usuarioEditar}/>}
         </div>
     )
     

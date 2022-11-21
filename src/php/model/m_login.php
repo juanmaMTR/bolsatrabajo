@@ -1,9 +1,9 @@
 <?php
-    require_once('./config.php');
+    require_once('./configdb.php');
 
     class ModeloLogin{
         function __construct(){
-            $this->conex = new mysqli(SERVER, USER, PW, DB);
+            $this->conex = new mysqli(HOSTNAME, USERNAME, PASSWORD, DATABASE);
         } 
         
         function sacarUsuarioLogin($user){
