@@ -17,8 +17,8 @@ class ControladorCiclos{
      */
     function altaCiclos($datos){
         if(isset($datos['nombre'])){
-            if(empty(trim($datos['nombre']))){
-                print_r(json_encode("El nombre está vacío"));
+            if(empty(trim($datos['nombre'])) || strlen($datos['nombre']) > 100){
+                print_r(json_encode("El nombre está vacío o contiene muchos caracteres"));
                 die();
             }else{
                 $nombre = "'".$datos['nombre']."'";
@@ -67,6 +67,48 @@ class ControladorCiclos{
             die();
         }
         $respuesta = $this->modelo->borrar($nombre);
+        print_r(json_encode($respuesta));
+    }
+    /**
+     * @function editarCiclo
+     * @description Función para editar un ciclo de la base de datos
+     * @param mixed $datos
+     */
+    function editarCiclo($datos){
+        if(isset($datos['nombre'])){
+            if(empty(trim($datos['nombre'])) || strlen($datos['nombre']) > 100){
+                print_r(json_encode("El nombre está vacío o contiene muchos caracteres"));
+                die();
+            }else{
+                $nombre = "'".$datos['nombre']."'";
+            }
+        }else{
+            print_r(json_encode("No existe el nombre"));
+            die();
+        }
+        if(isset($datos['familiaProfesional'])){
+            if(empty($datos['familiaProfesional'])){
+                print_r(json_encode("La familia profesional está vacía"));
+                die();
+            }else{
+                $familiaProfesional = intval($datos['familiaProfesional']);
+            }
+        }else{
+            print_r(json_encode("No existe la familia profesional"));
+            die();
+        }
+        if(isset($datos['nombreAnterior'])){
+            if(empty($datos['nombreAnterior'])){
+                print_r(json_encode("El nombre antiguo está vacío"));
+                die();
+            }else{
+                $nombreAnterior = "'".$datos['nombreAnterior']."'";
+            }
+        }else{
+            print_r(json_encode("No existe el nombre antiguo"));
+            die();
+        }
+        $respuesta = $this->modelo->editar($nombre, $familiaProfesional,$nombreAnterior);
         print_r(json_encode($respuesta));
     }
 }

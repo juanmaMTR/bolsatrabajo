@@ -96,8 +96,8 @@ const EditarCiclos = ({mostrar,ciclo,familias}) => {
         <div>
             <div className="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
                 <div role="alert" className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-                    <form action="#" method="POST" onSubmit={handleSubmit} className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                        <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Editar ciclo {ciclo.nombreCiclo}</h1>
+                    <form action="#" method="POST" onSubmit={handleSubmit} className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400 text-left">
+                        <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4 text-center">Editar ciclo {ciclo.nombreCiclo}</h1>
                         <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Ciclo:</label>
                         <input id="name" onChange={event => {setInputNombre(event.target.value);handleChange()}} ref={iNombre} name="nombre" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-300 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" value={inputNombre} />
                         {errors.nombre && <ErrorForms message={errors.nombre}/>}
@@ -109,9 +109,9 @@ const EditarCiclos = ({mostrar,ciclo,familias}) => {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex items-center justify-start w-full">
-                            <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Enviar</button>
-                            <button onClick={()=>{mostrar(false);}} className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">Cancelar</button>
+                        <div className="flex items-center justify-between w-full">
+                            <button type="submit" className="bg-blue-500 hover:bg-blue-700 hover:cursor-pointer text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Enviar</button>
+                            <button onClick={()=>{mostrar(false);}} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cancelar</button>
                         </div>
                         <button onClick={()=>{mostrar(false)}}  className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-sky-200 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" aria-label="close modal" role="button">
                             <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

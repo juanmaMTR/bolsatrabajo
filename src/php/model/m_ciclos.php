@@ -59,4 +59,18 @@ class ModeloCiclos{
             return 'Ha surgido un error';
         }
     }
+    /**
+     * @function editar
+     * @description Función para editar un ciclo de la base de datos
+     * @param mixed
+     * @return string
+     */
+    function editar($nombre, $familiaProfesional,$nombreAnterior){
+        $sql="UPDATE `ciclos` SET `nombreCiclo` = $nombre, `idFamilia` = $familiaProfesional WHERE `nombreCiclo` = $nombreAnterior;";
+        if($this->conexion->query($sql)){
+            return 'Ciclo editado correctamente.';
+        }else{
+            return 'Ha surgido un error';
+        }
+    }
 }
