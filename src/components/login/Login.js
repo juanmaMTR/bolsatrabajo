@@ -68,9 +68,6 @@ const Login  = () => {
     return(
         <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center">
             <div class="w-full max-w-xs h-768px flex justify-center flex-col">
-                <p>Usuario: {texto.userName}</p>
-                <p>Tipo: {texto.type}</p>
-                <p>Mensaje: {texto.message}</p>
                 <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Login</h1>
                 <form action="#" method="POST" onSubmit={handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-left">
                     <div class="mb-6">
@@ -89,8 +86,6 @@ const Login  = () => {
             </div>
         </div>
     )
-
-        
     
 }
 export default Login 
