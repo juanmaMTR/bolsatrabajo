@@ -93,7 +93,7 @@ const ListadoUsuarios = () =>{
                         {estadoTrabajo}
                     </td>
                     <td className="p-3 ">
-                        <button onClick={()=>{setUsuarioEditar(arrayDatos); console.log(); setMostrarEditar(true);}} className="text-sky-200 hover:text-gray-100  mx-2">
+                        <button onClick={()=>{setUsuarioEditar(arrayDatos); setMostrarEditar(true);}} className="text-sky-200 hover:text-gray-100  mx-2">
                             <i className="material-icons-outlined text-base">edit</i>
                         </button>
                         <button onClick={()=>{setMostrarBorrar(true); borrarUsuario();}} className="text-sky-200 hover:text-gray-100  ml-2">

@@ -75,30 +75,38 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
         correo: usuario.correo
     })
 
-    const errores = estado.errors
+    const errors = estado.errors
 
     const peticionEditar = () =>{
-        const {errores,...sinErrores} = estado
-        const resultado = validate(sinErrores)
-        console.log(estado);
+        const {errors,...sinErrors} = estado
+        const resultado = validate(sinErrors)
+
+        setEstado({
+            ...estado,
+            errors:resultado,
+        })
+        console.log(errors);
         console.log(resultado);
-        const parametrosPeticion = {
-            method: 'POST',
-            inputs: {
-                accion: 'editar_usuario',
-                nombre: estado.nombre,
-                apellidos: estado.apellidos,
-                nombreUsuario: estado.nombreUsuario,
-                estado: iEstado.current.value,
-                dni: estado.dni,
-                correo: estado.correo,
-                nombreUsuarioAntiguo: usuario.nombreUsuario
+        if(!Object.keys(resultado).length) {
+            const parametrosPeticion = {
+                method: 'POST',
+                inputs: {
+                    accion: 'editar_usuario',
+                    nombre: estado.nombre,
+                    apellidos: estado.apellidos,
+                    nombreUsuario: estado.nombreUsuario,
+                    estado: iEstado.current.value,
+                    dni: estado.dni,
+                    correo: estado.correo,
+                    nombreUsuarioAntiguo: usuario.nombreUsuario
+                }
             }
+            Service(parametrosPeticion)
+            mostrarEditar(false);
+            setTimeout(() => {
+                window.location.href = "/21/listar_u"
+            }, 200);
         }
-        Service(parametrosPeticion)
-        setTimeout(() => {
-            window.location.reload()
-        }, 200);  
     }
     
     const handleChange =(e) =>{
@@ -117,12 +125,13 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
                             <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Editar usuario {usuario.nombreUsuario}</h1>
                             <label for="nombre" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
                             <input name="nombre" value={estado.nombre} id="nombre" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
-                            {errores.nombre && <ErrorForms message={errores.nombre}/>}
+                            {errors.nombre && <ErrorForms message={errors.nombre}/>}
                             <label for="apellidos" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Apellidos</label>
                             <input name="apellidos" value={estado.apellidos} id="apellidos" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
+                            {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
                             <label for="nombreUsuario" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre usuario</label>
                             <input name="nombreUsuario" value={estado.nombreUsuario} id="nombreUsuario" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
-                            
+                            {errors.nombreUsuario && <ErrorForms message={errors.nombreUsuario}/>}
                             <label for="estado" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Estado</label>
                             <div className="flex justify-center">
                                 <div className="mb-3 w-full">
@@ -136,11 +145,12 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
 
                             <label for="dni" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">DNI</label>
                             <input name="dni" value={estado.dni} id="dni" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
+                            {errors.dni && <ErrorForms message={errors.dni}/>}
                             <label for="correo" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Correo</label>
                             <input name="correo" value={estado.correo} id="correo" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
-
+                            {errors.correo && <ErrorForms message={errors.correo}/>}
                             <div className="flex items-center justify-start w-full">
-                                <button onClick={()=>{mostrarEditar(false); peticionEditar()}} className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Enviar</button>
+                                <button onClick={()=>{peticionEditar()}} className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Enviar</button>
                                 <button onClick={()=>{mostrarEditar(false)}} className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">Cancelar</button>
                             </div>
                             <button onClick={()=>{mostrarEditar(false)}}  className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-sky-200 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" aria-label="close modal" role="button">
