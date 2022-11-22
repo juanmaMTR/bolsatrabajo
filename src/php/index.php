@@ -35,14 +35,11 @@
     case 'autenticar':
       $autenticacion->autenticar();
       break;
-    case 'listado_usuarios':
-      $controlador->listadoUsuarios();
-      break;
     case 'borrar_usuario':
       $controlador->borrarUsuario($datos);
       break;
-    case 'listar_usuario':
-      $controlador->listarUsuario($datos);      
+    case 'buscar_usuario':
+      $controlador->buscarUsuario($datos);      
       break;
     case 'editar_usuario':
       $controlador->editar_usuario($datos);

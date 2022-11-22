@@ -37,34 +37,6 @@
             }
         }
         /**
-         * @function listar
-         * @description Función para recoger los datos de los usuarios de la base de datos
-         * @return mixed
-         */
-        function listar(){
-            //$sql= "SELECT * FROM `usuarios` WHERE tipo != 's' and tipo != 't';";
-            $sql= "SELECT * FROM `usuarios` WHERE tipo != 's';"; //para cuando es administrador
-            $usuarios= array();
-            if($resultado = $this->conexion->query($sql)){
-                for($i=0;$i<$resultado->num_rows;$i++){
-                    $fila = $resultado->fetch_assoc();
-                    $usuarios[$i]=[
-                        "nombreUsuario" => $fila['nombreUsuario'],
-                        "estado" => $fila['estado'],
-                        "dni" => $fila['dni'],
-                        "correo" => $fila['correo'],
-                        "nombre" => $fila['nombre'],
-                        "apellidos" => $fila['apellidos'],
-                        "primeraVez" => $fila['primeraVez']
-                    ];
-                }
-                return $usuarios;
-            }
-            else{
-                return 'Ha surgido un error';
-            }
-        }
-        /**
          * @function borrar
          * @description Función para eliminar un usuario de la base de datos
          * @param string $nombreUsuario
@@ -79,25 +51,45 @@
             }
         }
         /**
-         * @function listarUsuario
+         * @function buscarUsuario
          * @description Función para recoger los datos de un usuario de la base de datos
          * @param string $nombreUsuario
          * @return mixed
          */
-        function listarUsuario($nombreUsuario){
-            $sql = "SELECT `nombreUsuario`, `estado`, `dni`, `correo`, `tipo`, `nombre`, `apellidos`, `primeraVez` FROM `usuarios` WHERE nombreUsuario = $nombreUsuario;";
+        function buscarUsuario($nombreUsuario, $tipo){
+            
+            if (empty($nombreUsuario) and $tipo == 's') {
+                $sql= "SELECT * FROM `usuarios` WHERE tipo != 's';";
+            }elseif(empty($nombreUsuario) and $tipo == 't'){
+                $sql= "SELECT * FROM usuarios WHERE tipo !='s' and tipo !='t';";
+            }
+
+            
+            if($tipo == 's'){
+                $sql = "SELECT * FROM usuarios WHERE tipo !='s' and nombreUsuario LIKE '%$nombreUsuario%';";
+            }elseif ($tipo == 't') {
+                $sql = "SELECT * FROM usuarios WHERE tipo !='s' and tipo !='t' and nombreUsuario LIKE '%$nombreUsuario%';";
+            }
+           
+
             if($resultado = $this->conexion->query($sql)){
-                $fila = $resultado->fetch_assoc();
-                $usuario =[
-                    "nombreUsuario" => $fila['nombreUsuario'],
-                    "estado" => $fila['estado'],
-                    "dni" => $fila['dni'],
-                    "correo" => $fila['correo'],
-                    "nombre" => $fila['nombre'],
-                    "apellidos" => $fila['apellidos'],
-                    "primeraVez" => $fila['primeraVez']
-                ];
-                return $usuario;
+                for($i=0;$i<$resultado->num_rows;$i++){
+                    $fila = $resultado->fetch_assoc();
+                    $usuarios[$i]=[
+                        "nombreUsuario" => $fila['nombreUsuario'],
+                        "estado" => $fila['estado'],
+                        "dni" => $fila['dni'],
+                        "correo" => $fila['correo'],
+                        "nombre" => $fila['nombre'],
+                        "apellidos" => $fila['apellidos'],
+                        "primeraVez" => $fila['primeraVez']
+                    ];
+                }
+                if (isset($usuarios)) {
+                    return $usuarios;
+                }else{
+                    return 'Usuario no encontrado';
+                }
             }else{
                 return 'Ha surgido un error';
             }

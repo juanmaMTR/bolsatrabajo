@@ -2,8 +2,6 @@ import { environment } from "./environment"
 
 const Service = async parametros => {
 
-    console.log(parametros)
-
     const inputs = JSON.stringify(parametros.inputs)
     const url = environment.apiURL
     const opcionesPeticion = {

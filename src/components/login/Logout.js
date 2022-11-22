@@ -8,7 +8,9 @@ const Logout = () =>{
         }
     }
     Service(parametros)
-    
-    window.location.href = "/21/"
+
+    setTimeout(() => {
+        window.location.href = "/21/"
+    }, 150);
 }
 export default Logout
