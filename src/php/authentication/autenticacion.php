@@ -14,7 +14,7 @@
                 $secretKey = 'test1234';
                 $decodedToken = (array) JWT::decode($jwtToken, new Key($secretKey, 'HS256'));
             }
-            if (isset($decodedToken)) {
+            if (isset($decodedToken) and isset($_SESSION['usuario']) and isset($_SESSION['tipo'])) {
                 if($decodedToken['userName'] == $_SESSION['usuario'] && $decodedToken['type'] == $_SESSION['tipo']){
                     $response['Respuesta'] = 'OK';                    
                 }else{
