@@ -57,6 +57,7 @@
          * @return mixed
          */
         function buscarUsuario($nombreUsuario, $tipo){
+            
             if (empty($nombreUsuario) and $tipo == 's') {
                 $sql= "SELECT * FROM `usuarios` WHERE tipo != 's';";
             }elseif(empty($nombreUsuario) and $tipo == 't'){
