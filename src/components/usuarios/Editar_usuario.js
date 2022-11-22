@@ -67,17 +67,18 @@ const validate = values => {
 }
 const Editar_usuario = ({mostrarEditar, usuario}) =>{
 
-    const iEstado = useRef(null)
-
     
     const [estado, setEstado] = useState({
         errors:{},
         nombre: usuario.nombre,
         apellidos: usuario.apellidos,
         nombreUsuario: usuario.nombreUsuario,
+        estado: usuario.estado,
         dni: usuario.dni,
         correo: usuario.correo
     })
+
+    const options = []
 
     const errors = estado.errors
 
@@ -91,6 +92,7 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
         })
         console.log(errors);
         console.log(resultado);
+        console.log(estado);
         if(!Object.keys(resultado).length) {
             const parametrosPeticion = {
                 method: 'POST',
@@ -99,7 +101,7 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
                     nombre: estado.nombre,
                     apellidos: estado.apellidos,
                     nombreUsuario: estado.nombreUsuario,
-                    estado: iEstado.current.value,
+                    estado: estado.estado,
                     dni: estado.dni,
                     correo: estado.correo,
                     nombreUsuarioAntiguo: usuario.nombreUsuario
@@ -121,6 +123,24 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
         })
     }
 
+    console.log(usuario.estado);
+
+    if(usuario.estado == 1){
+        options.push(
+            <>
+                <option selected value="True">Trabajando</option>
+                <option value="False">No Trabajando</option>            
+            </>
+        )
+    }else{
+        options.push(
+            <>
+                <option value="True">Trabajando</option>
+                <option selected value="False">No Trabajando</option>            
+            </>
+        ) 
+    }
+
     return(
             <div>
                 <div className="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
@@ -139,10 +159,8 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
                             <label for="estado" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Estado</label>
                             <div className="flex justify-center">
                                 <div className="mb-3 w-full">
-                                    <select name="estado" value={estado.estado} ref={iEstado} className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                                        <option selected>Abrir menú</option>
-                                        <option value="True">Trabajando</option>
-                                        <option value="False">No trabajando</option>
+                                    <select name="estado" onChange={handleChange} className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                                        {options}
                                     </select>
                                 </div>
                             </div>

@@ -13,7 +13,6 @@
         function login($datos){
 
             $datosUsuario = $this->m_login->sacarUsuarioLogin($datos['inputUsuario']);
-            print_r($datosUsuario);
             if ($datosUsuario['Existe'] == 1) {
                 if($datos['inputUsuario'] == $datosUsuario['nombreUsuario'] && $datos['inputContrasenia'] == $datosUsuario['password']){
                     $arrayRespuesta['resultado'] = 'Sesión iniciada.';
@@ -25,14 +24,11 @@
             }else{
                 $arrayRespuesta['resultado'] = 'Usuario no encontrado.';
             }           
-          
-        
             
             if (isset($arrayRespuesta)) {
                 $jsonRespuesta = json_encode($arrayRespuesta);
                 print_r($jsonRespuesta);
             }
-        
             
         }
         function crearToken($datos){
