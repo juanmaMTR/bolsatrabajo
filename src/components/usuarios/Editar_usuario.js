@@ -2,6 +2,11 @@ import React, {useState, useRef} from "react";
 import Service from "../componentesBasicos/Service";
 import ErrorForms from "../componentesBasicos/ErrorForms";
 
+/**
+ * @file Editar_usuario.js
+ * @description Proceso de editado de usuario.
+ */
+
 const validate = values => {
     //Realizo las validaciones de los campos del formulario
     const errors={}
@@ -60,7 +65,6 @@ const validate = values => {
     
     return errors
 }
-
 const Editar_usuario = ({mostrarEditar, usuario}) =>{
 
     const iEstado = useRef(null)
