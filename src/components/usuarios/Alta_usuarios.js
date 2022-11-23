@@ -64,8 +64,13 @@ const validate = values => {
 
 class Alta_usuarios extends React.Component{
     state = {
-        errors: {}
+        errors: {},
+        estado: "false",
+        respuesta: [],
     }
+
+   
+    
     handleChange= ({target})=>{
         const {name,value}=target
         this.setState({[name]:value})
@@ -77,7 +82,7 @@ class Alta_usuarios extends React.Component{
 
         this.setState({errors:result})
         if(!Object.keys(result).length) {
-            //Envio el formulario porque no me llega ningún error
+            //Envio el formulario porque no me llega ningún error1
             const parametros = {
                 method: 'POST',
                 inputs: {
@@ -93,10 +98,32 @@ class Alta_usuarios extends React.Component{
             const response = await Service(parametros)
             const datosResponse = await response.json();
             console.log(datosResponse);
+            if(datosResponse == "Usuario dado de alta."){
+                this.setState({
+                    respuesta: <div class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                    <div>
+                                        <span class="font-medium">{datosResponse}👍</span>
+                                    </div>
+                                </div>,
+                })
+                     
+            }else{
+                this.setState({
+                    respuesta: 
+                        <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <div>
+                                <span class="font-medium">{datosResponse}😢</span>
+                            </div>
+                        </div>,
+                })
+                    
+            }
         }
     }
     render(){
-        const { errors } = this.state
+        const { errors, respuesta} = this.state
         return(
             <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center">
 
@@ -105,41 +132,41 @@ class Alta_usuarios extends React.Component{
                     <form action="#" method="POST" onSubmit={this.handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-left">
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Nombre: </label>
-                            <input type="text" name="nombre" placeholder="nombre" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            <input type="text" name="nombre" placeholder="Nombre" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
                             {errors.nombre && <ErrorForms message={errors.nombre}/>}
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Apellidos: </label>
-                            <input type="text" name="apellidos" placeholder="apellidos" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            <input type="text" name="apellidos" placeholder="Apellidos" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
                             {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Nombre Usuario: </label>
-                            <input type="text" name="nombreUsuario" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            <input type="text" name="nombreUsuario" onChange={this.handleChange} placeholder="Nombre de usuario" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
                             {errors.nombreUsuario && <ErrorForms message={errors.nombreUsuario}/>}
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Estado: </label>
                             <select name="estado" onChange={this.handleChange} class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring-blue-200 focus:border-blue-300">
-                                <option value="true" selected>Trabajando</option>
-                                <option value="false">No trabajando</option>
+                                <option selected value="false">No trabajando</option>
+                                <option value="true" >Trabajando</option>
                             </select><br/>
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2">DNI o NIE: </label>
-                            <input type="text" name="dni" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            <input type="text" name="dni" onChange={this.handleChange} placeholder="DNI o NIE" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
                             {errors.dni && <ErrorForms message={errors.dni}/>}
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Correo: </label>
-                            <input type="text" name="correo" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                            <input type="text" name="correo" onChange={this.handleChange} placeholder="Correo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
                             {errors.correo && <ErrorForms message={errors.correo}/>}
                         </div>
                         <div class="flex items-center justify-between">
                             <input type="submit" value="Añadir" name="enviar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
-
                         </div>
                     </form>
+                    {respuesta}
                 </div>
             </div>
         )
