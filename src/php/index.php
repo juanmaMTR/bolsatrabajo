@@ -53,8 +53,8 @@
     case 'altaCiclos':
       $controladorCiclos->altaCiclos($datos);
       break;
-    case 'listadoCiclos':
-      $controladorCiclos->listadoCiclos();
+    case 'buscar_ciclo':
+      $controladorCiclos->busquedaCiclos($datos);
       break;
     case 'borrarCiclo':
       $controladorCiclos->borrarCiclo($datos);
