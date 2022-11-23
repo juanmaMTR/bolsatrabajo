@@ -352,7 +352,7 @@ export default function Header({inicioSesion}) {
                               <p class="text-sm text-gray-600">mirar-si-cambiar-o-no@gmail.com</p>
                             </div>
                             <div class="border-b">
-                              <a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
+                              <Link to="/21/panel_u" class="px-4 py-2 hover:bg-gray-100 flex">
                                 <div class="text-gray-800">
                                   <svg
                                     fill="none"
@@ -370,7 +370,7 @@ export default function Header({inicioSesion}) {
                                   <p class="text-sm font-medium text-gray-800 leading-none">Configuración personal</p>
                                   <p class="text-xs text-gray-500">Correo, datos de usuario, perfil</p>
                                 </div>
-                              </a>
+                              </Link>
                             </div>
 
                             <div class="">
