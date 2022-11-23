@@ -19,12 +19,10 @@ const validarCiclos = values => {
 
 const EditarCiclos = ({mostrar,ciclo,familias}) => {
     const options=[];
-    const [inputNombre, setInputNombre] = useState(ciclo.nombreCiclo);
-    const [inputFamilia, setInputFamilia] = useState(ciclo.idFamilia);
-    const iNombre = useRef(null);
-    const iFamilia = useRef(null);
     const [state, setState] =useState({
-        errors: {}
+        errors: {},
+        nombre: ciclo.nombreCiclo,
+        familiaProfesional: ciclo.idFamilia
     })
     const errors = state.errors
     const [respuesta, setRespuesta] = useState(false);
@@ -46,7 +44,10 @@ const EditarCiclos = ({mostrar,ciclo,familias}) => {
         const { errors, ...sinErrors}=state
         const result = validarCiclos(sinErrors)
 
-        setState({errors:result})
+        setState({
+            ...state,
+            errors:result
+        })
         if(!Object.keys(result).length) {
             console.log('envio el formulario');
             const parametros = {
@@ -84,11 +85,11 @@ const EditarCiclos = ({mostrar,ciclo,familias}) => {
             }
         }
     }
-    const handleChange = () => {
+    const handleChange = (e) => {
+        const {name, value} = e.target
         setState({
             ...state,
-            [iNombre.current.name]: iNombre.current.value,
-            [iFamilia.current.name]: iFamilia.current.value
+            [name]: value,
         })
     }
 
@@ -99,12 +100,12 @@ const EditarCiclos = ({mostrar,ciclo,familias}) => {
                     <form action="#" method="POST" onSubmit={handleSubmit} className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400 text-left">
                         <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4 text-center">Editar ciclo {ciclo.nombreCiclo}</h1>
                         <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Ciclo:</label>
-                        <input id="name" onChange={event => {setInputNombre(event.target.value);handleChange()}} ref={iNombre} name="nombre" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-300 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" value={inputNombre} />
+                        <input id="name" onChange={handleChange} name="nombre" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-300 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" value={state.nombre} />
                         {errors.nombre && <ErrorForms message={errors.nombre}/>}
                         <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Familia Profesional:</label>
                         <div className="flex justify-center">
                             <div className="mb-3 w-full">
-                                <select onChange={event => {setInputFamilia(event.target.value);handleChange()}} ref={iFamilia} name="familiaProfesional" className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-300 focus:outline-none leading-tight focus:ring-blue-200" aria-label="Default select example">
+                                <select onChange={handleChange} name="familiaProfesional" className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-300 focus:outline-none leading-tight focus:ring-blue-200" aria-label="Default select example">
                                     {options.map((option) => (option))}
                                 </select>
                             </div>

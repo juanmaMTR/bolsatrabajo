@@ -51,10 +51,10 @@ const Listado_ciclos = () => {
             resultado.push(
                 <tr className="bg-sky-600">
                     <td className="p-3">
-                        <div className="">{ciclo.nombreCiclo}</div>
+                        <div className="font-bold">{ciclo.nombreCiclo}</div>
                     </td>
                     <td className="p-3">
-                        <div className="">{datosFamilia.nombre}</div>
+                        <div className="font-bold">{datosFamilia.nombre}</div>
                     </td>
                     <td className="p-3 ">
                         <button onClick={()=>{ObtenerFamiliasProfesionales(); setMostrarEditar(true); setCicloEditar(ciclo);}} href="#" className="text-sky-200 hover:text-gray-100  mx-2">
