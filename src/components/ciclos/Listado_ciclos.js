@@ -70,7 +70,9 @@ const Listado_ciclos = () => {
                     </tr>
                 )
             })
-            setLista(resultado)
+            setTimeout(() => {
+                setLista(resultado)
+            })
         }else{
             setLista([])
         }

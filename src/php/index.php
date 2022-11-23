@@ -16,11 +16,13 @@
   require_once __DIR__. '/controller/c_familiasProfesionales.php';
   require_once './authentication/autenticacion.php';
   require_once __DIR__. '/controller/c_ciclos.php';
+  require_once __DIR__. '/controller/c_idiomas.php';
 
   $controlador = new ControladorUsuarios;
   $controladorlogin = new ControladorLogin;
   $controladorFamilias = new ControladorFamilias;
   $controladorCiclos = new ControladorCiclos;
+  $controladorIdiomas = new ControladorIdiomas;
   $autenticacion = new Autenticacion;
   switch ($datos['accion']) {
     case 'alta_usuarios':
@@ -62,6 +64,8 @@
     case 'editarCiclo':
       $controladorCiclos->editarCiclo($datos);
       break;
+    case 'altaIdiomas':
+      $controladorIdiomas->altaIdiomas($datos);
     default:
       # code...
       break;

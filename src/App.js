@@ -17,6 +17,7 @@ import {
   BrowserRouter
 } from "react-router-dom";
 import PageNotFound from './components/404/404';
+import Alta_idiomas from './components/idiomas/Alta_idiomas';
 
 function App() {
   const [sesion, setsesion] = useState(0);
@@ -71,6 +72,7 @@ function App() {
             {booleanTipoUsuario && <Route path='/21/alta_u' element={<Alta_usuarios/>}></Route>}
             {booleanTipoUsuario && <Route path="/21/alta_c" element={<Alta_ciclos/>}></Route>}
             {booleanTipoUsuario && <Route path="/21/listar_c" element={<Listado_ciclos/>}></Route>}
+            {booleanTipoUsuario && <Route path="/21/alta_i" element={<Alta_idiomas/>}></Route>}
             {booleanLogin && <Route path='/21/login' element={<Login/>}></Route>}
             <Route path="*" element={<PageNotFound/>}></Route>
           </Routes>
