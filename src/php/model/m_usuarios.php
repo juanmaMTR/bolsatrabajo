@@ -50,6 +50,18 @@
                 return 'Ha surgido un error';
             }
         }
+
+        function listar(){
+            $sql = "SELECT nombreCiclo FROM ciclos;";
+
+            $resultado = $this->conexion->query($sql);
+            while($ciclo = $resultado->fetch_assoc()){
+                $ciclos[] = $ciclo;
+            }
+
+            return $ciclos;
+        }
+
         /**
          * @function buscarUsuario
          * @description Función para recoger los datos de un usuario de la base de datos

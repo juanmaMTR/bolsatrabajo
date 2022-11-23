@@ -115,6 +115,13 @@
             $respuesta = $this->modelo->borrar($nombreUsuario);
             print_r(json_encode($respuesta));
         }      
+
+
+        function listar(){
+            $respuesta = $this->modelo->listar();
+            print_r(json_encode($respuesta));
+        }
+
         /**
          *  @function listarUsuario
          *  @description Función para listar un usuario

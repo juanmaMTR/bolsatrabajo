@@ -61,8 +61,7 @@ const validate = values => {
     return errors
 }
 
-
-class Alta_usuarios extends React.Component{
+const Alta_usuarios = () =>{    
     state = {
         errors: {},
         estado: "false",
@@ -70,15 +69,15 @@ class Alta_usuarios extends React.Component{
         estadoAsignarCiclo: false,
         modalAsignarCiclo: {},
     }
-
-   
+    
+    
     
     handleChange= ({target})=>{
         const {name,value}=target
         this.setState({[name]:value})
     }
-
-    asignarCiclo = () => {
+    
+    asignarCiclo = async () => {
         const BloqueAsignarCiclo = 
             <div class="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableLabel">
                 <div class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
@@ -90,9 +89,7 @@ class Alta_usuarios extends React.Component{
                         <button type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="overflow-y-scroll h-96 modal-body relative p-4">
-                        <p>This is some placeholder content to show the scrolling behavior for modals. We use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal.</p>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                        <p>This content should appear at the bottom after you scroll.</p>
+                        {ciclos}
                     </div>
                     <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                         <button onClick={() =>this.setState({estadoAsignarCiclo:false})} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
@@ -104,15 +101,39 @@ class Alta_usuarios extends React.Component{
                     </div>
                     </div>
                 </div>
-            </div>        
+            </div>
+    
+    
+        const ciclos = []
+        
+        
+        const parametros ={
+            method: 'POST',
+            inputs: {
+                accion: 'listar_ciclos',
+            }
+        }
+        const response = await Service(parametros)
+        const datosCiclos = await response.json();
+        console.log(datosCiclos);
+    
+        datosCiclos.forEach(datoCiclo => {
+            console.log(datoCiclo.nombreCiclo);
+            ciclos.push(
+                <button  class="mb-6 inline-block w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+                    {datoCiclo.nombreCiclo}
+                </button>
+            )            
+        });
+    
         this.setState({modalAsignarCiclo: BloqueAsignarCiclo})
     }
-
+    
     handleSubmit=async (event)=>{
         event.preventDefault()
         const { errors, ...sinErrors}=this.state
         const result = validate(sinErrors)
-
+    
         this.setState({errors:result})
         if(!Object.keys(result).length) {
             //Envio el formulario porque no me llega ningún error
@@ -155,58 +176,58 @@ class Alta_usuarios extends React.Component{
             }
         }
     }
-    render(){
-        const { errors, respuesta, estadoAsignarCiclo, modalAsignarCiclo} = this.state
-        console.log(this.state);
-        return(
-            <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center min-h-screen">
-                <div class="w-full max-w-xs">
-                    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Alta de Usuarios</h1>
-                    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-left">
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">Nombre: </label>
-                            <input type="text" name="nombre" placeholder="Nombre" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
-                            {errors.nombre && <ErrorForms message={errors.nombre}/>}
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">Apellidos: </label>
-                            <input type="text" name="apellidos" placeholder="Apellidos" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
-                            {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">Nombre Usuario: </label>
-                            <input type="text" name="nombreUsuario" onChange={this.handleChange} placeholder="Nombre de usuario" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
-                            {errors.nombreUsuario && <ErrorForms message={errors.nombreUsuario}/>}
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">Estado: </label>
-                            <select name="estado" onChange={this.handleChange} class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring-blue-200 focus:border-blue-300">
-                                <option selected value="false">No trabajando</option>
-                                <option value="true" >Trabajando</option>
-                            </select><br/>
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">DNI o NIE: </label>
-                            <input type="text" name="dni" onChange={this.handleChange} placeholder="DNI o NIE" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
-                            {errors.dni && <ErrorForms message={errors.dni}/>}
-                        </div>
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">Correo: </label>
-                            <input type="text" name="correo" onChange={this.handleChange} placeholder="Correo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
-                            {errors.correo && <ErrorForms message={errors.correo}/>}
-                        </div>
-                        <button onClick={() =>{ this.setState({estadoAsignarCiclo:true}); this.asignarCiclo()}} class="mb-6 inline-block w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
-                            Asignar Ciclo
-                        </button>
-                        <div class="flex items-center justify-between">
-                            <input onClick={this.handleSubmit} type="button" value="Añadir" name="enviar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
-                        </div>
+        
+    return(
+        <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center min-h-screen">
+            <div class="w-full max-w-xs">
+                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Alta de Usuarios</h1>
+                <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-left">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Nombre: </label>
+                        <input type="text" name="nombre" placeholder="Nombre" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                        {errors.nombre && <ErrorForms message={errors.nombre}/>}
                     </div>
-                    {respuesta}
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Apellidos: </label>
+                        <input type="text" name="apellidos" placeholder="Apellidos" onChange={this.handleChange} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                        {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Nombre Usuario: </label>
+                        <input type="text" name="nombreUsuario" onChange={this.handleChange} placeholder="Nombre de usuario" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                        {errors.nombreUsuario && <ErrorForms message={errors.nombreUsuario}/>}
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Estado: </label>
+                        <select name="estado" onChange={this.handleChange} class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring-blue-200 focus:border-blue-300">
+                            <option selected value="false">No trabajando</option>
+                            <option value="true" >Trabajando</option>
+                        </select><br/>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">DNI o NIE: </label>
+                        <input type="text" name="dni" onChange={this.handleChange} placeholder="DNI o NIE" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                        {errors.dni && <ErrorForms message={errors.dni}/>}
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Correo: </label>
+                        <input type="text" name="correo" onChange={this.handleChange} placeholder="Correo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                        {errors.correo && <ErrorForms message={errors.correo}/>}
+                    </div>
+                    <button onClick={() => {this.setState({estadoAsignarCiclo:true}); this.asignarCiclo()}} class="mb-6 inline-block w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+                        Asignar Ciclo
+                    </button>
+                    <div class="flex items-center justify-between">
+                        <input onClick={this.handleSubmit} type="button" value="Añadir" name="enviar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
+                    </div>
                 </div>
-                {estadoAsignarCiclo && modalAsignarCiclo}
+                {respuesta}
             </div>
-        )
-    }
+            {estadoAsignarCiclo && modalAsignarCiclo}
+        </div>
+    )
 }
+
+    
+
 export default Alta_usuarios;

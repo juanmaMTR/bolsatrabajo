@@ -20,7 +20,7 @@
                                                                 ["nombre" => 'nada'],
                                                                 ["apellidos" => 'nada'],
                                                                 ["primeraVez" => 'nada']);
-                                                            }
+            }
             $encuentraUsuario = $resultado->num_rows;
             $usuarioSacado['Existe'] = $encuentraUsuario;
             return $usuarioSacado;
