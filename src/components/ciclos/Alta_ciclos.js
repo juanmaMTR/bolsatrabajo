@@ -92,7 +92,7 @@ const Alta_ciclos = () => {
         })
     }
     return(
-        <div className="bg-gray-200 bg-opacity-50 flex justify-center items-center">
+        <div className="bg-gray-200 bg-opacity-50 flex justify-center items-center min-h-screen">
             <div className="w-full max-w-xs h-768px flex justify-center flex-col">
                 <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Alta de Ciclos</h1>
                 <form action="#" method="POST" onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-left">

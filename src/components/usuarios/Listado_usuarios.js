@@ -4,7 +4,7 @@ import '../../css/listado.css'
 import Editar_usuario from "./Editar_usuario";
 
 
-const ListadoUsuarios = ({inicioSesion}) =>{
+const ListadoUsuarios = () =>{
     
     const [lista, setLista] = useState([]);
 
@@ -12,6 +12,7 @@ const ListadoUsuarios = ({inicioSesion}) =>{
     const [mostrarBorrar, setMostrarBorrar] = useState(false);
     const [popUpBorrar, setPopUpBorrar] = useState(false)
     const [usuarioEditar, setUsuarioEditar] = useState(false);
+    const [msjError, setMsjError] = useState()
     
 
    
@@ -27,7 +28,6 @@ const ListadoUsuarios = ({inicioSesion}) =>{
                 method: 'POST',
                 inputs: {
                     accion: 'buscar_usuario',
-                    tipo: inicioSesion.type,
                     nombreUsuario: e.target.value
                 }
             }
@@ -35,8 +35,7 @@ const ListadoUsuarios = ({inicioSesion}) =>{
             parametros = {
                 method: 'POST',
                 inputs: {
-                    accion: 'buscar_usuario',
-                    tipo: inicioSesion.type
+                    accion: 'buscar_usuario'
                 }
             }
         }
@@ -91,14 +90,14 @@ const ListadoUsuarios = ({inicioSesion}) =>{
                             <div className="flex align-items-center">
                                 <img className="rounded-full h-12 w-12  object-cover" src="https://www.safa.edu/images/galerias/home/4-fundacion-Loyola.jpg" alt="unsplash image"/>
                                 <div className="ml-3">
-                                    <div className="">{arrayDatos.nombreUsuario}</div>
-                                    <div className="text-neutral-800">{arrayDatos.correo}</div>
+                                    <div className="font-bold">{arrayDatos.nombreUsuario}</div>
+                                    <div className="text-sky-100">{arrayDatos.correo}</div>
                                 </div>
                             </div>
                         </td>
                         <td className="p-3">
-                            <div className="">{arrayDatos.nombre}</div>
-                            <div className="text-neutral-800">{arrayDatos.apellidos}</div>
+                            <div className="font-bold">{arrayDatos.nombre}</div>
+                            <div className="text-sky-100">{arrayDatos.apellidos}</div>
                         </td>
                         <td className="p-3 font-bold">
                             {arrayDatos.dni}
@@ -118,7 +117,20 @@ const ListadoUsuarios = ({inicioSesion}) =>{
                 )
                 
             });
-            setLista(resultado)
+            setTimeout(() => {
+                setLista(resultado)
+            }, 200);
+            setMsjError()
+        }else{
+            setLista()
+            setMsjError(
+                <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    <div>
+                        <span class="font-medium">{datosResponse}😢</span>
+                    </div>
+                </div>
+            )
         }
     }    
    
@@ -137,6 +149,7 @@ const ListadoUsuarios = ({inicioSesion}) =>{
                             <input maxLength="100" type="text" onChange={ListarUsuarios} id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Buscar usuario..." required/>
                         </div>
                     </div>
+                    {msjError}
                     <table className="table text-sky-200 border-separate space-y-6 text-sm">
                         <thead className="bg-sky-800 text-sky-200">
                             <tr>

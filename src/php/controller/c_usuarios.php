@@ -123,10 +123,10 @@
         function buscarUsuario($datos){            
             if(isset($datos['nombreUsuario'])){
                 $nombreUsuario = $datos['nombreUsuario'];
-                $tipo = $datos['tipo'];
+                $tipo = $_SESSION['tipo'];
             }else{
                 $nombreUsuario = null;
-                $tipo = $datos['tipo'];
+                $tipo = $_SESSION['tipo'];
             }
             $usuarios = $this->modelo->buscarUsuario($nombreUsuario, $tipo);
             print_r(json_encode($usuarios));
