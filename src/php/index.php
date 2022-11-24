@@ -46,9 +46,6 @@
     case 'editar_usuario':
       $controladorUsuarios->editar_usuario($datos);
       break;
-    case 'listar_ciclos':
-      $controladorUsuarios->listar();
-      break;
     case 'listadoFamiliasProfesionales':
       $controladorFamilias->listadoFamilias();
       break;
