@@ -114,6 +114,36 @@
                 return 'Ha surgido un error';
             }
         }
+        /**
+         * @function listar
+         * @description Función para listar un usuario de la base de datos con su nombre de usuario
+         * @param  mixed $nombre
+         * @return mixed
+         */
+        function listar($nombre){
+            $sql = "SELECT nombreUsuario, estado, dni, correo, nombre, apellidos,tipo FROM usuarios WHERE nombreUsuario = $nombre;";
+            if($resultado = $this->conexion->query($sql)){
+                for($i=0;$i<$resultado->num_rows;$i++){
+                    $fila = $resultado->fetch_assoc();
+                    $usuario=[
+                        "nombreUsuario" => $fila['nombreUsuario'],
+                        "estado" => $fila['estado'],
+                        "dni" => $fila['dni'],
+                        "correo" => $fila['correo'],
+                        "nombre" => $fila['nombre'],
+                        "apellidos" => $fila['apellidos'],
+                        "tipo" => $fila['tipo']
+                    ];
+                }
+                if (isset($usuario)) {
+                    return $usuario;
+                }else{
+                    return 'Usuario no encontrado';
+                }
+            }else{
+                return 'Ha surgido un error';
+            }
+        }
     }
 
 ?>

@@ -216,6 +216,26 @@
             $respuesta = $this->modelo->actualizar($nombre,$apellidos,$nombreUsuario,$estado,$dni,$correo,$nombreUsuarioAntiguo);
             print_r(json_encode($respuesta));
         }
+        /**
+         * @function listarUsuario
+         * @description Función para listar un usuario con el nombre
+         * @param mixed $datos
+         */
+        function listarUsuario($datos){
+            if(isset($datos['nombre'])){
+                if(empty($datos['nombre'])){
+                    print_r(json_encode("El nombre está vacío"));
+                    die();
+                }else{
+                    $nombre = "'".$datos['nombre']."'";
+                }
+            }else{
+                print_r(json_encode("No existe el nombre"));
+                die();
+            }
+            $respuesta = $this->modelo->listar($nombre);
+            print_r(json_encode($respuesta));
+        }
      }
 
 
