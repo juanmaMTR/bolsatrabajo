@@ -77,7 +77,8 @@ const Alta_usuarios = () =>{
     const [modalAsignarCiclo, setModalAsignarCiclo] = useState([])
     const [respuesta, setRespuesta] = useState([])
     const [listaCiclos, setListaCiclos] = useState({
-        cicloContainer: []
+        cicloContainer: [],
+        datosCiclos: {},
     })
 
     const errors = estado.errors
@@ -105,6 +106,7 @@ const Alta_usuarios = () =>{
         console.table(datosCiclos);
     
         let listaCiclosContainer = []
+        let ObjetoDatosCiclos = {}
         datosCiclos.forEach(datoCiclo => {
             const actualizarListaCiclos = () =>{
                 let cicloContenedor =   <span class="font-medium text-center mb-6 inline-flex items-center rounded-full p-2 bg-sky-500 text-white group transition-all duration-500 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:outline-none" role="alert" tabindex="0">
@@ -117,42 +119,44 @@ const Alta_usuarios = () =>{
                 <button onClick={() => {actualizarListaCiclos(); console.log(datoCiclo.nombreCiclo)}} class="mb-6 inline-block w-full px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
                     {datoCiclo.nombreCiclo} - ({datoCiclo.nombreFamilia})
                 </button>
-            )            
+            )
+            Object.assign(ObjetoDatosCiclos, {
+                nombreCiclo: datoCiclo.nombreCiclo
+            })          
         });
 
         const agregarListaCiclos = () =>{
             setListaCiclos({cicloContainer:listaCiclosContainer})
         }
-        const BloqueAsignarCiclo = 
-            <div class="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableLabel">
-                <div class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-                    <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                    <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                        <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
-                        Asignar Ciclo
-                        </h5>
-                        <button onClick={() =>setEstadoAsignarCiclo(false)} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
-                            <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <line x1="18" y1="6" x2="6" y2="18" />
-                                <line x1="6" y1="6" x2="18" y2="18" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="overflow-y-scroll h-96 modal-body relative p-4">
-                        {ciclos}
-                    </div>
-                    <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                        <button onClick={() =>setEstadoAsignarCiclo(false)} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
-                            Cerrar
-                        </button>
-                        <button onClick={() =>{setEstadoAsignarCiclo(false); agregarListaCiclos()}} type="button" class="inline-block px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
-                            Añadir
-                        </button>
-                    </div>
-                    </div>
-                </div>
-            </div>
+        const BloqueAsignarCiclo = <div class="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableLabel">
+                                        <div class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+                                            <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
+                                                Asignar Ciclo
+                                                </h5>
+                                                <button onClick={() =>setEstadoAsignarCiclo(false)} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
+                                                    <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                                        <line x1="18" y1="6" x2="6" y2="18" />
+                                                        <line x1="6" y1="6" x2="18" y2="18" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="overflow-y-scroll h-96 modal-body relative p-4">
+                                                {ciclos}
+                                            </div>
+                                            <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                                <button onClick={() =>setEstadoAsignarCiclo(false)} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
+                                                    Cerrar
+                                                </button>
+                                                <button onClick={() =>{setEstadoAsignarCiclo(false); agregarListaCiclos()}} type="button" class="inline-block px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
+                                                    Añadir
+                                                </button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
         setModalAsignarCiclo(BloqueAsignarCiclo)
     }
     
