@@ -7,7 +7,8 @@ import Service from "../componentesBasicos/Service";
  */
 const Panel_usuario = ({inicioSesion}) => {
     const [datosUsuario, setDatosUsuario] = useState([])
-    const [tipoUsuario, setTipoUsuario] = useState('')
+    const [tipoUsuario, setTipoUsuario] = useState('alumno')
+    const [estadoUsuario, setEstadoUsuario] = useState('no trabajando')
 
     useEffect(() => {
         obtenerDatosUsuario()
@@ -35,8 +36,16 @@ const Panel_usuario = ({inicioSesion}) => {
             setTipoUsuario('Alumno')
         }
     }
+    const selectorEstadoUsuario = () => {
+        if(datosUsuario.estado == 0){
+            setEstadoUsuario('no trabajando')
+        }else if(datosUsuario.estado == 1){
+            setEstadoUsuario('trabajando')
+        }
+    }
     setTimeout(() => {
         selectorTipoUsuario()
+        selectorEstadoUsuario()
     }, 200);
     
     return(
@@ -140,48 +149,31 @@ const Panel_usuario = ({inicioSesion}) => {
                                         </div>
                                     </div>
                                 </div>
-                            <div className="mt-10 flex w-full justify-center px-4 lg:order-3 lg:mt-0 lg:w-4/12 lg:justify-end lg:self-center">
-                                <button className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-blue-400" type="button">Conntect</button>
+                            <div className="mt-10 flex w-full justify-center px-4 lg:order-3 lg:mt-0 lg:w-4/12 lg:justify-end lg:self-center"></div>
+                            <div className="w-full px-4 lg:order-1 lg:w-4/12"></div>
+                        </div>
+                        <div className="my-8 text-center">
+                            <h2 className="block antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-blue-gray-900 mb-2">{datosUsuario.nombreUsuario}</h2>
+                            <div className="mb-16 flex items-center justify-center gap-2">
+                                <p className="block antialiased font-sans text-base leading-relaxed font-medium text-blue-gray-700">{datosUsuario.nombre + " " + datosUsuario.apellidos}</p>
                             </div>
-                            <div className="w-full px-4 lg:order-1 lg:w-4/12"><div className="flex justify-center py-4 pt-8 lg:pt-4">
-                                <div className="mr-4 p-3 text-center">
-                                    <p className="block antialiased font-sans text-xl leading-relaxed text-blue-gray-900 font-bold uppercase">22</p>
-                                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">Friends</p>
-                                </div>
-                                <div className="mr-4 p-3 text-center">
-                                    <p className="block antialiased font-sans text-xl leading-relaxed text-blue-gray-900 font-bold uppercase">10</p>
-                                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">Photos</p>
-                                </div>
-                                <div className="p-3 text-center lg:mr-4">
-                                    <p className="block antialiased font-sans text-xl leading-relaxed text-blue-gray-900 font-bold uppercase">89</p>
-                                    <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">Comments</p>
-                                </div>
+                            <div className="mb-2 flex items-center justify-center gap-2">
+                                <img className="-mt-px h-4 w-4 text-blue-gray-700" src="https://raw.githubusercontent.com/juanmaMTR/bolsatrabajo/jmtrBranch/src/assets/imgs/mail.png"/>
+                                <p className="block antialiased font-sans text-base leading-relaxed font-medium text-blue-gray-700">{datosUsuario.correo}</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="my-8 text-center">
-                        <h2 className="block antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-blue-gray-900 mb-2">{datosUsuario.nombreUsuario}</h2>
-                        <div className="mb-16 flex items-center justify-center gap-2">
-                            <p className="block antialiased font-sans text-base leading-relaxed font-medium text-blue-gray-700">{datosUsuario.nombre + " " + datosUsuario.apellidos}</p>
-                        </div>
-                        <div className="mb-2 flex items-center justify-center gap-2">
-                            <p><img className="-mt-px h-4 w-4 text-blue-gray-700" src="" />Solution Manager - Creative Tim Officer</p>
-                        </div>
-                        <div className="mb-2 flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="-mt-px h-4 w-4 text-blue-gray-700"><path d="M11.584 2.376a.75.75 0 01.832 0l9 6a.75.75 0 11-.832 1.248L12 3.901 3.416 9.624a.75.75 0 01-.832-1.248l9-6z"></path><path fill-rule="evenodd" d="M20.25 10.332v9.918H21a.75.75 0 010 1.5H3a.75.75 0 010-1.5h.75v-9.918a.75.75 0 01.634-.74A49.109 49.109 0 0112 9c2.59 0 5.134.202 7.616.592a.75.75 0 01.634.74zm-7.5 2.418a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75zm3-.75a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0v-6.75a.75.75 0 01.75-.75zM9 12.75a.75.75 0 00-1.5 0v6.75a.75.75 0 001.5 0v-6.75z" clip-rule="evenodd"></path><path d="M12 7.875a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z"></path></svg>
-                            <p className="block antialiased font-sans text-base leading-relaxed font-medium text-blue-gray-700">University of Computer Science</p>
-                        </div>
-                    </div>
-                    <div className="mb-10 border-t border-blue-gray-50 py-6 text-center">
-                            <div className="mt-2 flex flex-wrap justify-center">
-                                    <div className="flex w-full flex-col items-center px-4 lg:w-9/12">
-                                        <p className="block antialiased font-sans text-base leading-relaxed mb-8 font-normal text-blue-gray-500">An artist of considerable range, Jenna the name taken by Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</p>
-                                        <button className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-blue-500 hover:bg-blue-500/10 active:bg-blue-500/30" type="button" style={{position: "relative", overflow: "hidden"}}>Show more</button>
+                        <div className="mb-10 border-t border-blue-gray-50 py-6 text-center">
+                                <div className="mt-2 flex flex-wrap justify-center">
+                                        <div className="flex w-full flex-col items-center px-4 lg:w-9/12">
+                                            <p className="block antialiased font-sans text-base leading-relaxed mb-8 font-normal text-blue-gray-500">
+                                                Hola {datosUsuario.nombre + " " + datosUsuario.apellidos}, bienvenido a tu perfil. Su DNI es {datosUsuario.dni} y su estado actual es {estadoUsuario}.
+                                            </p>
+                                            <button className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-blue-500 hover:bg-blue-500/10 active:bg-blue-500/30" type="button" style={{position: "relative", overflow: "hidden"}}>Show more</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
