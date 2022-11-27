@@ -78,15 +78,16 @@ const Alta_usuarios = () =>{
     const [respuesta, setRespuesta] = useState([])
     const [listaCiclos, setListaCiclos] = useState({
         cicloContainer: [],
-        datosCiclos: {},
+        datosCiclos: [],
     })
     const [modalListaCiclosAgregar, setModalListaCiclosAgregar] = useState([])
     const [estadoModalListaCiclosAgregar, setEstadoModalListaCiclosAgregar] = useState(false)
 
     const errors = estado.errors
     let listaCiclosContainer = []
-    let ObjetoDatosCiclos = {}
-    
+    let ObjetoDatosCiclos = []
+    let mostrarEliminarCiclos = true
+
     
     
     const handleChange =(e) =>{
@@ -97,8 +98,8 @@ const Alta_usuarios = () =>{
         })
     }
     const asignarCiclo = async () => {
+       
         const ciclos = []
-        const listadoCiclosAgregar = []
         
         const parametros ={
             method: 'POST',
@@ -119,7 +120,7 @@ const Alta_usuarios = () =>{
                                                 <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
                                                 Listado de ciclos a agregar:
                                                 </h5>
-                                                <button onClick={() =>setEstadoModalListaCiclosAgregar(false)} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
+                                                <button onClick={() =>{listaCiclosContainer = []; ObjetoDatosCiclos = [];setEstadoModalListaCiclosAgregar(false)}} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
                                                     <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" />
                                                         <line x1="18" y1="6" x2="6" y2="18" />
@@ -131,10 +132,7 @@ const Alta_usuarios = () =>{
                                                 {listaCiclosContainer}
                                             </div>
                                             <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                                <button onClick={() =>{setEstadoModalListaCiclosAgregar(false);}} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
-                                                    Cerrar
-                                                </button>
-                                                <button onClick={() =>{listaCiclosContainer = [];}} type="button" class="inline-block px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
+                                                <button onClick={() =>{listaCiclosContainer = []; ObjetoDatosCiclos = [];setEstadoModalListaCiclosAgregar(false);}} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
                                                     Eliminar todos
                                                 </button>
                                             </div>
@@ -144,20 +142,24 @@ const Alta_usuarios = () =>{
                                             <span class="whitespace-nowrap inline-block group-hover:max-w-screen-2xl group-focus:max-w-screen-2xl max-w-0 scale-80 group-hover:scale-100 overflow-hidden transition-all duration-500 group-hover:px-2 group-focus:px-2">{datoCiclo.nombreFamilia}</span>
                                         </span>                                   
                 listaCiclosContainer.push(cicloContenedor)
+                
+                ObjetoDatosCiclos.push(
+                    datoCiclo.idCiclo
+                )
                 setModalListaCiclosAgregar(listaCiclosAgregar)
             }
             ciclos.push(
-                <button onClick={() => {actualizarListaCiclos(); console.log(datoCiclo.nombreCiclo); setEstadoModalListaCiclosAgregar(true)}} class="mb-6 inline-block w-full px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+                <button onClick={() => {actualizarListaCiclos();setEstadoModalListaCiclosAgregar(true)}} class="mb-6 inline-block w-full px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
                     {datoCiclo.nombreCiclo} - ({datoCiclo.nombreFamilia})
                 </button>
-            )
-            Object.assign(ObjetoDatosCiclos, {
-                nombreCiclo: datoCiclo.nombreCiclo
-            })          
+            )            
         });
 
         const agregarListaCiclos = () =>{
-            setListaCiclos({cicloContainer:listaCiclosContainer})
+            setListaCiclos({
+                cicloContainer: [...listaCiclos.cicloContainer, listaCiclosContainer],
+                datosCiclos: [...listaCiclos.datosCiclos, ObjetoDatosCiclos]
+            })
         }
         const BloqueAsignarCiclo = <div class="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute   top-0 right-0 bottom-0 left-0" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableLabel">
                                         <div class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
@@ -166,7 +168,7 @@ const Alta_usuarios = () =>{
                                                     <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
                                                     Asignar Ciclo
                                                     </h5>
-                                                    <button onClick={() =>setEstadoAsignarCiclo(false)} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
+                                                    <button onClick={() =>{setEstadoAsignarCiclo(false); setEstadoModalListaCiclosAgregar(false)}} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
                                                         <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" />
                                                             <line x1="18" y1="6" x2="6" y2="18" />
@@ -178,10 +180,10 @@ const Alta_usuarios = () =>{
                                                     {ciclos}
                                                 </div>
                                                 <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                                    <button onClick={() =>setEstadoAsignarCiclo(false)} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
+                                                    <button onClick={() =>{setEstadoAsignarCiclo(false); setEstadoModalListaCiclosAgregar(false)}} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
                                                         Cerrar
                                                     </button>
-                                                    <button onClick={() =>{setEstadoAsignarCiclo(false); agregarListaCiclos()}} type="button" class="inline-block px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
+                                                    <button onClick={() =>{setEstadoAsignarCiclo(false); agregarListaCiclos(); setEstadoModalListaCiclosAgregar(false)}} type="button" class="inline-block px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
                                                         Añadir
                                                     </button>
                                                 </div>
@@ -241,6 +243,13 @@ const Alta_usuarios = () =>{
         }
     }
     
+    if(!listaCiclos.cicloContainer.length){
+        mostrarEliminarCiclos = false
+    }
+
+    console.log(listaCiclos);
+    console.log(ObjetoDatosCiclos);
+
     return(
         <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center min-h-screen">
             <div class="w-full max-w-sm">
@@ -285,6 +294,14 @@ const Alta_usuarios = () =>{
                         <span className="font-bold text-center mb-6">Listado de ciclos: </span>
                         {listaCiclos.cicloContainer}
                     </div>
+
+                    {
+                        mostrarEliminarCiclos
+                        &&
+                        <button onClick={() => {(setListaCiclos({...listaCiclos,cicloContainer: [], datosCiclos:[]}))}} class="mb-6 inline-block w-full px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+                            Eliminar ciclos
+                        </button>
+                    }
                     
                     <div class="flex items-center justify-between">
                         <input onClick={handleSubmit} type="button" value="Añadir" name="enviar" class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
