@@ -42,11 +42,17 @@ class ControladorCiclos{
         print_r(json_encode($respuesta));
     }
     /**
-     * @function listadoCiclos
+     * @function busquedaCiclos
      * @description Función para listar los ciclos de la base de datos
+     * @param mixed $datos
      */
-    function listadoCiclos(){
-        $respuesta = $this->modelo->listar();
+    function busquedaCiclos($datos){
+        if(isset($datos['nombreCiclo'])){
+            $nombreCiclo = $datos['nombreCiclo'];
+        }else{
+            $nombreCiclo = null;
+        }
+        $respuesta = $this->modelo->buscar($nombreCiclo);
         print_r(json_encode($respuesta));
     }
     /**

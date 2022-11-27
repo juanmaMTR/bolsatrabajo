@@ -10,6 +10,8 @@ import {
   AcademicCapIcon,
   Bars3Icon,
   XMarkIcon,
+  FlagIcon,
+  DocumentChartBarIcon,
 } from '@heroicons/react/24/outline'
 import Logout from '../login/Logout'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
@@ -66,6 +68,15 @@ const ciclos = [
     href: '/21/alta_c',
     icon: AcademicCapIcon,
   }
+]
+
+const curriculum = [
+  {
+    name: 'Alta idiomas',
+    description: 'Alta de idiomas, donde podrás añadir idiomas a la base de datos.',
+    href: '/21/alta_i',
+    icon: FlagIcon,
+  },
 ]
 
 function classNames(...classes) {
@@ -233,12 +244,62 @@ export default function Header({inicioSesion}) {
                 )}
               </Popover>
             }
-            <div className='relative'>
-              <a href="#" className="text-gray-500 group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
-              <AcademicCapIcon className="h-6 w-6 flex-shrink-0 text-sky-600" aria-hidden="true" />
-                Ofertas
-              </a>
-            </div>
+            {/* CURRICULUM */}
+            {
+              booleanTipoUsuario
+              &&
+              <Popover className="relative">
+                {({ open }) => (
+                  <>
+                    <Popover.Button
+                      className={classNames(
+                        open ? 'text-gray-900' : 'text-gray-500',
+                        'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2'
+                      )}
+                    >
+                      <DocumentChartBarIcon className="h-6 w-6 flex-shrink-0 text-sky-600" aria-hidden="true" />
+                      <span>Currículum</span>
+                      <ChevronDownIcon
+                        className={classNames(
+                              open ? 'text-gray-600' : 'text-gray-400',
+                              'ml-2 h-5 w-5 group-hover:text-gray-500'
+                            )}
+                            aria-hidden="true"
+                        />
+                    </Popover.Button>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-200"
+                      enterFrom="opacity-0 translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-150"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 translate-y-1"
+                    >
+                      <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-md transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
+                        <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                          <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                            {curriculum.map((item) => (
+                              <a
+                                key={item.name}
+                                className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                              ><Link className='w-full' to={item.href}>
+                                  <item.icon className="h-6 w-6 flex-shrink-0 text-sky-600" aria-hidden="true" />
+                                  <div className="ml-4">
+                                      <p className="text-base font-medium text-gray-900">{item.name}</p>
+                                      <p className="mt-1 text-sm text-gray-500">{item.description}</p>
+                                  </div>
+                                </Link>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </Popover.Panel>
+                    </Transition>
+                  </>
+                )}
+              </Popover>
+            }
             <div className='relative'>
               <a href="#" className="text-gray-500 group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
               <BriefcaseIcon className="h-6 w-6 flex-shrink-0 text-sky-600" aria-hidden="true" />
@@ -291,7 +352,7 @@ export default function Header({inicioSesion}) {
                               <p class="text-sm text-gray-600">mirar-si-cambiar-o-no@gmail.com</p>
                             </div>
                             <div class="border-b">
-                              <a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
+                              <Link to="/21/panel_u" class="px-4 py-2 hover:bg-gray-100 flex">
                                 <div class="text-gray-800">
                                   <svg
                                     fill="none"
@@ -309,7 +370,7 @@ export default function Header({inicioSesion}) {
                                   <p class="text-sm font-medium text-gray-800 leading-none">Configuración personal</p>
                                   <p class="text-xs text-gray-500">Correo, datos de usuario, perfil</p>
                                 </div>
-                              </a>
+                              </Link>
                             </div>
 
                             <div class="">
