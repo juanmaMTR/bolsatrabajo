@@ -1,7 +1,9 @@
 import React, {useState} from "react";
+import Editar_usuario from "../Editar_usuario";
 
 const Panel_perfil_usuario = ({datosUsuario}) => {
     const [estadoUsuario, setEstadoUsuario] = useState('no trabajando')
+    const [mostrarEditar, setMostrarEditar] = useState(false);
 
     const selectorEstadoUsuario = () => {
         if(datosUsuario.estado == 0){
@@ -54,11 +56,12 @@ const Panel_perfil_usuario = ({datosUsuario}) => {
                                 <p className="block antialiased font-sans text-base leading-relaxed mb-8 font-normal text-blue-gray-500">
                                     Hola {datosUsuario.nombre + " " + datosUsuario.apellidos}, bienvenido a tu perfil. Su DNI es {datosUsuario.dni} y su estado actual es {estadoUsuario}.
                                 </p>
-                                <button className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-blue-500 hover:bg-blue-500/10 active:bg-blue-500/30" type="button" style={{position: "relative", overflow: "hidden"}}>Editar Perfil</button>
+                                <button className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-blue-500 hover:bg-blue-500/10 active:bg-blue-500/30" type="button" style={{position: "relative", overflow: "hidden"}} onClick={()=>{setMostrarEditar(true)}}>Editar Perfil</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                {mostrarEditar && <Editar_usuario mostrarEditar={setMostrarEditar} usuario={datosUsuario}/>}
             </div>
         </div>
     )

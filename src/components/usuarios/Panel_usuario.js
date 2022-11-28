@@ -65,7 +65,7 @@ const Panel_usuario = ({inicioSesion}) => {
                 </button>
                 <div
                     id="sidebar"
-                    className="bg-white md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
+                    className="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
                     x-show="sidenav"
                 >
                     <div className="space-y-6 md:space-y-10 mt-10">
