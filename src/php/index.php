@@ -28,6 +28,9 @@
     case 'alta_usuarios':
       $controladorUsuarios->altaUsuarios($datos);
       break;
+    case 'alta_ciclos_usuario':
+      $controladorUsuarios->altaCiclosUsuario($datos);
+      break;
     case 'login':
       $controladorlogin->login($datos);
       break;

@@ -168,7 +168,7 @@ const Alta_usuarios = () =>{
                                                     <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
                                                     Asignar Ciclo
                                                     </h5>
-                                                    <button onClick={() =>{setEstadoAsignarCiclo(false); setEstadoModalListaCiclosAgregar(false)}} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
+                                                    <button onClick={() =>{setEstadoAsignarCiclo(false); setEstadoModalListaCiclosAgregar(false); (setListaCiclos({...listaCiclos,cicloContainer: [], datosCiclos:[]}))}} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
                                                         <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" />
                                                             <line x1="18" y1="6" x2="6" y2="18" />
@@ -180,7 +180,7 @@ const Alta_usuarios = () =>{
                                                     {ciclos}
                                                 </div>
                                                 <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                                    <button onClick={() =>{setEstadoAsignarCiclo(false); setEstadoModalListaCiclosAgregar(false)}} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
+                                                    <button onClick={() =>{setEstadoAsignarCiclo(false); setEstadoModalListaCiclosAgregar(false); (setListaCiclos({...listaCiclos,cicloContainer: [], datosCiclos:[]}))}} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
                                                         Cerrar
                                                     </button>
                                                     <button onClick={() =>{setEstadoAsignarCiclo(false); agregarListaCiclos(); setEstadoModalListaCiclosAgregar(false)}} type="button" class="inline-block px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
@@ -193,6 +193,8 @@ const Alta_usuarios = () =>{
         setModalAsignarCiclo(BloqueAsignarCiclo)
     }
     
+    
+
     const handleSubmit=async (event)=>{
         event.preventDefault()
         const {errors,...sinErrors} = estado
@@ -219,12 +221,41 @@ const Alta_usuarios = () =>{
             const response = await Service(parametros)
             const datosResponse = await response.json();
             console.log(datosResponse);
-            if(datosResponse == "Usuario dado de alta."){
+
+
+            const aniadirCiclosUsuario = async (idCiclo) =>{
+                const parametrosCiclosUsuario = {
+                    method: 'POST',
+                    inputs: {
+                        accion: "alta_ciclos_usuario",
+                        idCiclo: idCiclo,
+                        idUsuario: datosResponse.idUsuario
+                    }
+                }
+                console.log(parametrosCiclosUsuario);
+                const responseCiclosUsuario = await Service(parametrosCiclosUsuario)
+                const datosResponseCiclosUsuario = await responseCiclosUsuario.json();
+                console.log(datosResponseCiclosUsuario);                
+            }
+            
+
+            console.log(listaCiclos.datosCiclos);
+            listaCiclos.datosCiclos.forEach(arrayIdCiclos => {
+                arrayIdCiclos.forEach(idCiclo => {                    
+                    setTimeout(() => {
+                        aniadirCiclosUsuario(idCiclo)
+                        console.log(idCiclo);
+                    }, 150);
+                });
+            });
+
+
+            if(datosResponse.Resultado == "Usuario dado de alta correctamente."){
                 setRespuesta(
                                 <div class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
                                     <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                                     <div>
-                                        <span class="font-medium">{datosResponse}👍</span>
+                                        <span class="font-medium">{datosResponse.Resultado}👍</span>
                                     </div>
                                 </div>
                 )
@@ -234,7 +265,7 @@ const Alta_usuarios = () =>{
                                 <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
                                     <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                                     <div>
-                                        <span class="font-medium">{datosResponse}😢</span>
+                                        <span class="font-medium">{datosResponse.Resultado}😢</span>
                                     </div>
                                 </div>
                 )
@@ -247,8 +278,6 @@ const Alta_usuarios = () =>{
         mostrarEliminarCiclos = false
     }
 
-    console.log(listaCiclos);
-    console.log(ObjetoDatosCiclos);
 
     return(
         <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center min-h-screen">
