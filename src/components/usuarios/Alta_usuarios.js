@@ -140,7 +140,9 @@ const Alta_usuarios = () =>{
                 let cicloContenedor =   <span class="font-medium text-center mb-6 inline-flex items-center rounded-full p-2 bg-sky-500 text-white group transition-all duration-500 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:outline-none" role="alert" tabindex="0">
                                             <span>{datoCiclo.nombreCiclo}</span>
                                             <span class="whitespace-nowrap inline-block group-hover:max-w-screen-2xl group-focus:max-w-screen-2xl max-w-0 scale-80 group-hover:scale-100 overflow-hidden transition-all duration-500 group-hover:px-2 group-focus:px-2">{datoCiclo.nombreFamilia}</span>
-                                        </span>                                   
+                                        </span>
+                                        
+                                        
                 listaCiclosContainer.push(cicloContenedor)
                 
                 ObjetoDatosCiclos.push(
@@ -156,10 +158,12 @@ const Alta_usuarios = () =>{
         });
 
         const agregarListaCiclos = () =>{
-            setListaCiclos({
-                cicloContainer: [...listaCiclos.cicloContainer, listaCiclosContainer],
-                datosCiclos: [...listaCiclos.datosCiclos, ObjetoDatosCiclos]
-            })
+            if(listaCiclosContainer.length && ObjetoDatosCiclos.length){
+                setListaCiclos({
+                    cicloContainer: [...listaCiclos.cicloContainer, listaCiclosContainer],
+                    datosCiclos: [...listaCiclos.datosCiclos, ObjetoDatosCiclos]
+                })
+            }
         }
         const BloqueAsignarCiclo = <div class="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute   top-0 right-0 bottom-0 left-0" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableLabel">
                                         <div class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
@@ -278,6 +282,8 @@ const Alta_usuarios = () =>{
         mostrarEliminarCiclos = false
     }
 
+    console.log(listaCiclos.cicloContainer);
+    console.log(listaCiclos.datosCiclos);
 
     return(
         <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center min-h-screen">

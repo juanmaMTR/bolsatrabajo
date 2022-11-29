@@ -13,7 +13,7 @@ USE BolsaTrabajo;
 -- Create the table Usuarios
 CREATE TABLE usuarios(
     idUsuario int unsigned not null auto_increment primary key,
-    nombreUsuario varchar(100) not null,
+    nombreUsuario varchar(100) unique not null,
     estado boolean null,
     dni char(9) not null unique,
     correo varchar(255) not null,
