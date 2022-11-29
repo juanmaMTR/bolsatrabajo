@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Service from "../componentesBasicos/Service";
-import Panel_perfil_usuario from "./panel/Panel_perfil_usuario";
 
 /**
- * @file src/components/usuarios/Panel_usuario.js
- * @brief Componente para mostrar el panel de usuario
+ * @file Panel_usuario.js
+ * @description Componente para mostrar el panel de usuario
  */
 const Panel_usuario = ({inicioSesion}) => {
     const [datosUsuario, setDatosUsuario] = useState([])
@@ -65,7 +64,7 @@ const Panel_usuario = ({inicioSesion}) => {
                 </button>
                 <div
                     id="sidebar"
-                    className="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
+                    className="bg-white h-screen md:block shadow-[4px_0px_10px_0px_rgba(184,184,184,1)] px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
                     x-show="sidenav"
                 >
                     <div className="space-y-6 md:space-y-10 mt-10">
@@ -123,9 +122,7 @@ const Panel_usuario = ({inicioSesion}) => {
                         </div>
                     </div>
                 </div>
-                <Routes>
-                    <Route path=":perfil" element={<Panel_perfil_usuario datosUsuario={datosUsuario}/>} />
-                </Routes>
+                <Outlet/>
             </div>
         </div>
     )
