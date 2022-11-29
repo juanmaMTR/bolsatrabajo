@@ -30,12 +30,33 @@
         function alta($nombre,$apellidos,$nombreUsuario,$password,$estado,$dni,$correo,$tipo){
             //return [$nombre,$apellidos,$nombreUsuario,$password,$estado,$dni,$correo,$tipo];
             $sql = "INSERT INTO usuarios(nombreUsuario, estado, dni, correo, password, tipo, nombre, apellidos, primeraVez) VALUES ($nombreUsuario,$estado,$dni,$correo,$password,$tipo,$nombre,$apellidos,true);";
-            if($this->conexion->query($sql)){
-                return 'Usuario dado de alta.';
+            if($this->conexion->query($sql)){   
+                $id = $this->conexion->insert_id;             
+                return array(
+                    "Resultado" => "Usuario dado de alta correctamente.",
+                    "idUsuario" => $id
+                );
             }else{
-                return 'Ha surgido un error';
+                return array(
+                    "Resultado" => "Ha surgido un error."
+                );
             }
         }
+
+        /**
+         * @function altaCiclosUsuario
+         * 
+         */
+
+        function altaCiclosUsuario($idCiclo, $idUsuario){
+            $sql = "INSERT INTO ciclos_usuarios VALUES($idCiclo, $idUsuario);";
+            if($this->conexion->query($sql)){
+                return "Ciclo dado de alta en el usuario.";
+            }else{
+                return "Error en la consulta.";
+            }
+        }
+
         /**
          * @function borrar
          * @description Función para eliminar un usuario de la base de datos

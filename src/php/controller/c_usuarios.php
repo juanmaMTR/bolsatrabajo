@@ -95,6 +95,28 @@
             $respuesta=$this->modelo->alta($nombre,$apellidos,$nombreUsuario,$password,$estado,$dni,$correo,$tipo);
             print_r(json_encode($respuesta));
         }
+
+        /**
+         * @function altaCiclosUsuario
+         * @description Función para agregar el ciclo o los ciclos al usuario dado de alta
+         * @param mixed $datos
+         */
+        function altaCiclosUsuario($datos){
+            if(isset($datos)){
+                if (isset($datos['idCiclo']) and isset($datos['idUsuario'])) {
+                    $idCiclo = $datos['idCiclo'];
+                    $idUsuario = $datos['idUsuario'];
+                    $respuesta['Resultado']= $this->modelo->altaCiclosUsuario($idCiclo, $idUsuario);
+                }else{
+                    $respuesta['Resultado'] = "No existe ciclo";
+                }
+            }else{
+                $respuesta['Resultado'] = "No existen datos";
+            }
+            print_r(json_encode($respuesta));
+                
+        }
+
         /**
          * @function borrarUsuario
          * @description Función para borrar el usuario
@@ -123,10 +145,10 @@
         function buscarUsuario($datos){            
             if(isset($datos['nombreUsuario'])){
                 $nombreUsuario = $datos['nombreUsuario'];
-                $tipo = $datos['tipo'];
+                $tipo = $_SESSION['tipo'];
             }else{
                 $nombreUsuario = null;
-                $tipo = $datos['tipo'];
+                $tipo = $_SESSION['tipo'];
             }
             $usuarios = $this->modelo->buscarUsuario($nombreUsuario, $tipo);
             print_r(json_encode($usuarios));

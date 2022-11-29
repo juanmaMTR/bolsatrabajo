@@ -33,12 +33,13 @@ class ModeloCiclos{
         if(isset($nombreCiclo)){
             $sql = "SELECT nombreCiclo,ciclos.idFamilia, nombreFamilia FROM `ciclos` INNER JOIN familiasProfesionales ON ciclos.idFamilia = familiasProfesionales.idFamilia WHERE nombreCiclo LIKE '%$nombreCiclo%';";
         }else{
-            $sql = "SELECT nombreCiclo,ciclos.idFamilia, nombreFamilia FROM `ciclos` INNER JOIN familiasProfesionales ON ciclos.idFamilia = familiasProfesionales.idFamilia;";
+            $sql = "SELECT idCiclo, nombreCiclo, ciclos.idFamilia, nombreFamilia FROM `ciclos` INNER JOIN familiasProfesionales ON ciclos.idFamilia = familiasProfesionales.idFamilia;";
         }
         if($resultado = $this->conexion->query($sql)){
             for($i=0;$i<$resultado->num_rows;$i++){
                 $fila = $resultado->fetch_assoc();
                 $ciclos[$i]=[
+                    "idCiclo" => $fila['idCiclo'],
                     "nombreCiclo" => $fila['nombreCiclo'],
                     "idFamilia" => $fila['idFamilia'],
                     "nombreFamilia" => $fila['nombreFamilia']

@@ -72,7 +72,7 @@ function App() {
           <Header inicioSesion={sesion}></Header>
           <Routes>
             <Route path='/21/' element={<Home />}></Route>            
-            {booleanTipoUsuario && <Route path='/21/listar_u' element={<ListadoUsuarios inicioSesion={sesion} />}></Route>}
+            {booleanTipoUsuario && <Route path='/21/listar_u' element={<ListadoUsuarios/>}></Route>}
             {booleanTipoUsuario && <Route path='/21/alta_u' element={<Alta_usuarios/>}></Route>}
             {booleanTipoUsuario && <Route path="/21/alta_c" element={<Alta_ciclos/>}></Route>}
             {booleanTipoUsuario && <Route path="/21/listar_c" element={<Listado_ciclos/>}></Route>}
