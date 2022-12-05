@@ -158,8 +158,13 @@
          * @function ordenarCiclos
          * @description Función para ordenar en orden decendente los usuarios por ciclos
          */
-        function ordenarCiclos(){
-            $usuarios = $this->modelo->ordenarCiclos();
+        function ordenarCiclos($datos){
+            if(isset($datos)){
+                if(isset($datos['tipo'])){
+                    $tipo = $datos['tipo'];
+                }
+            }
+            $usuarios = $this->modelo->ordenarCiclos($tipo);
             print_r(json_encode($usuarios));
         }
         /**

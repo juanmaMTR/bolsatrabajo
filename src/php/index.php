@@ -47,7 +47,7 @@
       $controladorUsuarios->buscarUsuario($datos);      
       break;
     case 'ordenar_ciclos':
-      $controladorUsuarios->ordenarCiclos();      
+      $controladorUsuarios->ordenarCiclos($datos);      
       break;
     case 'ordenar_estado':
       $controladorUsuarios->ordenarEstado();      

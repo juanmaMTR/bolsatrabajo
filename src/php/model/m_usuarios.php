@@ -126,8 +126,12 @@
          * @return mixed
          */
 
-        function ordenarCiclos(){
-            $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' ORDER BY `ciclos`.`nombreCiclo` DESC;";
+        function ordenarCiclos($tipo){
+            if($tipo == 's'){
+                $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' ORDER BY `ciclos`.`nombreCiclo` DESC;";
+            }else{
+                $sql = "SELECT nombreUsuario, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' and tipo != 't' ORDER BY `ciclos`.`nombreCiclo` DESC;";
+            }
             if($resultado = $this->conexion->query($sql)){
                 for($i=0;$i<$resultado->num_rows;$i++){
                     $fila = $resultado->fetch_assoc();
