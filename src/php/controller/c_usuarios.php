@@ -153,6 +153,17 @@
             $usuarios = $this->modelo->buscarUsuario($nombreUsuario, $tipo);
             print_r(json_encode($usuarios));
         }
+
+        /**
+         * @function ordenarCiclos
+         * @description Función para ordenar en order decendente por ciclos
+         * @param mixed $datos
+         */
+        function ordenarCiclos(){
+            $usuarios = $this->modelo->ordenarCiclos();
+            print_r(json_encode($usuarios));
+        }
+
         /**
          * @function editar_usuario
          * @description Función para editar un usuario

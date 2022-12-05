@@ -22,31 +22,41 @@ const ListadoUsuarios = () =>{
 
     
     const ListarUsuarios = async (e)=>{
-        let parametros = {}
+        console.log(e);
+        let parametros = {
+            method: 'POST',
+            inputs: {
+                accion: 'buscar_usuario'
+            }
+        }
         if(e){
-            parametros ={
-                method: 'POST',
-                inputs: {
-                    accion: 'buscar_usuario',
-                    nombreUsuario: e.target.value
+            if (e.target.id == "ordenarCiclos") {
+                console.log(e.target.value);
+                parametros = {
+                    method: 'POST',
+                    inputs: {
+                        accion: 'ordenar_ciclos'
+                    }
                 }
             }
-        }else{
-            parametros = {
-                method: 'POST',
-                inputs: {
-                    accion: 'buscar_usuario'
+            if (e.target.value) {
+                parametros ={
+                    method: 'POST',
+                    inputs: {
+                        accion: 'buscar_usuario',
+                        nombreUsuario: e.target.value
+                    }
                 }
             }
         }
         const response = await Service(parametros)
         const datosResponse = await response.json();
-        const resultado = []
         console.log(datosResponse);
+        const resultado = []
         
         let estadoTrabajo
         if (datosResponse && datosResponse != 'Usuario no encontrado') {            
-            datosResponse.forEach(arrayDatos => {             
+            datosResponse.forEach(arrayDatos => {  
                 const borrarUsuario = () =>{
                     const ModalBorrar = <div className="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
                                             <div className="bg-white px-16 py-14 rounded-md text-center">
@@ -102,6 +112,9 @@ const ListadoUsuarios = () =>{
                         <td className="p-3 font-bold">
                             {arrayDatos.dni}
                         </td>
+                        <td className="p-3 font-bold">
+                            {arrayDatos.nombreCiclo}
+                        </td>
                         <td className="p-3">
                             {estadoTrabajo}
                         </td>
@@ -156,6 +169,14 @@ const ListadoUsuarios = () =>{
                                 <th className="p-3">Usuario</th>
                                 <th className="p-3">Nombre/Apellidos</th>
                                 <th className="p-3">DNI</th>
+                                <th className="p-3">
+                                    <button id="ordenarCiclos" className="w-full h-full flex justify-evenly" onClick={ListarUsuarios}>
+                                        Ciclos
+                                        <svg id="ordenarCiclos" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path id="ordenarCiclos" stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+                                        </svg>
+                                    </button>
+                                </th>
                                 <th className="p-3">Estado</th>
                                 <th className="p-3">Acción</th>
                             </tr>

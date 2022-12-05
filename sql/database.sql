@@ -33,15 +33,15 @@ CREATE TABLE ciclos(
     idCiclo tinyint unsigned not null auto_increment primary key,
     nombreCiclo varchar(100) not null unique,
     idFamilia tinyint unsigned not null,
-    CONSTRAINT fk_idFamilia FOREIGN KEY (idFamilia) REFERENCES familiasProfesionales(idFamilia)
+    CONSTRAINT fk_idFamilia FOREIGN KEY (idFamilia) REFERENCES familiasProfesionales(idFamilia) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Create the table Ciclos_usuarios
 CREATE TABLE ciclos_usuarios(
     idCiclo tinyint unsigned not null,
     idUsuario int unsigned not null,
     CONSTRAINT pk_ciclos_usuarios PRIMARY KEY (idCiclo,idUsuario),
-    CONSTRAINT fk_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
-    CONSTRAINT fk_idCiclo FOREIGN KEY (idCiclo) REFERENCES ciclos(idCiclo)
+    CONSTRAINT fk_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_idCiclo FOREIGN KEY (idCiclo) REFERENCES ciclos(idCiclo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Create the table Curriculum
 CREATE TABLE curriculum(
