@@ -90,7 +90,6 @@ const Alta_usuarios = ({inicioSesion}) =>{
     let mostrarEliminarCiclos = true
     let mostrarEscogerTipoUsuario = true
     
-    console.log(inicioSesion.type);
 
     if(inicioSesion.type != 's'){
         mostrarEscogerTipoUsuario = false

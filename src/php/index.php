@@ -52,6 +52,9 @@
     case 'ordenar_estado':
       $controladorUsuarios->ordenarEstado();      
       break;
+    case 'ordenar_tipo':
+      $controladorUsuarios->ordenarTipo();      
+      break;
     case 'editar_usuario':
       $controladorUsuarios->editar_usuario($datos);
       break;

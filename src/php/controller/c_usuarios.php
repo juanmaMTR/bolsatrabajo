@@ -156,7 +156,7 @@
 
         /**
          * @function ordenarCiclos
-         * @description Función para ordenar en orden decendente por ciclos
+         * @description Función para ordenar en orden decendente los usuarios por ciclos
          */
         function ordenarCiclos(){
             $usuarios = $this->modelo->ordenarCiclos();
@@ -164,10 +164,18 @@
         }
         /**
          * @function ordenarEstado
-         * @description Función para ordenar en orden decendente por estado
+         * @description Función para ordenar en orden decendente los usuarios por estado
          */
         function ordenarEstado(){
             $usuarios = $this->modelo->ordenarEstado();
+            print_r(json_encode($usuarios));
+        }
+        /**
+         * @function ordenarTipo
+         * @description Función para ordenar en orden decendente los usuarios por tipo
+         */
+        function ordenarTipo(){
+            $usuarios = $this->modelo->ordenarTipo();
             print_r(json_encode($usuarios));
         }
         
