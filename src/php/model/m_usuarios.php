@@ -45,7 +45,10 @@
 
         /**
          * @function altaCiclosUsuario
-         * 
+         * @description Función para dar de alta los ciclos asociados a usuarios en la base de datos
+         * @param mixed $idCiclo
+         * @param mixed $idUsuario
+         * @return mixed
          */
 
         function altaCiclosUsuario($idCiclo, $idUsuario){
@@ -118,12 +121,43 @@
 
          /**
          * @function ordenarCiclos
-         * @description Función para ordenar los ciclos de la base de datos de un usuario más ciclos
+         * @description Función para ordenar por ciclos los usuarios de la base de datos más ciclos
          * @return mixed
          */
 
         function ordenarCiclos(){
             $sql = "SELECT nombreUsuario, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' ORDER BY `ciclos`.`nombreCiclo` DESC;";
+            if($resultado = $this->conexion->query($sql)){
+                for($i=0;$i<$resultado->num_rows;$i++){
+                    $fila = $resultado->fetch_assoc();
+                    $usuarios[$i]=[
+                        "nombreUsuario" => $fila['nombreUsuario'],
+                        "estado" => $fila['estado'],
+                        "dni" => $fila['dni'],
+                        "correo" => $fila['correo'],
+                        "nombre" => $fila['nombre'],
+                        "apellidos" => $fila['apellidos'],
+                        "primeraVez" => $fila['primeraVez'],
+                        "nombreCiclo" => $fila['nombreCiclo']
+                    ];
+                }
+                if (isset($usuarios)) {
+                    return $usuarios;
+                }else{
+                    return 'Usuario no encontrado';
+                }
+            }else{
+                return 'Ha surgido un error';
+            }
+        }
+         /**
+         * @function ordenarEstado
+         * @description Función para ordenar por estado los usuarios de la base de datos más ciclos
+         * @return mixed
+         */
+
+        function ordenarEstado(){
+            $sql = "SELECT nombreUsuario, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' ORDER BY estado DESC;";
             if($resultado = $this->conexion->query($sql)){
                 for($i=0;$i<$resultado->num_rows;$i++){
                     $fila = $resultado->fetch_assoc();

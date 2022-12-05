@@ -39,6 +39,15 @@ const ListadoUsuarios = () =>{
                     }
                 }
             }
+            if (e.target.id == "ordenarEstado") {
+                console.log(e.target.value);
+                parametros = {
+                    method: 'POST',
+                    inputs: {
+                        accion: 'ordenar_estado'
+                    }
+                }
+            }
             if (e.target.value) {
                 parametros ={
                     method: 'POST',
@@ -177,7 +186,14 @@ const ListadoUsuarios = () =>{
                                         </svg>
                                     </button>
                                 </th>
-                                <th className="p-3">Estado</th>
+                                <th className="p-3">
+                                    <button id="ordenarEstado" className="w-full h-full flex justify-evenly" onClick={ListarUsuarios}>
+                                        Estado
+                                        <svg id="ordenarEstado" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path id="ordenarEstado" stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+                                        </svg>
+                                    </button>
+                                </th>
                                 <th className="p-3">Acción</th>
                             </tr>
                         </thead>

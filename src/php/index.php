@@ -49,6 +49,9 @@
     case 'ordenar_ciclos':
       $controladorUsuarios->ordenarCiclos();      
       break;
+    case 'ordenar_estado':
+      $controladorUsuarios->ordenarEstado();      
+      break;
     case 'editar_usuario':
       $controladorUsuarios->editar_usuario($datos);
       break;

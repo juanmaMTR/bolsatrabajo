@@ -61,7 +61,7 @@ const validate = values => {
     return errors
 }
 
-const Alta_usuarios = () =>{   
+const Alta_usuarios = ({inicioSesion}) =>{   
     
     const [estado, setEstado] = useState({
         errors:{},
@@ -70,6 +70,7 @@ const Alta_usuarios = () =>{
         nombreUsuario: "",
         estado: "False",
         dni: "",
+        tipo: "a",
         correo: ""
     })
 
@@ -87,8 +88,13 @@ const Alta_usuarios = () =>{
     let listaCiclosContainer = []
     let ObjetoDatosCiclos = []
     let mostrarEliminarCiclos = true
-
+    let mostrarEscogerTipoUsuario = true
     
+    console.log(inicioSesion.type);
+
+    if(inicioSesion.type != 's'){
+        mostrarEscogerTipoUsuario = false
+    }
     
     const handleChange =(e) =>{
         const {name, value} = e.target
@@ -219,6 +225,7 @@ const Alta_usuarios = () =>{
                     nombreUsuario: estado.nombreUsuario,
                     estado: estado.estado,
                     dni: estado.dni,
+                    tipo: estado.tipo,
                     correo: estado.correo,
                 }
             }
@@ -317,6 +324,17 @@ const Alta_usuarios = () =>{
                         <input type="text" name="dni" onChange={handleChange} placeholder="DNI o NIE" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
                         {errors.dni && <ErrorForms message={errors.dni}/>}
                     </div>
+                    {
+                        mostrarEscogerTipoUsuario
+                        &&
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Tipo de usuario: </label>
+                            <select name="tipo" onChange={handleChange} class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring-blue-200 focus:border-blue-300">
+                                <option selected value="a">Alumno</option>
+                                <option value="t" >Tutor</option>
+                            </select><br/>
+                        </div>
+                    }
                     <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Correo: </label>
                         <input type="text" name="correo" onChange={handleChange} placeholder="Correo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>

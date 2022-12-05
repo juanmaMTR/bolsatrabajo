@@ -156,14 +156,21 @@
 
         /**
          * @function ordenarCiclos
-         * @description Función para ordenar en order decendente por ciclos
-         * @param mixed $datos
+         * @description Función para ordenar en orden decendente por ciclos
          */
         function ordenarCiclos(){
             $usuarios = $this->modelo->ordenarCiclos();
             print_r(json_encode($usuarios));
         }
-
+        /**
+         * @function ordenarEstado
+         * @description Función para ordenar en orden decendente por estado
+         */
+        function ordenarEstado(){
+            $usuarios = $this->modelo->ordenarEstado();
+            print_r(json_encode($usuarios));
+        }
+        
         /**
          * @function editar_usuario
          * @description Función para editar un usuario
