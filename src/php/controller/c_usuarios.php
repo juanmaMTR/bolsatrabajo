@@ -48,7 +48,7 @@
                     die();
                 }else{
                     $nombreUsuario = "'".$datos['nombreUsuario']."'";
-                    $password = "'".password_hash($datos['nombreUsuario'], PASSWORD_BCRYPT)."'";
+                    $password = "'".password_hash($datos['nombreUsuario'], PASSWORD_DEFAULT)."'";
                 }
             }else{
                 print_r(json_encode("No existe el nombre de usuario"));
