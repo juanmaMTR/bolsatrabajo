@@ -86,13 +86,13 @@
             if($tipo == 's'){
                 $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' and nombreUsuario LIKE '%$nombreUsuario%';";
             }elseif ($tipo == 't') {
-                $sql = "SELECT nombreUsuario, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo !='s' and tipo !='t' and nombreUsuario LIKE '%$nombreUsuario%';";
+                $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo !='s' and tipo !='t' and nombreUsuario LIKE '%$nombreUsuario%';";
             }
             
             if (empty($nombreUsuario) and $tipo == 's') {
                 $sql= "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's';";
             }elseif(empty($nombreUsuario) and $tipo == 't'){
-                $sql= "SELECT nombreUsuario, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo !='s' and tipo !='t';";
+                $sql= "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo !='s' and tipo !='t';";
             }
 
             if($resultado = $this->conexion->query($sql)){
@@ -130,7 +130,7 @@
             if($tipo == 's'){
                 $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' ORDER BY `ciclos`.`nombreCiclo` DESC;";
             }else{
-                $sql = "SELECT nombreUsuario, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' and tipo != 't' ORDER BY `ciclos`.`nombreCiclo` DESC;";
+                $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' and tipo != 't' ORDER BY `ciclos`.`nombreCiclo` DESC;";
             }
             if($resultado = $this->conexion->query($sql)){
                 for($i=0;$i<$resultado->num_rows;$i++){
@@ -162,8 +162,12 @@
          * @return mixed
          */
 
-        function ordenarEstado(){
-            $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' ORDER BY estado DESC;";
+        function ordenarEstado($tipo){
+            if($tipo == 's'){
+                $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' ORDER BY estado DESC;";
+            }else{
+                $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' and tipo != 't' ORDER BY estado DESC;";
+            }
             if($resultado = $this->conexion->query($sql)){
                 for($i=0;$i<$resultado->num_rows;$i++){
                     $fila = $resultado->fetch_assoc();
@@ -193,8 +197,12 @@
          * @description Función para ordenar por tipo los usuarios de la base de datos más ciclos
          * @return mixed
          */
-        function ordenarTipo(){
-            $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' ORDER BY tipo DESC;";
+        function ordenarTipo($tipo){
+            if ($tipo == 's') {
+                $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' ORDER BY tipo DESC;";
+            }else{
+                $sql = "SELECT nombreUsuario, tipo, estado, dni, correo, nombre, apellidos, primeraVez, nombreCiclo FROM `usuarios` LEFT JOIN `ciclos_usuarios` ON usuarios.idUsuario = ciclos_usuarios.idUsuario LEFT JOIN `ciclos` ON ciclos_usuarios.idCiclo = ciclos.idCiclo WHERE tipo != 's' and tipo != 't ORDER BY tipo DESC;";
+            }
             if($resultado = $this->conexion->query($sql)){
                 for($i=0;$i<$resultado->num_rows;$i++){
                     $fila = $resultado->fetch_assoc();

@@ -158,11 +158,9 @@
          * @function ordenarCiclos
          * @description Función para ordenar en orden decendente los usuarios por ciclos
          */
-        function ordenarCiclos($datos){
-            if(isset($datos)){
-                if(isset($datos['tipo'])){
-                    $tipo = $datos['tipo'];
-                }
+        function ordenarCiclos(){
+            if(isset($_SESSION)){
+                $tipo = $_SESSION['tipo'];
             }
             $usuarios = $this->modelo->ordenarCiclos($tipo);
             print_r(json_encode($usuarios));
@@ -172,7 +170,10 @@
          * @description Función para ordenar en orden decendente los usuarios por estado
          */
         function ordenarEstado(){
-            $usuarios = $this->modelo->ordenarEstado();
+            if(isset($_SESSION)){
+                $tipo = $_SESSION['tipo'];
+            }
+            $usuarios = $this->modelo->ordenarEstado($tipo);
             print_r(json_encode($usuarios));
         }
         /**
@@ -180,7 +181,10 @@
          * @description Función para ordenar en orden decendente los usuarios por tipo
          */
         function ordenarTipo(){
-            $usuarios = $this->modelo->ordenarTipo();
+            if(isset($_SESSION)){
+                $tipo = $_SESSION['tipo'];
+            }
+            $usuarios = $this->modelo->ordenarTipo($tipo);
             print_r(json_encode($usuarios));
         }
         
