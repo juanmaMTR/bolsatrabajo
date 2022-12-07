@@ -61,7 +61,7 @@ const validate = values => {
     return errors
 }
 
-const Alta_usuarios = () =>{   
+const Alta_usuarios = ({inicioSesion}) =>{   
     
     const [estado, setEstado] = useState({
         errors:{},
@@ -70,6 +70,7 @@ const Alta_usuarios = () =>{
         nombreUsuario: "",
         estado: "False",
         dni: "",
+        tipo: "a",
         correo: ""
     })
 
@@ -87,8 +88,12 @@ const Alta_usuarios = () =>{
     let listaCiclosContainer = []
     let ObjetoDatosCiclos = []
     let mostrarEliminarCiclos = true
-
+    let mostrarEscogerTipoUsuario = true
     
+
+    if(inicioSesion.type != 's'){
+        mostrarEscogerTipoUsuario = false
+    }
     
     const handleChange =(e) =>{
         const {name, value} = e.target
@@ -140,7 +145,9 @@ const Alta_usuarios = () =>{
                 let cicloContenedor =   <span class="font-medium text-center mb-6 inline-flex items-center rounded-full p-2 bg-sky-500 text-white group transition-all duration-500 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:outline-none" role="alert" tabindex="0">
                                             <span>{datoCiclo.nombreCiclo}</span>
                                             <span class="whitespace-nowrap inline-block group-hover:max-w-screen-2xl group-focus:max-w-screen-2xl max-w-0 scale-80 group-hover:scale-100 overflow-hidden transition-all duration-500 group-hover:px-2 group-focus:px-2">{datoCiclo.nombreFamilia}</span>
-                                        </span>                                   
+                                        </span>
+                                        
+                                        
                 listaCiclosContainer.push(cicloContenedor)
                 
                 ObjetoDatosCiclos.push(
@@ -156,10 +163,12 @@ const Alta_usuarios = () =>{
         });
 
         const agregarListaCiclos = () =>{
-            setListaCiclos({
-                cicloContainer: [...listaCiclos.cicloContainer, listaCiclosContainer],
-                datosCiclos: [...listaCiclos.datosCiclos, ObjetoDatosCiclos]
-            })
+            if(listaCiclosContainer.length && ObjetoDatosCiclos.length){
+                setListaCiclos({
+                    cicloContainer: [...listaCiclos.cicloContainer, listaCiclosContainer],
+                    datosCiclos: [...listaCiclos.datosCiclos, ObjetoDatosCiclos]
+                })
+            }
         }
         const BloqueAsignarCiclo = <div class="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute   top-0 right-0 bottom-0 left-0" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableLabel">
                                         <div class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
@@ -215,6 +224,7 @@ const Alta_usuarios = () =>{
                     nombreUsuario: estado.nombreUsuario,
                     estado: estado.estado,
                     dni: estado.dni,
+                    tipo: estado.tipo,
                     correo: estado.correo,
                 }
             }
@@ -278,6 +288,8 @@ const Alta_usuarios = () =>{
         mostrarEliminarCiclos = false
     }
 
+    console.log(listaCiclos.cicloContainer);
+    console.log(listaCiclos.datosCiclos);
 
     return(
         <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center min-h-screen">
@@ -311,6 +323,17 @@ const Alta_usuarios = () =>{
                         <input type="text" name="dni" onChange={handleChange} placeholder="DNI o NIE" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
                         {errors.dni && <ErrorForms message={errors.dni}/>}
                     </div>
+                    {
+                        mostrarEscogerTipoUsuario
+                        &&
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Tipo de usuario: </label>
+                            <select name="tipo" onChange={handleChange} class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring-blue-200 focus:border-blue-300">
+                                <option selected value="a">Alumno</option>
+                                <option value="t" >Tutor</option>
+                            </select><br/>
+                        </div>
+                    }
                     <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Correo: </label>
                         <input type="text" name="correo" onChange={handleChange} placeholder="Correo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>

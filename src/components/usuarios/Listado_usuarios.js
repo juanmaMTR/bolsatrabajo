@@ -4,7 +4,7 @@ import '../../css/listado.css'
 import Editar_usuario from "./Editar_usuario";
 
 
-const ListadoUsuarios = () =>{
+const ListadoUsuarios = ({inicioSesion}) =>{
     
     const [lista, setLista] = useState([]);
 
@@ -14,7 +14,14 @@ const ListadoUsuarios = () =>{
     const [usuarioEditar, setUsuarioEditar] = useState(false);
     const [msjError, setMsjError] = useState()
     
+    let mostrarTipo = true
+    
+    console.log(inicioSesion.type);
 
+    if(inicioSesion.type != 's'){
+        mostrarTipo = false
+    }
+    
    
     useEffect(()=>{
         ListarUsuarios()
@@ -22,31 +29,63 @@ const ListadoUsuarios = () =>{
 
     
     const ListarUsuarios = async (e)=>{
-        let parametros = {}
-        if(e){
-            parametros ={
-                method: 'POST',
-                inputs: {
-                    accion: 'buscar_usuario',
-                    nombreUsuario: e.target.value
-                }
+        console.log(e);
+        let parametros = {
+            method: 'POST',
+            inputs: {
+                accion: 'buscar_usuario'
             }
-        }else{
-            parametros = {
-                method: 'POST',
-                inputs: {
-                    accion: 'buscar_usuario'
+        }
+        if(e){
+            switch (e.target.id) {
+                case "ordenarCiclos":
+                    parametros = {
+                        method: 'POST',
+                        inputs: {
+                            accion: 'ordenar_ciclos'
+                        }
+                    }
+                    break;
+                case "ordenarEstado":
+                    parametros = {
+                        method: 'POST',
+                        inputs: {
+                            accion: 'ordenar_estado'
+                        }
+                    }
+                    break;
+                case "ordenarTipo":
+                    parametros = {
+                        method: 'POST',
+                        inputs: {
+                            accion: 'ordenar_tipo'
+                        }
+                    }
+                    break;            
+                default:
+                    break;
+            }
+
+            if (e.target.value) {
+                parametros ={
+                    method: 'POST',
+                    inputs: {
+                        accion: 'buscar_usuario',
+                        nombreUsuario: e.target.value
+                    }
                 }
             }
         }
         const response = await Service(parametros)
         const datosResponse = await response.json();
-        const resultado = []
         console.log(datosResponse);
+        const resultado = []
         
         let estadoTrabajo
+        let nombreTipo
+
         if (datosResponse && datosResponse != 'Usuario no encontrado') {            
-            datosResponse.forEach(arrayDatos => {             
+            datosResponse.forEach(arrayDatos => {  
                 const borrarUsuario = () =>{
                     const ModalBorrar = <div className="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
                                             <div className="bg-white px-16 py-14 rounded-md text-center">
@@ -84,6 +123,17 @@ const ListadoUsuarios = () =>{
                     estadoTrabajo = <span className="bg-red-400 text-gray-50 rounded-md px-2">No trabajando</span>
                 }
                 
+                switch (arrayDatos.tipo) {
+                    case 'a':
+                        nombreTipo = "Alumno"
+                        break;
+                    case 't':
+                        nombreTipo = "Tutor"
+                        break;
+                    default:
+                        break;
+                }
+
                 resultado.push(
                     <tr className="bg-sky-600">
                         <td className="p-3">
@@ -95,12 +145,22 @@ const ListadoUsuarios = () =>{
                                 </div>
                             </div>
                         </td>
+                        {
+                            mostrarTipo
+                            &&
+                            <td className="p-3 font-bold">
+                                {nombreTipo}
+                            </td>
+                        }
                         <td className="p-3">
                             <div className="font-bold">{arrayDatos.nombre}</div>
                             <div className="text-sky-100">{arrayDatos.apellidos}</div>
                         </td>
                         <td className="p-3 font-bold">
                             {arrayDatos.dni}
+                        </td>
+                        <td className="p-3 font-bold">
+                            {arrayDatos.nombreCiclo}
                         </td>
                         <td className="p-3">
                             {estadoTrabajo}
@@ -154,9 +214,36 @@ const ListadoUsuarios = () =>{
                         <thead className="bg-sky-800 text-sky-200">
                             <tr>
                                 <th className="p-3">Usuario</th>
+                                {
+                                    mostrarTipo
+                                    &&
+                                    <th className="p-3">
+                                        <button id="ordenarTipo" className="w-full h-full flex justify-evenly" onClick={ListarUsuarios}>
+                                            Tipo
+                                            <svg id="ordenarTipo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                <path id="ordenarTipo" stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+                                            </svg>
+                                        </button>
+                                    </th>
+                                }
                                 <th className="p-3">Nombre/Apellidos</th>
                                 <th className="p-3">DNI</th>
-                                <th className="p-3">Estado</th>
+                                <th className="p-3">
+                                    <button id="ordenarCiclos" className="w-full h-full flex justify-evenly" onClick={ListarUsuarios}>
+                                        Ciclos
+                                        <svg id="ordenarCiclos" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path id="ordenarCiclos" stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+                                        </svg>
+                                    </button>
+                                </th>
+                                <th className="p-3">
+                                    <button id="ordenarEstado" className="w-full h-full flex justify-evenly" onClick={ListarUsuarios}>
+                                        Estado
+                                        <svg id="ordenarEstado" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path id="ordenarEstado" stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+                                        </svg>
+                                    </button>
+                                </th>
                                 <th className="p-3">Acción</th>
                             </tr>
                         </thead>

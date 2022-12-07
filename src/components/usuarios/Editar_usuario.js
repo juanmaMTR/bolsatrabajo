@@ -107,7 +107,7 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
                     nombreUsuarioAntiguo: usuario.nombreUsuario
                 }
             }
-            Service(parametrosPeticion)
+            console.log(Service(parametrosPeticion))
             mostrarEditar(false);
             setTimeout(() => {
                 window.location.href = "/21/listar_u"

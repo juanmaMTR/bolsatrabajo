@@ -46,6 +46,15 @@
     case 'buscar_usuario':
       $controladorUsuarios->buscarUsuario($datos);      
       break;
+    case 'ordenar_ciclos':
+      $controladorUsuarios->ordenarCiclos();      
+      break;
+    case 'ordenar_estado':
+      $controladorUsuarios->ordenarEstado();      
+      break;
+    case 'ordenar_tipo':
+      $controladorUsuarios->ordenarTipo();      
+      break;
     case 'editar_usuario':
       $controladorUsuarios->editar_usuario($datos);
       break;

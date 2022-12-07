@@ -2,13 +2,13 @@
 
 USE BolsaTrabajo;
 
--- Las contraseñas se encriptarán, estos son solo datos de prueba.
+-- Pass de prueba Admin --> Admin
 
 INSERT INTO usuarios (nombreUsuario, estado, dni, correo, password, tipo, nombre, apellidos, primeraVez)
-    VALUES ("Admin", false, "88328816F", "admin@admin.com", "admin", 's', "Pepe", "Lolo", false),
-            ("Juanito23", true, "88548816F", "juanito23@gmail.com", "juanito23", 'a', "Juan", "Azul", true),
-            ("Paco2004", true, "99548816H", "paco2004@gmail.com", "paco2004", 'a', "Paco", "Verde", true),
-            ("Manuel89", true, "88778816P", "manuel89@gmail.com", "manuel89", 't', "Manuel", "Rojas", false);
+    VALUES ("admin", false, "88328816F", "admin@admin.com", "$2y$10$cRGb0qfS13qjF5akUU0kmOOZt86fy7aoEmBJyZIAtWa1OTCMC4gSO", 's', "Pepe", "Lolo", false),
+            ("Juanito23", true, "88548816F", "juanito23@gmail.com", "$2y$10$TyAS0KaRfBJHUzJF8wxLPOXCpWKeJH42HVhnSufnTQ6PV3tFSFPpO", 'a', "Juan", "Azul", true),
+            ("Paco2004", true, "99548816H", "paco2004@gmail.com", "$2y$10$b4IN3VgzYDZ/X3Q6CwfpCe/KlKlBpQYU5KifLK3z/InxIN4bkWtDy", 'a', "Paco", "Verde", true),
+            ("Manuel89", true, "88778816P", "manuel89@gmail.com", "$2y$10$aRQIJcfGF7HCR/lRBQfKb.fsk3uMMyjvLsBA/Cdi8fNzOxGhTzugm", 't', "Manuel", "Rojas", false);
 
 INSERT INTO familiasProfesionales(nombreFamilia)
     VALUES ("Informática"),

@@ -48,7 +48,7 @@
                     die();
                 }else{
                     $nombreUsuario = "'".$datos['nombreUsuario']."'";
-                    $password = "'".password_hash($datos['nombreUsuario'], PASSWORD_BCRYPT)."'";
+                    $password = "'".password_hash($datos['nombreUsuario'], PASSWORD_DEFAULT)."'";
                 }
             }else{
                 print_r(json_encode("No existe el nombre de usuario"));
@@ -153,6 +153,41 @@
             $usuarios = $this->modelo->buscarUsuario($nombreUsuario, $tipo);
             print_r(json_encode($usuarios));
         }
+
+        /**
+         * @function ordenarCiclos
+         * @description Función para ordenar en orden decendente los usuarios por ciclos
+         */
+        function ordenarCiclos(){
+            if(isset($_SESSION)){
+                $tipo = $_SESSION['tipo'];
+            }
+            $usuarios = $this->modelo->ordenarCiclos($tipo);
+            print_r(json_encode($usuarios));
+        }
+        /**
+         * @function ordenarEstado
+         * @description Función para ordenar en orden decendente los usuarios por estado
+         */
+        function ordenarEstado(){
+            if(isset($_SESSION)){
+                $tipo = $_SESSION['tipo'];
+            }
+            $usuarios = $this->modelo->ordenarEstado($tipo);
+            print_r(json_encode($usuarios));
+        }
+        /**
+         * @function ordenarTipo
+         * @description Función para ordenar en orden decendente los usuarios por tipo
+         */
+        function ordenarTipo(){
+            if(isset($_SESSION)){
+                $tipo = $_SESSION['tipo'];
+            }
+            $usuarios = $this->modelo->ordenarTipo($tipo);
+            print_r(json_encode($usuarios));
+        }
+        
         /**
          * @function editar_usuario
          * @description Función para editar un usuario
