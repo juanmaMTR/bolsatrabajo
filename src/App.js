@@ -78,7 +78,7 @@ function App() {
             {booleanTipoUsuario && <Route path="/21/listar_c" element={<Listado_ciclos/>}></Route>}
             {booleanTipoUsuario && <Route path="/21/alta_i" element={<Alta_idiomas/>}></Route>}
             {booleanLogin && <Route path='/21/login' element={<Login/>}></Route>}
-            {booleanSesion && <Route path='/21/panel_u' element={<Panel_usuario inicioSesion={sesion}/>}></Route>}
+            {booleanSesion && <Route path='/21/panel_u/*' element={<Panel_usuario inicioSesion={sesion}/>}></Route>}
             <Route path="*" element={<PageNotFound/>}></Route>
           </Routes>
           <Footer></Footer>
