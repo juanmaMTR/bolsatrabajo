@@ -75,11 +75,11 @@ const Editar_perfil_usuario = ({mostrarEditar, usuario}) => {
         nombre: usuario.nombre,
         apellidos: usuario.apellidos,
         nombreUsuario: usuario.nombreUsuario,
-        estado: usuario.estado,
+        estado: estadoUsuario.estado,
         dni: usuario.dni,
         correo: usuario.correo
     })
-    const options = []
+    let options = []
     const errors = estado.errors
 
     const peticionEditar = async () =>{
@@ -110,7 +110,7 @@ const Editar_perfil_usuario = ({mostrarEditar, usuario}) => {
             console.log(datosResponse);
             mostrarEditar(false);
             setTimeout(() => {
-                //window.location.href = "/21/panel_u"
+                window.location.href = "/21/panel_u"
             }, 200);
         }
     }
@@ -146,7 +146,7 @@ const Editar_perfil_usuario = ({mostrarEditar, usuario}) => {
             <div className="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
                 <div role="alert" className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                     <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                        <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Editar usuario {usuario.nombreUsuario}</h1>
+                        <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Editar usuario {estado.nombreUsuario}</h1>
                         <label for="nombre" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
                         <input name="nombre" value={estado.nombre} id="nombre" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
                         {errors.nombre && <ErrorForms message={errors.nombre}/>}
@@ -154,13 +154,13 @@ const Editar_perfil_usuario = ({mostrarEditar, usuario}) => {
                         <input name="apellidos" value={estado.apellidos} id="apellidos" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
                         {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
                         <label for="estado" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Estado</label>
-                        <div className="flex justify-center">
+                        {/* <div className="flex justify-center">
                             <div className="mb-3 w-full">
                                 <select name="estado" onChange={handleChange} className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                                    {options}
+                                    {options} 
                                 </select>
                             </div>
-                        </div>
+                        </div> */}
 
                         <label for="dni" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">DNI</label>
                         <input name="dni" value={estado.dni} id="dni" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
