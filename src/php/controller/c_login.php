@@ -40,10 +40,12 @@
             $secretkey = 'test1234';
             $user = $datosUsuario['nombreUsuario'];
             $type = $datosUsuario['tipo'];
+            $correo = $datosUsuario['correo'];
     
             $data = [
                 'userName' => $user,
-                'type' => $type
+                'type' => $type,
+                'correo' => $correo
             ];
     
             //encode el array a una cadena JWT

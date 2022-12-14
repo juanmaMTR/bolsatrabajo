@@ -16,7 +16,7 @@
                                                                 ["idUsuario" => 'nada'],
                                                                 ["estado" => 'nada'],
                                                                 ["dni" => 'nada'],
-                                                                ["correo" => 'nada'],
+                                                                //["correo" => 'nada'],
                                                                 ["nombre" => 'nada'],
                                                                 ["apellidos" => 'nada'],
                                                                 ["primeraVez" => 'nada']);

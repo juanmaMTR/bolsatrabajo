@@ -34,14 +34,16 @@ function App() {
         let datos = {
             userName : '',
             type : '',
-            message : respuestasesion
+            message : respuestasesion,
+            correo: ''
         }
         if (respuestasesion == 'OK') {
             const datosCookie = DecodeCookie()
             datos = {
                 userName : datosCookie.userName,
                 type : datosCookie.type,
-                message : respuestasesion
+                message : respuestasesion,
+                correo : datosCookie.correo
             }
             setsesion(datos)
         }else{
