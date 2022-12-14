@@ -357,6 +357,7 @@ const Alta_usuarios = ({inicioSesion}) =>{
                     
                     <div class="flex items-center justify-between">
                         <input onClick={handleSubmit} type="button" value="Añadir" name="enviar" class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
+                        <button onClick={() => {window.location.href = "/21/"}} class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cancelar</button>
                     </div>
                 </div>
                 {respuesta}
