@@ -66,7 +66,7 @@ const validate = values => {
     return errors
 }
 const Editar_usuario = ({mostrarEditar, usuario}) =>{
-
+    console.log(usuario);
     
     const [estado, setEstado] = useState({
         errors:{},
@@ -90,9 +90,6 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
             ...estado,
             errors:resultado,
         })
-        console.log(errors);
-        console.log(resultado);
-        console.log(estado);
         if(!Object.keys(resultado).length) {
             const parametrosPeticion = {
                 method: 'POST',
@@ -107,7 +104,8 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
                     nombreUsuarioAntiguo: usuario.nombreUsuario
                 }
             }
-            console.log(Service(parametrosPeticion))
+            console.log(parametrosPeticion);
+            Service(parametrosPeticion)
             mostrarEditar(false);
             setTimeout(() => {
                 window.location.href = "/21/listar_u"
@@ -122,8 +120,6 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
             [name] : value,
         })
     }
-
-    console.log(usuario.estado);
 
     if(usuario.estado == 1){
         options.push(

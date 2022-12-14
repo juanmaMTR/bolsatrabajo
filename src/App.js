@@ -1,6 +1,5 @@
 import './App.css';
 import Login from './components/login/Login';
-import Logout from './components/login/Logout';
 import Alta_usuarios from './components/usuarios/Alta_usuarios';
 import ListadoUsuarios from './components/usuarios/Listado_usuarios';
 import Header from './components/header/Header';
@@ -19,6 +18,7 @@ import {
 import PageNotFound from './components/404/404';
 import Alta_idiomas from './components/idiomas/Alta_idiomas';
 import Panel_usuario from './components/usuarios/Panel_usuario';
+import Panel_perfil_usuario from './components/usuarios/panel/Panel_perfil_usuario';
 
 function App() {
   const [sesion, setsesion] = useState(0);
@@ -78,7 +78,10 @@ function App() {
             {booleanTipoUsuario && <Route path="/21/listar_c" element={<Listado_ciclos/>}></Route>}
             {booleanTipoUsuario && <Route path="/21/alta_i" element={<Alta_idiomas/>}></Route>}
             {booleanLogin && <Route path='/21/login' element={<Login/>}></Route>}
-            {booleanSesion && <Route path='/21/panel_u/*' element={<Panel_usuario inicioSesion={sesion}/>}></Route>}
+            {booleanSesion && <Route path='/21/panel_u' element={<Panel_usuario inicioSesion={sesion}/>}>
+              <Route path='/21/panel_u/perfil' element={<Panel_perfil_usuario inicioSesion={sesion}/>}/>
+              <Route path="/21/panel_u/*" element={<PageNotFound/>} />
+            </Route>}
             <Route path="*" element={<PageNotFound/>}></Route>
           </Routes>
           <Footer></Footer>
