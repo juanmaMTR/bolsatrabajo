@@ -349,7 +349,7 @@ export default function Header({inicioSesion}) {
                           <div class="bg-white rounded overflow-hidden shadow-lg">
                             <div class="text-center p-6  border-b">
                               <p class="pt-2 text-lg font-semibold">{inicioSesion.userName}</p>
-                              <p class="text-sm text-gray-600">mirar-si-cambiar-o-no@gmail.com</p>
+                              <p class="text-sm text-gray-600">{inicioSesion.correo}</p>
                             </div>
                             <div class="border-b">
                               <Link to="/21/panel_u" class="px-4 py-2 hover:bg-gray-100 flex">
