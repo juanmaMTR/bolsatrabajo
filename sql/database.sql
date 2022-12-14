@@ -13,7 +13,7 @@ USE BolsaTrabajo;
 -- Create the table Usuarios
 CREATE TABLE usuarios(
     idUsuario int unsigned not null auto_increment primary key,
-    nombreUsuario varchar(100) not null,
+    nombreUsuario varchar(100) unique not null,
     estado boolean null,
     dni char(9) not null unique,
     correo varchar(255) not null,
@@ -33,15 +33,15 @@ CREATE TABLE ciclos(
     idCiclo tinyint unsigned not null auto_increment primary key,
     nombreCiclo varchar(100) not null unique,
     idFamilia tinyint unsigned not null,
-    CONSTRAINT fk_idFamilia FOREIGN KEY (idFamilia) REFERENCES familiasProfesionales(idFamilia)
+    CONSTRAINT fk_idFamilia FOREIGN KEY (idFamilia) REFERENCES familiasProfesionales(idFamilia) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Create the table Ciclos_usuarios
 CREATE TABLE ciclos_usuarios(
     idCiclo tinyint unsigned not null,
     idUsuario int unsigned not null,
     CONSTRAINT pk_ciclos_usuarios PRIMARY KEY (idCiclo,idUsuario),
-    CONSTRAINT fk_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
-    CONSTRAINT fk_idCiclo FOREIGN KEY (idCiclo) REFERENCES ciclos(idCiclo)
+    CONSTRAINT fk_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_idCiclo FOREIGN KEY (idCiclo) REFERENCES ciclos(idCiclo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Create the table Curriculum
 CREATE TABLE curriculum(

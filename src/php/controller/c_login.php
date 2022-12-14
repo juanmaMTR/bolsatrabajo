@@ -14,7 +14,7 @@
 
             $datosUsuario = $this->m_login->sacarUsuarioLogin($datos['inputUsuario']);
             if ($datosUsuario['Existe'] == 1) {
-                if($datos['inputUsuario'] == $datosUsuario['nombreUsuario'] && $datos['inputContrasenia'] == $datosUsuario['password']){
+                if($datos['inputUsuario'] == $datosUsuario['nombreUsuario'] && password_verify($datos['inputContrasenia'],$datosUsuario['password'])){
                     $arrayRespuesta['resultado'] = 'Sesión iniciada.';
                     $this->crearCookie($datos);
                     $this->crearSesion($datosUsuario);
