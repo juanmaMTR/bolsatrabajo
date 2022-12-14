@@ -1,9 +1,34 @@
-import React, {useState} from "react";
-import Editar_usuario from "../Editar_usuario";
+import React, {useState,useEffect} from "react";
+import Service from "../../componentesBasicos/Service";
+import Editar_perfil_usuario from "./Editar_perfil_usuario";
 
-const Panel_perfil_usuario = ({datosUsuario}) => {
+/**
+ * @file Panel_perfil_usuario.js
+ * @description Perfil del usuario
+ * @param {object} inicioSesion Datos necesarios para obtener el perfil del usuario
+ * @returns 
+ */
+const Panel_perfil_usuario = ({inicioSesion}) => {
     const [estadoUsuario, setEstadoUsuario] = useState('no trabajando')
     const [mostrarEditar, setMostrarEditar] = useState(false);
+    const [datosUsuario, setDatosUsuario] = useState([])
+
+    useEffect(() => {
+        obtenerDatosUsuario()
+    },[])
+
+    const obtenerDatosUsuario = async () => {
+        const parametros = {
+            method: 'POST',
+            inputs: {
+                accion: 'listarUsuario',
+                nombre: inicioSesion.userName,
+            }
+        }
+        const response = await Service(parametros)
+        const datosResponse = await response.json();
+        setDatosUsuario(datosResponse)
+    }
 
     const selectorEstadoUsuario = () => {
         if(datosUsuario.estado == 0){
@@ -18,7 +43,7 @@ const Panel_perfil_usuario = ({datosUsuario}) => {
 
     return (
         <div className="container mx-auto">
-            <div className="flex flex-col md:flex-row h-screen w-full">
+            <div className="flex flex-col md:flex-row h-min w-full">
                 <div className="bg-white md:bg-gray-100 h-16 md:h-20 w-full flex flex-row items-center justify-between px-3 rounded-b-lg">
                     <div className="flex flex-row items-center space-x-3">
                         <h1 className="text-lg font-semibold text-gray-700">
@@ -27,7 +52,7 @@ const Panel_perfil_usuario = ({datosUsuario}) => {
                     </div>
                 </div>
             </div>
-            <div className="relative mb-6 -mt-64 flex w-full min-w-0 flex-col break-words rounded-3xl bg-white shadow-xl shadow-gray-500/5">
+            <div className="mt-48 mb-6 flex w-full min-w-0 flex-col break-words rounded-3xl bg-white">
                 <div className="px-6">
                     <div className="flex flex-wrap justify-center">
                         <div className="flex w-full justify-center px-4 lg:order-2 lg:w-3/12">
@@ -61,7 +86,7 @@ const Panel_perfil_usuario = ({datosUsuario}) => {
                         </div>
                     </div>
                 </div>
-                {mostrarEditar && <Editar_usuario mostrarEditar={setMostrarEditar} usuario={datosUsuario}/>}
+                {mostrarEditar && <Editar_perfil_usuario mostrarEditar={setMostrarEditar} usuario={datosUsuario}/>}
             </div>
         </div>
     )

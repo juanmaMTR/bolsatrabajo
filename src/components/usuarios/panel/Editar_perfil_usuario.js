@@ -1,11 +1,6 @@
-import React, {useState, useRef} from "react";
-import Service from "../componentesBasicos/Service";
-import ErrorForms from "../componentesBasicos/ErrorForms";
-
-/**
- * @file Editar_usuario.js
- * @description Proceso de editado de usuario.
- */
+import React,{useState} from "react";
+import Service from "../../componentesBasicos/Service";
+import ErrorForms from "../../componentesBasicos/ErrorForms";
 
 const validate = values => {
     //Realizo las validaciones de los campos del formulario
@@ -65,24 +60,29 @@ const validate = values => {
     
     return errors
 }
-const Editar_usuario = ({mostrarEditar, usuario}) =>{
-    console.log(usuario);
-    
+
+/**
+ * @file Editar_perfil_usuario.js
+ * @description Permite editar el perfil del usuario
+ * @param {boolean} mostrarEditar booleano para  mostrar el componente de editar perfil
+ * @param {array} usuario datos del usuario que se va a editar
+ * @returns
+ */
+const Editar_perfil_usuario = ({mostrarEditar, usuario}) => {
+    const [estadoUsuario, setEstadoUsuario] = useState('false')
     const [estado, setEstado] = useState({
         errors:{},
         nombre: usuario.nombre,
         apellidos: usuario.apellidos,
         nombreUsuario: usuario.nombreUsuario,
-        estado: usuario.estado,
+        estado: estadoUsuario.estado,
         dni: usuario.dni,
         correo: usuario.correo
     })
-
-    const options = []
-
+    let options = []
     const errors = estado.errors
 
-    const peticionEditar = () =>{
+    const peticionEditar = async () =>{
         const {errors,...sinErrors} = estado
         const resultado = validate(sinErrors)
 
@@ -97,7 +97,7 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
                     accion: 'editar_usuario',
                     nombre: estado.nombre,
                     apellidos: estado.apellidos,
-                    nombreUsuario: estado.nombreUsuario,
+                    nombreUsuario: usuario.nombreUsuario,
                     estado: estado.estado,
                     dni: estado.dni,
                     correo: estado.correo,
@@ -105,14 +105,16 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
                 }
             }
             console.log(parametrosPeticion);
-            Service(parametrosPeticion)
+            const response = await Service(parametrosPeticion)
+            const datosResponse = await response.json()
+            console.log(datosResponse);
             mostrarEditar(false);
             setTimeout(() => {
-                window.location.href = "/21/listar_u"
+                window.location.href = "/21/panel_u"
             }, 200);
         }
     }
-    
+
     const handleChange =(e) =>{
         const {name, value} = e.target
         setEstado({
@@ -122,6 +124,7 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
     }
 
     if(usuario.estado == 1){
+        setEstadoUsuario('true')
         options.push(
             <>
                 <option selected value="True">Trabajando</option>
@@ -129,6 +132,7 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
             </>
         )
     }else{
+        setEstadoUsuario('false')
         options.push(
             <>
                 <option value="True">Trabajando</option>
@@ -138,27 +142,25 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
     }
 
     return(
+        <div>
             <div className="py-12 bg-gray-700 bg-opacity-50 flex justify-center items-center transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
                 <div role="alert" className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                     <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                        <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Editar usuario {usuario.nombreUsuario}</h1>
+                        <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Editar usuario {estado.nombreUsuario}</h1>
                         <label for="nombre" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
                         <input name="nombre" value={estado.nombre} id="nombre" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
                         {errors.nombre && <ErrorForms message={errors.nombre}/>}
                         <label for="apellidos" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Apellidos</label>
                         <input name="apellidos" value={estado.apellidos} id="apellidos" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
                         {errors.apellidos && <ErrorForms message={errors.apellidos}/>}
-                        <label for="nombreUsuario" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre usuario</label>
-                        <input name="nombreUsuario" value={estado.nombreUsuario} id="nombreUsuario" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
-                        {errors.nombreUsuario && <ErrorForms message={errors.nombreUsuario}/>}
                         <label for="estado" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Estado</label>
-                        <div className="flex justify-center">
+                        {/* <div className="flex justify-center">
                             <div className="mb-3 w-full">
                                 <select name="estado" onChange={handleChange} className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                                    {options}
+                                    {options} 
                                 </select>
                             </div>
-                        </div>
+                        </div> */}
 
                         <label for="dni" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">DNI</label>
                         <input name="dni" value={estado.dni} id="dni" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" onChange={handleChange}/>
@@ -180,7 +182,8 @@ const Editar_usuario = ({mostrarEditar, usuario}) =>{
                     </div>
                 </div>
             </div>
-            
+        </div>
     )
 }
-export default Editar_usuario
+
+export default Editar_perfil_usuario
