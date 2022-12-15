@@ -118,49 +118,51 @@ const Alta_usuarios = ({inicioSesion}) =>{
     
         
 
-        datosCiclos.forEach(datoCiclo => {
-            const actualizarListaCiclos = () =>{
-                let listaCiclosAgregar = <div class="right-24 top-1/4 absolute z-10 w-96 h-96 modal-content border-none shadow-lg flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                                            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                                                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
-                                                Listado de ciclos a agregar:
-                                                </h5>
-                                                <button onClick={() =>{listaCiclosContainer = []; ObjetoDatosCiclos = [];setEstadoModalListaCiclosAgregar(false)}} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
-                                                    <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" />
-                                                        <line x1="18" y1="6" x2="6" y2="18" />
-                                                        <line x1="6" y1="6" x2="18" y2="18" />
-                                                    </svg>
-                                                </button>
+        if(datosCiclos){
+            datosCiclos.forEach(datoCiclo => {
+                const actualizarListaCiclos = () =>{
+                    let listaCiclosAgregar = <div class="right-24 top-1/4 absolute z-10 w-96 h-96 modal-content border-none shadow-lg flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                                                <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                                                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
+                                                    Listado de ciclos a agregar:
+                                                    </h5>
+                                                    <button onClick={() =>{listaCiclosContainer = []; ObjetoDatosCiclos = [];setEstadoModalListaCiclosAgregar(false)}} type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close">
+                                                        <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" />
+                                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                                            <line x1="6" y1="6" x2="18" y2="18" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="overflow-y-scroll h-96 modal-body relative p-4 flex justify-center items-center flex-col">
+                                                    {listaCiclosContainer}
+                                                </div>
+                                                <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                                    <button onClick={() =>{listaCiclosContainer = []; ObjetoDatosCiclos = [];setEstadoModalListaCiclosAgregar(false);}} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
+                                                        Eliminar todos
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="overflow-y-scroll h-96 modal-body relative p-4 flex justify-center items-center flex-col">
-                                                {listaCiclosContainer}
-                                            </div>
-                                            <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                                                <button onClick={() =>{listaCiclosContainer = []; ObjetoDatosCiclos = [];setEstadoModalListaCiclosAgregar(false);}} type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">
-                                                    Eliminar todos
-                                                </button>
-                                            </div>
-                                        </div>
-                let cicloContenedor =   <span class="font-medium text-center mb-6 inline-flex items-center rounded-full p-2 bg-sky-500 text-white group transition-all duration-500 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:outline-none" role="alert" tabindex="0">
-                                            <span>{datoCiclo.nombreCiclo}</span>
-                                            <span class="whitespace-nowrap inline-block group-hover:max-w-screen-2xl group-focus:max-w-screen-2xl max-w-0 scale-80 group-hover:scale-100 overflow-hidden transition-all duration-500 group-hover:px-2 group-focus:px-2">{datoCiclo.nombreFamilia}</span>
-                                        </span>
-                                        
-                                        
-                listaCiclosContainer.push(cicloContenedor)
-                
-                ObjetoDatosCiclos.push(
-                    datoCiclo.idCiclo
-                )
-                setModalListaCiclosAgregar(listaCiclosAgregar)
-            }
-            ciclos.push(
-                <button onClick={() => {actualizarListaCiclos();setEstadoModalListaCiclosAgregar(true)}} class="mb-6 inline-block w-full px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
-                    {datoCiclo.nombreCiclo} - ({datoCiclo.nombreFamilia})
-                </button>
-            )            
-        });
+                    let cicloContenedor =   <span class="font-medium text-center mb-6 inline-flex items-center rounded-full p-2 bg-sky-500 text-white group transition-all duration-500 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:outline-none" role="alert" tabindex="0">
+                                                <span>{datoCiclo.nombreCiclo}</span>
+                                                <span class="whitespace-nowrap inline-block group-hover:max-w-screen-2xl group-focus:max-w-screen-2xl max-w-0 scale-80 group-hover:scale-100 overflow-hidden transition-all duration-500 group-hover:px-2 group-focus:px-2">{datoCiclo.nombreFamilia}</span>
+                                            </span>
+                                            
+                                            
+                    listaCiclosContainer.push(cicloContenedor)
+                    
+                    ObjetoDatosCiclos.push(
+                        datoCiclo.idCiclo
+                    )
+                    setModalListaCiclosAgregar(listaCiclosAgregar)
+                }
+                ciclos.push(
+                    <button onClick={() => {actualizarListaCiclos();setEstadoModalListaCiclosAgregar(true)}} class="mb-6 inline-block w-full px-6 py-2.5 bg-sky-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+                        {datoCiclo.nombreCiclo} - ({datoCiclo.nombreFamilia})
+                    </button>
+                )            
+            });
+        }
 
         const agregarListaCiclos = () =>{
             if(listaCiclosContainer.length && ObjetoDatosCiclos.length){
