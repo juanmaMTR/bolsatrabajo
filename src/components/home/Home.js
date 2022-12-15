@@ -1,4 +1,7 @@
+import { AcademicCapIcon, BriefcaseIcon, ComputerDesktopIcon, MapPinIcon } from "@heroicons/react/20/solid";
 import React from "react";
+import { Link } from "react-router-dom";
+import { AiFillCar } from 'react-icons/ai'
 
 export default function Home(){
     return(
@@ -7,14 +10,14 @@ export default function Home(){
                 <div className="container mx-auto items-center flex flex-wrap">
                     <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
                         <div className="pt-32 sm:pt-0">
-                            <h2 className="font-semibold text-4xl text-slate-600">Frase texto de ejemplo motivadora.</h2>
+                            <h2 className="font-semibold text-4xl text-slate-600">Un emprendedor ve oportunidades donde otros solo ven problemas.</h2>
                             <p className="mt-4 text-lg leading-relaxed text-slate-500">
-                                Tailwind Starter Kit is Free and Open Source. It does not change or add any CSS to the already one from 
-                                <a href="https://tailwindcss.com/?ref=creativetim" className="text-slate-600" target="_blank">TailwindCSS</a>. It features multiple HTML elements and it comes with dynamic components for ReactJS, Vue and Angular.
+                                Escuela Virgen de Guadalupe dispone de un equipo de profesionales y una red social donde podrás encontrar trabajo en las empresas que se encuentran en nuestra red.
+                                A la misma vez las empresas podrán unirse a nuestra red y encontrar a los mejores profesionales para sus empresas.
                             </p>
                             <div className="mt-12">
-                                <a className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-pink-500 active:bg-pink-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" href="/learning-lab/tailwind-starter-kit/documentation/download">Get started</a>
-                                <a href="https://github.com/creativetimofficial/tailwind-starter-kit" className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg" target="_blank">Github Star</a>
+                                <Link className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-pink-500 active:bg-pink-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" to={'/21/login'}>Comencemos</Link>
+                                <a href="https://github.com/juanmaMTR/bolsatrabajo" className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg" target="_blank">Github</a>
                             </div>
                         </div>
                     </div>
@@ -82,23 +85,29 @@ export default function Home(){
                 <div className="container mx-auto overflow-hidden pb-20">
                     <div className="flex flex-wrap items-center">
                         <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
-                            <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"><i className="fas fa-sitemap text-xl"></i></div>
-                            <h3 className="text-3xl mb-2 font-semibold leading-normal">CSS Components</h3>
-                            <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-slate-600">Every element that you need in a product comes built in as a component. All components fit perfectly with each other and can have different colours.</p>
-                            <div className="block pb-6"><span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Buttons</span><span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Inputs</span><span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Labels</span><span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Menus</span><span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Navbars</span><span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Pagination</span><span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Progressbars</span><span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Typography</span></div>
-                            <a className="font-bold text-slate-700 hover:text-slate-500 ease-linear transition-all duration-150" href="/learning-lab/tailwind-starter-kit/documentation/css/alerts">
-                                View all
-                                <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-                            </a>
+                            <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
+                                <BriefcaseIcon/>
+                            </div>
+                            <h3 className="text-3xl mb-2 font-semibold leading-normal">Empresas</h3>
+                            <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-slate-600">El Colegio cuenta con muchas empresas punteras en todo tipo de sectores.</p>
+                            <div className="block pb-6">
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">AFIVEN EXTREMADURA S.L.</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">AUTOMOCIÓN DEL OESTE S.A.</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">CABLEX, S.L.</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">CENTROWAGEN S.L.</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">ELECNOR S.A</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">INDRA PRODUCCION DE SOFTWARE</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">PREVING CONSULTORES</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">TREVAUTO S.L.</span>
+                            </div>
                         </div>
                         <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mt-32">
                             <div className="relative flex flex-col min-w-0 w-full mb-6 mt-48 md:mt-0">
-                                <img alt="..." src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/component-btn.png" className="w-full align-middle rounded absolute shadow-lg" style={{maxWidth:100+'px',left:145+'px',top:-29+'px',zIndex:3}} />
-                                <img alt="..." src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/component-profile-card.png" className="w-full align-middle rounded-lg absolute shadow-lg" style={{maxWidth:210+'px',left:260+'px',top:-160+'px'}} />
-                                <img alt="..." src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/component-info-card.png" className="w-full align-middle rounded-lg absolute shadow-lg" style={{maxWidth:180+'px',left:40+'px',top:-225+'px',zIndex:2}} />
-                                <img alt="..." src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/component-info-2.png" className="w-full align-middle rounded-lg absolute shadow-2xl" style={{maxWidth:200+'px',left:-50+'px',top:25+'px'}} />
-                                <img alt="..." src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/component-menu.png" className="w-full align-middle rounded absolute shadow-lg" style={{maxWidth:580+'px',left:-20+'px',top:210+'px'}} />
-                                <img alt="..." src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/component-btn-pink.png" className="w-full align-middle rounded absolute shadow-xl" style={{maxWidth:120+'px',left:195+'px',top:95+'px'}} />
+                                <img alt="..." src="https://consultas2.oepm.es/ceo/ImagenMarcaServlet?urlMarca=http://imagensignos.oepm.local/imagenes/000473/0001752177.jpg" className="w-full align-middle rounded absolute shadow-lg" style={{maxWidth:100+'px',left:145+'px',top:-29+'px',zIndex:3}} />
+                                <img alt="..." src="https://tienda.centrowagen.com/www/wp-content/uploads/2019/01/Logo-Centrowagen-e1547536969945.jpg" className="w-full align-middle rounded-lg absolute shadow-lg" style={{maxWidth:210+'px',left:260+'px',top:-160+'px'}} />
+                                <img alt="..." src="https://multimedia.infojobs.net/api/v1/tenants/c7e2b9c1-8480-43b0-ad9e-000c17aa2cbb/domains/718302b6-5343-43d3-a8a3-829dc3da0893/buckets/6f3ab1cc-5920-4f4e-b131-46a4587a0e1f/images/1e/1e796e34-b14c-4d19-9b16-3dcaa56d3552?jwt=eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzA5MDA4OTUsInJxcyI6IkdFVFxcL3RlbmFudHMvYzdlMmI5YzEtODQ4MC00M2IwLWFkOWUtMDAwYzE3YWEyY2JiL2RvbWFpbnMvNzE4MzAyYjYtNTM0My00M2QzLWE4YTMtODI5ZGMzZGEwODkzL2J1Y2tldHMvNmYzYWIxY2MtNTkyMC00ZjRlLWIxMzEtNDZhNDU4N2EwZTFmL2ltYWdlcy8xZS8xZTc5NmUzNC1iMTRjLTRkMTktOWIxNi0zZGNhYTU2ZDM1NTIiLCJtZXRhZGF0YSI6eyJydWxlIjp7InZlcnNpb24iOiIyMDE2LTEwIiwiYWN0aW9ucyI6W119fX0.FOBQ7LwVpX2Vd8pSv0ZocNLBctmKv3KS4evYitRhgCQNJ4VVBv_PwEJAleNp9liYAorUyBNNLyvCjtR_BUHqF5KbHMabSFbmu_cYsJUx-TJoceUsVkmurbPNoX3NxXShy-ekz9u2DVBfNMxNyjce07bsmJnGFKPQkQTrEq_9EPVXdV1S2a0lFkmM97liRu7he4rEQ7_x88vQHZ4X629B0AazddKfCuiD0CJq-hasUCuFZlvfMozFhaJ2sdR_vtPYVFY4fstMdIAXhDgnLmJ4UDU0RY-yxz7ED7QaLwgB96S9CK4aqOq8Wcbm4tRmsFn7vWzBSkUOHE7AkYZVvWYiyA&AccessKeyId=d724d9a53d95a810" className="w-full align-middle rounded-lg absolute shadow-lg" style={{maxWidth:180+'px',left:40+'px',top:-225+'px',zIndex:2}} />
+                                <img alt="..." src="https://www.elecnor.com/resources/files/1/elecnor-logo2.webp" className="w-full align-middle rounded-lg absolute shadow-2xl" style={{maxWidth:200+'px',left:-50+'px',top:25+'px'}} />
+                                
                             </div>
                         </div>
                     </div>
@@ -107,14 +116,14 @@ export default function Home(){
                             <div className="justify-center flex flex-wrap relative">
                                 <div className="my-4 w-full lg:w-6/12 px-4">
                                     <div className="bg-sky-500 shadow-lg rounded-lg text-center p-8">
-                                        <img alt="..." className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/react.jpg" />
-                                        <p className="text-lg text-white mt-4 font-semibold">ReactJS</p>
-                                        <p className="text-base text-white opacity-75 mt-2">A JavaScript library for building user interfaces maintaned by Facebook and community of developers.</p>
+                                        <ComputerDesktopIcon className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
+                                        <p className="text-lg text-white mt-4 font-semibold">Ciclo DAW</p>
+                                        <p className="text-base text-white opacity-75 mt-2">Este tipo de ciclos están formados para ocupar puestos más vinculados al diseño web, las analíticas y el posicionamiento orgánico, gestionando servidores de bases de datos y aplicaciones, o implementando apps en entornos web útiles para las empresas.</p>
                                     </div>
                                     <div className="bg-emerald-500 shadow-lg rounded-lg text-center p-8 mt-8">
-                                        <img alt="..." className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/vue.jpg" />
-                                        <p className="text-lg text-white mt-4 font-semibold">Vue.js</p>
-                                        <p className="text-base text-white opacity-75 mt-2">An open-source Model–view–viewmodel JavaScript framework for building user interfaces.</p>
+                                        <AiFillCar className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
+                                        <p className="text-lg text-white mt-4 font-semibold">Electromecánica</p>
+                                        <p className="text-base text-white opacity-75 mt-2">En este módulo aprenderás a realizar operaciones de mantenimiento, montaje de accesorios y transformaciones en las áreas de mecánica, hidráulica, neumática y electricidad del sector de automoción.</p>
                                     </div>
                                 </div>
                                 <div className="my-4 w-full lg:w-6/12 px-4 lg:mt-16">
@@ -133,25 +142,20 @@ export default function Home(){
                         </div>
                         <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
                             <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
-                                <i className="fas fa-drafting-compass text-xl"></i>
+                                <AcademicCapIcon/>
                             </div>
-                            <h3 className="text-3xl mb-2 font-semibold leading-normal">Javascript Components</h3>
-                            <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-slate-600">In order to create a great User Experience some components require JavaScript. In this way you can manipulate the elements on the page and give more options to your users.</p>
-                            <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-slate-600">We created a set of Components that are dynamic and come to help you.</p>
+                            <h3 className="text-3xl mb-2 font-semibold leading-normal">Alumnos</h3>
+                            <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-slate-600">La empresas pueden buscar alumnos altamente cualificados para el tipo de trabajo que estas vayan a realizar.</p>
+                            <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-slate-600">También podrán contactar con ellos de forma personal a través de teléfonos, correos...</p>
                             <div className="block pb-6">
-                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Alerts</span>
-                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Dropdowns</span>
-                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Menus</span>
-                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Modals</span>
-                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Navbars</span>
-                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Popovers</span>
-                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Tabs</span>
-                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Tooltips</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">DAW</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">SMR</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Electromecánica de vehículos automóviles</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Gestión Administrativa</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Mantenimiento Electromecánico</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Sistema microinformáticos y redes</span>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-slate-500 bg-white uppercase last:mr-0 mr-2 mt-2">Mecatrónica Industrial</span>
                             </div>
-                            <a className="font-bold text-slate-700 hover:text-slate-500 ease-linear transition-all duration-150" href="/learning-lab/tailwind-starter-kit/documentation/vue/alerts">
-                                View all
-                                <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -160,102 +164,14 @@ export default function Home(){
                         <div className="w-full md:w-5/12 ml-auto px-12 md:px-4">
                             <div className="md:pr-12">
                                 <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
-                                    <i className="fas fa-file-alt text-xl"></i>
+                                    <MapPinIcon />
                                 </div>
-                                <h3 className="text-3xl font-semibold">Complex Documentation</h3>
-                                <p className="mt-4 text-lg leading-relaxed text-slate-500">This extension comes a lot of fully coded examples that help you get started faster. You can adjust the colors and also the programming language. You can change the text and images and you&#x27;re good to go.</p>
-                                <ul className="list-none mt-6">
-                                <li className="py-2">
-                                    <div className="flex items-center">
-                                        <div>
-                                            <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-slate-50 mr-3"><i className="fas fa-fingerprint"></i></span>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-slate-500">Built by Developers for Developers</h4>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className="py-2">
-                                    <div className="flex items-center">
-                                        <div>
-                                            <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-slate-50 mr-3"><i className="fab fa-html5"></i></span>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-slate-500">Carefully crafted code for Components</h4>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className="py-2">
-                                    <div className="flex items-center">
-                                        <div>
-                                            <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-slate-50 mr-3"><i className="far fa-paper-plane"></i></span>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-slate-500">Dynamic Javascript Components</h4>
-                                        </div>
-                                    </div>
-                                </li>
-                                </ul>
+                                <h3 className="text-3xl font-semibold">Nuestra Ubicación</h3>
+                                <p className="mt-4 text-lg leading-relaxed text-slate-500"><b>Escuela Virgen de Gudalupe</b><br/>C/Corte de Peleas,79 (06009) Badajoz<br/>Tlf.:924 251 761<br/>Correo: guadalupe@fundacionloyola.es<br/>Fundación inscrita en el Registro de Entidades Religiosas (159/SE/F)</p>
                             </div>
                         </div>
                         <div className="w-full md:w-6/12 mr-auto px-4 pt-24 md:pt-0">
-                            <img alt="..." className="max-w-full rounded-lg shadow-xl" style={{transform:[{scale: 1}, {perspective:1040+'px'}, {rotateY:-11+'deg'}, {rotateX:2+'deg'}, {rotate:2+'deg'}]}} src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/documentation.png" />
-                        </div>
-                    </div>
-                </div>
-                <div className="justify-center text-center flex flex-wrap mt-24">
-                    <div className="w-full md:w-6/12 px-12 md:px-4">
-                        <h2 className="font-semibold text-4xl">Beautiful Example Pages</h2>
-                        <p className="text-lg leading-relaxed mt-4 mb-4 text-slate-500">Tailwind Starter Kit is a completly new product built using our past experience in web templates. Take the examples we made for you and start playing with them.</p>
-                    </div>
-                </div>
-            </section>
-            <section className="block relative z-1 bg-slate-600">
-                <div className="container mx-auto">
-                    <div className="justify-center flex flex-wrap">
-                        <div className="w-full lg:w-12/12 px-4 -mt-24">
-                            <div className="flex flex-wrap">
-                                <div className="w-full lg:w-4/12 px-4">
-                                    <h5 className="text-xl font-semibold pb-4 text-center">Login Page</h5>
-                                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                                        <img alt="..." className="align-middle border-none max-w-full h-auto rounded-lg" src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/login.jpg" />
-                                    </div>
-                                </div>
-                                <div className="w-full lg:w-4/12 px-4">
-                                    <h5 className="text-xl font-semibold pb-4 text-center">Profile Page</h5>
-                                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                                        <img alt="..." className="align-middle border-none max-w-full h-auto rounded-lg" src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/profile.jpg" />
-                                    </div>
-                                </div>
-                                <div className="w-full lg:w-4/12 px-4">
-                                    <h5 className="text-xl font-semibold pb-4 text-center">Landing Page</h5>
-                                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                                        <img alt="..." className="align-middle border-none max-w-full h-auto rounded-lg" src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/landing.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="py-20 bg-slate-600 overflow-hidden">
-                <div className="container mx-auto pb-64">
-                    <div className="flex flex-wrap justify-center">
-                        <div className="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
-                            <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
-                                <i className="fas fa-code-branch text-xl"></i>
-                            </div>
-                            <h3 className="text-3xl mb-2 font-semibold leading-normal text-white">Open Source</h3>
-                            <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-slate-400">
-                                Since
-                                <a href="https://tailwindcss.com/" className="text-slate-300" target="_blank">TailwindCSS</a> 
-                                is an open source project we wanted to continue this movement too. You can give this version a try to feel the design and also test the quality of the code!
-                            </p>
-                            <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-slate-400">Get it free on Github and please help us spread the news with a Star!</p>
-                            <a href="https://github.com/creativetimofficial/tailwind-starter-kit" target="_blank" className="github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg">Github Star</a>
-                        </div>
-                        <div className="w-full md:w-4/12 px-4 mr-auto ml-auto mt-32 relative">
-                            <i className="fab fa-github text-slate-700" style={{fontSize:55+'em',position:"absolute",top:-150+'px',right:-100+'%',left:"auto",opacity:.8}}></i>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3106.0934212444035!2d-6.956451284715548!3d38.87610437957392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd16e5cfc2a5f865%3A0xd7c3ba9075baee7b!2sEscuela%20Virgen%20de%20Guadalupe!5e0!3m2!1ses!2ses!4v1671015932490!5m2!1ses!2ses" width="600" height="450" style={{transform:[{scale: 1}, {perspective:1040+'px'}, {rotateY:-11+'deg'}, {rotateX:2+'deg'}, {rotate:2+'deg'}],border:0}} className="max-w-full rounded-lg shadow-xl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
