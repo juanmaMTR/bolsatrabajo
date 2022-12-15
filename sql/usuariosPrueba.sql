@@ -2,7 +2,7 @@
 
 USE BolsaTrabajo;
 
--- Pass de prueba Admin --> Admin
+-- Pass de prueba admin --> admin
 
 INSERT INTO usuarios (nombreUsuario, estado, dni, correo, password, tipo, nombre, apellidos, primeraVez)
     VALUES ("admin", false, "88328816F", "admin@admin.com", "$2y$10$cRGb0qfS13qjF5akUU0kmOOZt86fy7aoEmBJyZIAtWa1OTCMC4gSO", 's', "Pepe", "Lolo", false),
