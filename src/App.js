@@ -23,50 +23,50 @@ import Panel_perfil_usuario from './components/usuarios/panel/Panel_perfil_usuar
 function App() {
   const [sesion, setsesion] = useState(0);
     
-    useEffect(() =>{
-        actualizarsesion()
-    }, [])
+  useEffect(() =>{
+      actualizarsesion()
+  }, [])
+  
+  const actualizarsesion = useCallback( async () =>{
+      const responseJson = await Auth()
+      const respuestasesion = responseJson.Respuesta
 
-    const actualizarsesion = useCallback( async () =>{
-        const responseJson = await Auth()
-        const respuestasesion = responseJson.Respuesta
-
-        let datos = {
-            userName : '',
-            type : '',
-            message : respuestasesion,
-            correo: ''
-        }
-        if (respuestasesion == 'OK') {
-            const datosCookie = DecodeCookie()
-            datos = {
-                userName : datosCookie.userName,
-                type : datosCookie.type,
-                message : respuestasesion,
-                correo : datosCookie.correo
-            }
-            setsesion(datos)
-        }else{
-            setsesion(datos)
-        } 
-        
-    }, [sesion])
-    
-    let booleanLogin;
-    let booleanSesion;
-    if (sesion.message == 'OK') {
-      booleanLogin = false;
-      booleanSesion = true;
-    }else{
-      booleanLogin = true;
-      booleanSesion = false;
-    }
-    let booleanTipoUsuario
-    if(sesion.type == 's' || sesion.type == 't'){
-      booleanTipoUsuario = true
-    }else{
-      booleanTipoUsuario = false
-    }
+      let datos = {
+          userName : '',
+          type : '',
+          message : respuestasesion,
+          correo: ''
+      }
+      if (respuestasesion == 'OK') {
+          const datosCookie = DecodeCookie()
+          datos = {
+              userName : datosCookie.userName,
+              type : datosCookie.type,
+              message : respuestasesion,
+              correo : datosCookie.correo
+          }
+          setsesion(datos)
+      }else{
+          setsesion(datos)
+      } 
+      
+  }, [sesion])
+  
+  let booleanLogin;
+  let booleanSesion;
+  if (sesion.message == 'OK') {
+    booleanLogin = false;
+    booleanSesion = true;
+  }else{
+    booleanLogin = true;
+    booleanSesion = false;
+  }
+  let booleanTipoUsuario
+  if(sesion.type == 's' || sesion.type == 't'){
+    booleanTipoUsuario = true
+  }else{
+    booleanTipoUsuario = false
+  }
   return (
     <BrowserRouter>
       <div className="App">
