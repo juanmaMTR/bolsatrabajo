@@ -1,5 +1,6 @@
 import { AcademicCapIcon, BriefcaseIcon, ComputerDesktopIcon, MapPinIcon } from "@heroicons/react/20/solid";
 import React,{ useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
 
 
@@ -92,7 +93,7 @@ export default function Home({inicioSesion}){
                                 <img alt="..." src="https://tienda.centrowagen.com/www/wp-content/uploads/2019/01/Logo-Centrowagen-e1547536969945.jpg" className="w-full align-middle rounded-lg absolute shadow-lg" style={{maxWidth:210+'px',left:260+'px',top:-160+'px'}} />
                                 <img alt="..." src="https://multimedia.infojobs.net/api/v1/tenants/c7e2b9c1-8480-43b0-ad9e-000c17aa2cbb/domains/718302b6-5343-43d3-a8a3-829dc3da0893/buckets/6f3ab1cc-5920-4f4e-b131-46a4587a0e1f/images/1e/1e796e34-b14c-4d19-9b16-3dcaa56d3552?jwt=eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzA5MDA4OTUsInJxcyI6IkdFVFxcL3RlbmFudHMvYzdlMmI5YzEtODQ4MC00M2IwLWFkOWUtMDAwYzE3YWEyY2JiL2RvbWFpbnMvNzE4MzAyYjYtNTM0My00M2QzLWE4YTMtODI5ZGMzZGEwODkzL2J1Y2tldHMvNmYzYWIxY2MtNTkyMC00ZjRlLWIxMzEtNDZhNDU4N2EwZTFmL2ltYWdlcy8xZS8xZTc5NmUzNC1iMTRjLTRkMTktOWIxNi0zZGNhYTU2ZDM1NTIiLCJtZXRhZGF0YSI6eyJydWxlIjp7InZlcnNpb24iOiIyMDE2LTEwIiwiYWN0aW9ucyI6W119fX0.FOBQ7LwVpX2Vd8pSv0ZocNLBctmKv3KS4evYitRhgCQNJ4VVBv_PwEJAleNp9liYAorUyBNNLyvCjtR_BUHqF5KbHMabSFbmu_cYsJUx-TJoceUsVkmurbPNoX3NxXShy-ekz9u2DVBfNMxNyjce07bsmJnGFKPQkQTrEq_9EPVXdV1S2a0lFkmM97liRu7he4rEQ7_x88vQHZ4X629B0AazddKfCuiD0CJq-hasUCuFZlvfMozFhaJ2sdR_vtPYVFY4fstMdIAXhDgnLmJ4UDU0RY-yxz7ED7QaLwgB96S9CK4aqOq8Wcbm4tRmsFn7vWzBSkUOHE7AkYZVvWYiyA&AccessKeyId=d724d9a53d95a810" className="w-full align-middle rounded-lg absolute shadow-lg" style={{maxWidth:180+'px',left:40+'px',top:-225+'px',zIndex:2}} />
                                 <img alt="..." src="https://www.elecnor.com/resources/files/1/elecnor-logo2.webp" className="w-full align-middle rounded-lg absolute shadow-2xl" style={{maxWidth:200+'px',left:-50+'px',top:25+'px'}} />
-                                
+                                <img alt="..." src="https://www.preving.com/media/logo-home.png" className="w-full align-middle rounded-lg absolute shadow-2xl" style={{maxWidth:200+'px',left:240+'px',top:80+'px'}} />
                             </div>
                         </div>
                     </div>
@@ -106,14 +107,14 @@ export default function Home({inicioSesion}){
                                         <p className="text-base text-white opacity-75 mt-2">Este tipo de ciclos están formados para ocupar puestos más vinculados al diseño web, las analíticas y el posicionamiento orgánico, gestionando servidores de bases de datos y aplicaciones, o implementando apps en entornos web útiles para las empresas.</p>
                                     </div>
                                     <div className="bg-emerald-500 shadow-lg rounded-lg text-center p-8 mt-8">
-                                        <ComputerDesktopIcon className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
+                                        <img src="" className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
                                         <p className="text-lg text-white mt-4 font-semibold">Electromecánica</p>
                                         <p className="text-base text-white opacity-75 mt-2">En este módulo aprenderás a realizar operaciones de mantenimiento, montaje de accesorios y transformaciones en las áreas de mecánica, hidráulica, neumática y electricidad del sector de automoción.</p>
                                     </div>
                                 </div>
                                 <div className="my-4 w-full lg:w-6/12 px-4 lg:mt-16">
                                     <div className="bg-orange-500 shadow-lg rounded-lg text-center p-8">
-                                        <img alt="..." className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/js.png" />
+                                        <CpuChipIcon className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
                                         <p className="text-lg text-white mt-4 font-semibold">Sistema microinformáticos y redes</p>
                                         <p className="text-base text-white opacity-75 mt-2">Este módulo se basa en realizar trabajos de instalación, configuración y mantenimiento de sistemas microinformáticos, aislados o en red, así como redes locales en pequeños entornos, asegurando su funcionalidad y aplicando los protocolos de calidad, seguridad y respeto al medio ambiente establecidos.</p>
                                     </div>
