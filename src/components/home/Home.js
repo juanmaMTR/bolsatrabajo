@@ -97,7 +97,7 @@ export default function Home(){
                                         <p className="text-base text-white opacity-75 mt-2">Este tipo de ciclos están formados para ocupar puestos más vinculados al diseño web, las analíticas y el posicionamiento orgánico, gestionando servidores de bases de datos y aplicaciones, o implementando apps en entornos web útiles para las empresas.</p>
                                     </div>
                                     <div className="bg-emerald-500 shadow-lg rounded-lg text-center p-8 mt-8">
-                                        <img src="" className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
+                                        <img src="https://raw.githubusercontent.com/juanmaMTR/bolsatrabajo/master/src/assets/imgs/car-service.png" className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
                                         <p className="text-lg text-white mt-4 font-semibold">Electromecánica</p>
                                         <p className="text-base text-white opacity-75 mt-2">En este módulo aprenderás a realizar operaciones de mantenimiento, montaje de accesorios y transformaciones en las áreas de mecánica, hidráulica, neumática y electricidad del sector de automoción.</p>
                                     </div>
@@ -109,7 +109,7 @@ export default function Home(){
                                         <p className="text-base text-white opacity-75 mt-2">Este módulo se basa en realizar trabajos de instalación, configuración y mantenimiento de sistemas microinformáticos, aislados o en red, así como redes locales en pequeños entornos, asegurando su funcionalidad y aplicando los protocolos de calidad, seguridad y respeto al medio ambiente establecidos.</p>
                                     </div>
                                     <div className="bg-red-600 shadow-lg rounded-lg text-center p-8 mt-8">
-                                        <img alt="..." className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/angular.jpg" />
+                                        <img alt="..." className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" src="https://raw.githubusercontent.com/juanmaMTR/bolsatrabajo/master/src/assets/imgs/brazo-robotico.png" />
                                         <p className="text-lg text-white mt-4 font-semibold">Mecatrónica Industrial</p>
                                         <p className="text-base text-white opacity-75 mt-2">En este módulo aprenderás la capacidad para verificar, realizar ajustes y efectuar la puesta en marcha de equipos, sistemas y componentes digitales, aplicar técnicas de medición de señales digitales, técnicas de programación en bajo y alto nivel</p>
                                     </div>
