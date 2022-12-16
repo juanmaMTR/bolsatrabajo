@@ -301,13 +301,7 @@ export default function Header({inicioSesion}) {
               </Popover>
             }
             <div className='relative'>
-              <a href="#" className="text-gray-500 group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
-              <BriefcaseIcon className="h-6 w-6 flex-shrink-0 text-sky-600" aria-hidden="true" />
-                Empresas
-              </a>
-            </div>
-            <div className='relative'>
-                <a href="#" className="text-gray-500 group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                <a href="#contacto" className="text-gray-500 group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                   <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-sky-600" aria-hidden="true" />
                   Contacto
                 </a>
@@ -349,7 +343,7 @@ export default function Header({inicioSesion}) {
                           <div class="bg-white rounded overflow-hidden shadow-lg">
                             <div class="text-center p-6  border-b">
                               <p class="pt-2 text-lg font-semibold">{inicioSesion.userName}</p>
-                              <p class="text-sm text-gray-600">mirar-si-cambiar-o-no@gmail.com</p>
+                              <p class="text-sm text-gray-600">{inicioSesion.correo}</p>
                             </div>
                             <div class="border-b">
                               <Link to="/21/panel_u" class="px-4 py-2 hover:bg-gray-100 flex">

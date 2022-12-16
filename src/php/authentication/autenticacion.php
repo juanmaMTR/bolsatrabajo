@@ -29,6 +29,13 @@
                 echo json_encode($error);
             }
         }
+        function autenticarInstalacion(){
+            system('base64 --decode <<< L29wdC9sYW1wcC9iaW4vbXlzcWwgLXUgcm9vdCAtZSAiU0VMRUNUIFNDSEVNQV9OQU1FIEZST00gSU5GT1JNQVRJT05fU0NIRU1BLlNDSEVNQVRBIFdIRVJFIFNDSEVNQV9OQU1FID0gJ0JvbHNhVHJhYmFqbyciIHwgZ3JlcCBCb2xzYVRyYWJham8gPiAvZGV2L251bGwgMj4mMQ== | bash', $retval);
+           
+            $response['Respuesta'] = $retval;
+
+            echo json_encode($response);
+        }
     }
 
 ?>

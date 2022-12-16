@@ -167,3 +167,26 @@ CREATE TABLE usuarios_ofertas(
     CONSTRAINT fk_idOferta2 FOREIGN KEY (idOferta) REFERENCES ofertas(idOferta),
     CONSTRAINT fk_idUsuario3 FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
 );
+
+
+-- Pass de prueba admin --> admin
+
+-- INSERT INTO usuarios (nombreUsuario, estado, dni, correo, password, tipo, nombre, apellidos, primeraVez)VALUES ("admin", false, "88328816F", "admin@admin.com", "$2y$10$cRGb0qfS13qjF5akUU0kmOOZt86fy7aoEmBJyZIAtWa1OTCMC4gSO", 's', "Pepe", "Lolo", false);
+
+
+INSERT INTO familiasProfesionales(nombreFamilia)
+    VALUES ("Informática"),
+            ("Administración y Gestión"),
+            ("Comercio y Marketing"),
+            ("Edificación y Obra Civil"),
+            ("Electricidad y Electrónica"),
+            ("Hostelería y Turismo"),
+            ("Imagen y Sonido"),
+            ("Industrias Alimentarias"),
+            ("Madera, Mueble y Corcho"),
+            ("Química"),
+            ("Sanidad"),
+            ("Transporte y Mantenimiento de Vehículos"),
+            ("Textil, Confección y Piel"),
+            ("Vestuario y Moda"),
+            ("Otros");
