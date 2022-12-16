@@ -1,9 +1,14 @@
 import { AcademicCapIcon, BriefcaseIcon, ComputerDesktopIcon, MapPinIcon } from "@heroicons/react/20/solid";
-import React from "react";
+import React,{ useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
-export default function Home(){
+export default function Home({inicioSesion}){
+    let booleanSesion = true
+    if(inicioSesion.message == "OK"){
+        booleanSesion = false
+    }
+
     return(
         <div id="__next" data-reactroot="">
             <section className="header relative pt-16 items-center flex h-screen" style={{maxHeight:860+'px'}}>
@@ -16,7 +21,11 @@ export default function Home(){
                                 A la misma vez las empresas podrán unirse a nuestra red y encontrar a los mejores profesionales para sus empresas.
                             </p>
                             <div className="mt-12">
-                                <Link className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-pink-500 active:bg-pink-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" to={'/21/login'}>Comencemos</Link>
+                                {
+                                    booleanSesion
+                                    &&
+                                    <Link className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-pink-500 active:bg-pink-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" to={'/21/login'}>Comencemos</Link>
+                                }
                                 <a href="https://github.com/juanmaMTR/bolsatrabajo" className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg" target="_blank">Github</a>
                             </div>
                         </div>
@@ -135,7 +144,7 @@ export default function Home(){
                         </div>
                     </div>
                 </div>
-                <div className="container mx-auto px-4 pb-32 pt-48">
+                <div className="container mx-auto px-4 pb-32 pt-48" id="contacto">
                     <div className="items-center flex flex-wrap">
                         <div className="w-full md:w-5/12 ml-auto px-12 md:px-4">
                             <div className="md:pr-12">

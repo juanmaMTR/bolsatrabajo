@@ -24,6 +24,7 @@ import Panel_perfil_usuario from './components/usuarios/panel/Panel_perfil_usuar
 function App() {
   const [sesion, setsesion] = useState(0);
   const inputUsuario = useRef(null);
+  const inputPasswd = useRef(null);
   const inputCorreo = useRef(null);
   const [booleanInstalacion, setBooleanInstalacion] = useState(false)
   const [respuesta, setRespuesta] = useState([])
@@ -77,6 +78,7 @@ function App() {
       inputs: {
         accion: 'instalacion',
         nombreUsuario: inputUsuario.current.value,
+        passwd: inputPasswd.current.value,
         correo: inputCorreo.current.value
       }
     }
@@ -133,7 +135,7 @@ function App() {
           <div>
             <Header inicioSesion={sesion}></Header>
             <Routes>
-              <Route path='/21/' element={<Home />}></Route>            
+              <Route path='/21/' element={<Home inicioSesion={sesion}/>}></Route>            
               {booleanTipoUsuario && <Route path='/21/listar_u' element={<ListadoUsuarios inicioSesion={sesion}/>}></Route>}
               {booleanTipoUsuario && <Route path='/21/alta_u' element={<Alta_usuarios inicioSesion={sesion}/>}></Route>}
               {booleanTipoUsuario && <Route path="/21/alta_c" element={<Alta_ciclos/>}></Route>}
@@ -156,6 +158,10 @@ function App() {
                 <div class="mb-6">
                   <label class="block text-gray-700 text-sm font-bold mb-2">Nombre Usuario Admin: </label>
                   <input type="text" required ref={inputUsuario} minLength='1' name="nombreUsuario" placeholder="Nombre de usuario" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                </div>
+                <div class="mb-6">
+                  <label class="block text-gray-700 text-sm font-bold mb-2">Contraseña Admin: </label>
+                  <input type="password" required ref={inputPasswd} minLength='1' name="passwd" placeholder="Contraseña" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
                 </div>
                 <div class="mb-6">
                   <label class="block text-gray-700 text-sm font-bold mb-2">Correo: </label>
