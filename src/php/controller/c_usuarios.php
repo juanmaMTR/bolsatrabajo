@@ -96,15 +96,6 @@
             print_r(json_encode($respuesta));
         }
         /**
-         * @function listadoUsuarios
-         * @description Funcion para listar los usuarios
-         * @param mixed $datos
-         */
-        function listadoUsuarios(){
-            $usuarios = $this->modelo->listar();
-            print_r(json_encode($usuarios)) ;
-        }
-        /**
          * @function borrarUsuario
          * @description Función para borrar el usuario
          * @param mixed $datos
@@ -129,20 +120,16 @@
          *  @description Función para listar un usuario
          *  @param  mixed $datos
          */
-        function listarUsuario($datos){            
+        function buscarUsuario($datos){            
             if(isset($datos['nombreUsuario'])){
-                if(empty($datos['nombreUsuario'])){
-                    echo "El nombre de usuario está vacío";
-                    die();
-                }else{
-                    $nombreUsuario = "'".$datos['nombreUsuario']."'";
-                }
+                $nombreUsuario = $datos['nombreUsuario'];
+                $tipo = $_SESSION['tipo'];
             }else{
-                echo "No existe el nombre de usuario";
-                die();
+                $nombreUsuario = null;
+                $tipo = $_SESSION['tipo'];
             }
-            $usuario = $this->modelo->listarUsuario($nombreUsuario);
-            print_r(json_encode($usuario));
+            $usuarios = $this->modelo->buscarUsuario($nombreUsuario, $tipo);
+            print_r(json_encode($usuarios));
         }
         /**
          * @function editar_usuario

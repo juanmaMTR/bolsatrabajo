@@ -1,6 +1,7 @@
 import React,{useState, useEffect, useRef} from "react";
 import Service from "../componentesBasicos/Service";
 import '../../css/listado.css'
+import Editar_usuario from "./Editar_usuario";
 
 
 const ListadoUsuarios = () =>{
@@ -10,24 +11,32 @@ const ListadoUsuarios = () =>{
     const [mostrarEditar, setMostrarEditar] = useState(false);
     const [mostrarBorrar, setMostrarBorrar] = useState(false);
     const [popUpBorrar, setPopUpBorrar] = useState(false)
-    const [popUpEditar, setPopUpEditar] = useState(false)
+    const [usuarioEditar, setUsuarioEditar] = useState(false);
+    const [msjError, setMsjError] = useState()
     
-    const iNombre = useRef(null)
-    const iApellidos = useRef(null)
-    const iNombreUsuario = useRef(null)
-    const iEstado = useRef(null)
-    const iDNI = useRef(null)
-    const iCorreo = useRef(null)
 
    
     useEffect(()=>{
         ListarUsuarios()
     }, [])
-    const ListarUsuarios = async ()=>{
-        const parametros = {
-            method: 'POST',
-            inputs: {
-                accion: 'listado_usuarios'
+
+    
+    const ListarUsuarios = async (e)=>{
+        let parametros = {}
+        if(e){
+            parametros ={
+                method: 'POST',
+                inputs: {
+                    accion: 'buscar_usuario',
+                    nombreUsuario: e.target.value
+                }
+            }
+        }else{
+            parametros = {
+                method: 'POST',
+                inputs: {
+                    accion: 'buscar_usuario'
+                }
             }
         }
         const response = await Service(parametros)
@@ -36,146 +45,93 @@ const ListadoUsuarios = () =>{
         console.log(datosResponse);
         
         let estadoTrabajo
-        datosResponse.forEach(arrayDatos => {   
-            
-            const borrarUsuario = () =>{
-                const ModalBorrar = <div className="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
-                                        <div className="bg-white px-16 py-14 rounded-md text-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 -m-1 flex items-center text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 flex items-center text-red-500 mx-auto" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                            </svg>
-                                            <h1 className="text-xl mb-4 font-bold text-slate-500">¿Desea borrar el usuario {arrayDatos.nombreUsuario}?</h1>
-                                            <button onClick={()=>{setPopUpBorrar(false)}} className="bg-red-500 px-4 py-2 rounded-md text-md text-white">No</button>
-                                            <button onClick={()=>{setPopUpBorrar(false); peticionBorrar()}} className="bg-green-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold">Sí</button>
-                                        </div>
-                                    </div>
-                const peticionBorrar = () =>{
-                    const parametrosPeticion = {
-                        method: 'POST',
-                        inputs: {
-                            accion: 'borrar_usuario',
-                            nombreUsuario: arrayDatos.nombreUsuario
-                        }
-                    }
-                    Service(parametrosPeticion)
-                    setTimeout(() => {
-                        ListarUsuarios()
-                    }, 200);                    
-                }             
-            
-                setPopUpBorrar(ModalBorrar)
-            }
-                
-            const editarUsuario = ()=>{
-                const ModalEditar = <div>
-                                        <div className="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
-                                            <div role="alert" className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-                                                <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                                                    <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Editar usuario {arrayDatos.nombreUsuario}</h1>
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
-                                                    <input ref={iNombre} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.nombre} />
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Apellidos</label>
-                                                    <input ref={iApellidos} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.apellidos} />
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre usuario</label>
-                                                    <input ref={iNombreUsuario} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.nombreUsuario} />
-                                                    
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Estado</label>
-                                                    <div className="flex justify-center">
-                                                        <div className="mb-3 w-full">
-                                                            <select ref={iEstado} className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding -no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                                                                <option selected>Abrir menú</option>
-                                                                <option value="True">Trabajando</option>
-                                                                <option value="False">No trabajando</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">DNI</label>
-                                                    <input ref={iDNI} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.dni} />
-                                                    <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Correo</label>
-                                                    <input ref={iCorreo} id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder={arrayDatos.correo} />
-
-                                                    <div className="flex items-center justify-start w-full">
-                                                        <button onClick={()=>{setMostrarEditar(false); peticionEditar()}} className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Enviar</button>
-                                                        <button onClick={()=>{setMostrarEditar(false)}} className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">Cancelar</button>
-                                                    </div>
-                                                    <button onClick={()=>{setMostrarEditar(false)}}  className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-sky-200 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" aria-label="close modal" role="button">
-                                                        <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
+        if (datosResponse && datosResponse != 'Usuario no encontrado') {            
+            datosResponse.forEach(arrayDatos => {             
+                const borrarUsuario = () =>{
+                    const ModalBorrar = <div className="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
+                                            <div className="bg-white px-16 py-14 rounded-md text-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 -m-1 flex items-center text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 flex items-center text-red-500 mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                </svg>
+                                                <h1 className="text-xl mb-4 font-bold text-slate-500">¿Desea borrar el usuario {arrayDatos.nombreUsuario}?</h1>
+                                                <button onClick={()=>{setPopUpBorrar(false)}} className="bg-red-500 px-4 py-2 rounded-md text-md text-white">No</button>
+                                                <button onClick={()=>{setPopUpBorrar(false); peticionBorrar()}} className="bg-green-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold">Sí</button>
                                             </div>
                                         </div>
-                                    </div>
-                    const peticionEditar = () =>{
+                    const peticionBorrar = () =>{
                         const parametrosPeticion = {
                             method: 'POST',
                             inputs: {
-                                accion: 'editar_usuario',
-                                nombre: iNombre.current.value,
-                                apellidos: iApellidos.current.value,
-                                nombreUsuario: iNombreUsuario.current.value,
-                                estado: iEstado.current.value,
-                                dni: iDNI.current.value,
-                                correo: iCorreo.current.value,
-                                nombreUsuarioAntiguo: arrayDatos.nombreUsuario
+                                accion: 'borrar_usuario',
+                                nombreUsuario: arrayDatos.nombreUsuario
                             }
                         }
                         Service(parametrosPeticion)
                         setTimeout(() => {
                             ListarUsuarios()
-                        }, 200);  
-                    }
-                        
-                setPopUpEditar(ModalEditar)
-            }
-            if (arrayDatos.estado == 1) {
-                arrayDatos.estado = "Trabajando"                        
-                estadoTrabajo = <span className="bg-green-400 text-gray-50 rounded-md px-2">{arrayDatos.estado}</span>
-            }else{
-                arrayDatos.estado = "No trabajando"
-                estadoTrabajo = <span className="bg-red-400 text-gray-50 rounded-md px-2">{arrayDatos.estado}</span>
-            }            
-            resultado.push(
-                <tr className="bg-sky-600">
-                    <td className="p-3">
-                        <div className="flex align-items-center">
-                            <img className="rounded-full h-12 w-12  object-cover" src="https://www.safa.edu/images/galerias/home/4-fundacion-Loyola.jpg" alt="unsplash image"/>
-                            <div className="ml-3">
-                                <div className="">{arrayDatos.nombreUsuario}</div>
-                                <div className="text-neutral-800">{arrayDatos.correo}</div>
+                        }, 200);                    
+                    }             
+                
+                    setPopUpBorrar(ModalBorrar)
+                }               
+                
+                if (arrayDatos.estado == 1) {
+                    estadoTrabajo = <span className="bg-green-400 text-gray-50 rounded-md px-2">Trabajando</span>
+                }else{
+                    estadoTrabajo = <span className="bg-red-400 text-gray-50 rounded-md px-2">No trabajando</span>
+                }
+                
+                resultado.push(
+                    <tr className="bg-sky-600">
+                        <td className="p-3">
+                            <div className="flex align-items-center">
+                                <img className="rounded-full h-12 w-12  object-cover" src="https://www.safa.edu/images/galerias/home/4-fundacion-Loyola.jpg" alt="unsplash image"/>
+                                <div className="ml-3">
+                                    <div className="font-bold">{arrayDatos.nombreUsuario}</div>
+                                    <div className="text-sky-100">{arrayDatos.correo}</div>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td className="p-3">
-                        <div className="">{arrayDatos.nombre}</div>
-                        <div className="text-neutral-800">{arrayDatos.apellidos}</div>
-                    </td>
-                    <td className="p-3 font-bold">
-                        {arrayDatos.dni}
-                    </td>
-                    <td className="p-3">
-                        {estadoTrabajo}
-                    </td>
-                    <td className="p-3 ">
-                        <button onClick={()=>{setMostrarEditar(true); editarUsuario();}} href="#" className="text-sky-200 hover:text-gray-100  mx-2">
-                            <i className="material-icons-outlined text-base">edit</i>
-                        </button>
-                        <button onClick={()=>{setMostrarBorrar(true); borrarUsuario();}} className="text-sky-200 hover:text-gray-100  ml-2">
-                            <i className="material-icons-round text-base">delete_outline</i>
-                        </button>
-                    </td>
-                </tr>
+                        </td>
+                        <td className="p-3">
+                            <div className="font-bold">{arrayDatos.nombre}</div>
+                            <div className="text-sky-100">{arrayDatos.apellidos}</div>
+                        </td>
+                        <td className="p-3 font-bold">
+                            {arrayDatos.dni}
+                        </td>
+                        <td className="p-3">
+                            {estadoTrabajo}
+                        </td>
+                        <td className="p-3 ">
+                            <button onClick={()=>{setUsuarioEditar(arrayDatos); setMostrarEditar(true);}} className="text-sky-200 hover:text-gray-100  mx-2">
+                                <i className="material-icons-outlined text-base">edit</i>
+                            </button>
+                            <button onClick={()=>{setMostrarBorrar(true); borrarUsuario();}} className="text-sky-200 hover:text-gray-100  ml-2">
+                                <i className="material-icons-round text-base">delete_outline</i>
+                            </button>
+                        </td>
+                    </tr>
+                )
+                
+            });
+            setTimeout(() => {
+                setLista(resultado)
+            }, 200);
+            setMsjError()
+        }else{
+            setLista()
+            setMsjError(
+                <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    <div>
+                        <span class="font-medium">{datosResponse}😢</span>
+                    </div>
+                </div>
             )
-        });
-        console.log(resultado);
-        setLista(resultado)
+        }
     }    
    
     
@@ -184,6 +140,16 @@ const ListadoUsuarios = () =>{
             <div className="col-span-12">
                 <div className="overflow-auto lg:overflow-visible ">
                     <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Listado de Usuarios</h1>
+                    <div className="mb-4">
+                        <label for="simple-search" class="sr-only">Search</label>
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <input maxLength="100" type="text" onChange={ListarUsuarios} id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Buscar usuario..." required/>
+                        </div>
+                    </div>
+                    {msjError}
                     <table className="table text-sky-200 border-separate space-y-6 text-sm">
                         <thead className="bg-sky-800 text-sky-200">
                             <tr>
@@ -201,7 +167,7 @@ const ListadoUsuarios = () =>{
                 </div>
             </div>
             {mostrarBorrar && popUpBorrar}
-            {mostrarEditar && popUpEditar}
+            {mostrarEditar && <Editar_usuario mostrarEditar={setMostrarEditar} usuario={usuarioEditar}/>}
         </div>
     )
     

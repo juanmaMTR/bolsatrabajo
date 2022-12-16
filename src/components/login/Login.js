@@ -8,7 +8,7 @@ const Login  = () => {
     const inputUsuario = useRef(null)
     const inputContrasenia = useRef(null)
     const [texto, setTexto] = useState(0);
-    
+    const [respuesta, setRespuesta] = useState(null)    
     useEffect(() =>{
         actualizarTexto()
     }, [])
@@ -57,8 +57,29 @@ const Login  = () => {
         }
         
 
-        Service(parametros)
+        const response = await Service(parametros)
+        const responseJson = await response.json()
+        console.log(responseJson);
         
+        if(responseJson.resultado == "Sesión iniciada."){
+            setRespuesta(
+                <div class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    <div>
+                        <span class="font-medium">{responseJson.resultado}👍</span>
+                    </div>
+                </div>
+            )
+        }else{
+            setRespuesta(
+                <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                    <div>
+                        <span class="font-medium">{responseJson.resultado}😢</span>
+                    </div>
+                </div>
+            )
+        }
         
         //Se puede bajar el tiempo para que sea más rápida la actualización del texto
         setTimeout(() => {
@@ -66,11 +87,8 @@ const Login  = () => {
         }, 150);
     }
     return(
-        <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-gray-200 bg-opacity-50 flex justify-center items-center min-h-screen">
             <div class="w-full max-w-xs h-768px flex justify-center flex-col">
-                <p>Usuario: {texto.userName}</p>
-                <p>Tipo: {texto.type}</p>
-                <p>Mensaje: {texto.message}</p>
                 <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Login</h1>
                 <form action="#" method="POST" onSubmit={handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-left">
                     <div class="mb-6">
@@ -86,11 +104,10 @@ const Login  = () => {
                         <a href="" class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker">¿Olvidó la contraseña?</a>
                     </div>
                 </form>
+                {respuesta}
             </div>
         </div>
     )
-
-        
     
 }
 export default Login 
