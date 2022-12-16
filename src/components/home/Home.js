@@ -1,5 +1,5 @@
 import { AcademicCapIcon, BriefcaseIcon, ComputerDesktopIcon, MapPinIcon } from "@heroicons/react/20/solid";
-import React,{ useState, useEffect } from "react";
+import React from "react";
 
 import { Link } from "react-router-dom";
 
@@ -114,7 +114,7 @@ export default function Home({inicioSesion}){
                                 </div>
                                 <div className="my-4 w-full lg:w-6/12 px-4 lg:mt-16">
                                     <div className="bg-orange-500 shadow-lg rounded-lg text-center p-8">
-                                        <CpuChipIcon className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
+                                        {/* <CpuChipIcon className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" /> */}
                                         <p className="text-lg text-white mt-4 font-semibold">Sistema microinformáticos y redes</p>
                                         <p className="text-base text-white opacity-75 mt-2">Este módulo se basa en realizar trabajos de instalación, configuración y mantenimiento de sistemas microinformáticos, aislados o en red, así como redes locales en pequeños entornos, asegurando su funcionalidad y aplicando los protocolos de calidad, seguridad y respeto al medio ambiente establecidos.</p>
                                     </div>

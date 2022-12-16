@@ -1,1 +1,0 @@
-/opt/lampp/bin/mysql -u root < /opt/lampp/htdocs/21/sql/instalacion.sql

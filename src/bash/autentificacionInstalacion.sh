@@ -1,1 +1,0 @@
-/opt/lampp/bin/mysql -u root -e "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'BolsaTrabajo'" | grep BolsaTrabajo > /dev/null 2>&1
