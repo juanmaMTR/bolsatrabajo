@@ -15,13 +15,13 @@ CREATE TABLE usuarios(
     idUsuario int unsigned not null auto_increment primary key,
     nombreUsuario varchar(100) unique not null,
     estado boolean null,
-    dni char(9) not null unique,
+    dni char(9) null unique,
     correo varchar(255) not null,
     password varchar(255) not null,
     tipo char(1) not null default 'a' check (tipo in ('s','t','a')) ,
-    nombre varchar(100) not null,
-    apellidos varchar(100) not null,
-    primeraVez boolean not null
+    nombre varchar(100) null,
+    apellidos varchar(100) null,
+    primeraVez boolean null
 );
 -- Create table Familias Profesionales
 CREATE TABLE familiasProfesionales(
