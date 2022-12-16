@@ -28,12 +28,38 @@ function App() {
   const inputCorreo = useRef(null);
   const [booleanInstalacion, setBooleanInstalacion] = useState(false)
   const [respuesta, setRespuesta] = useState([])
-
+  const [correo, setCorreo] = useState([""])
+  const [estado, setEstado] = useState({
+    errors:{}
+  })
+  const errors = estado.errors
     
   useEffect(() =>{
       actualizarsesion()
   }, [])
   
+  const validate = values => {
+    //Realizo las validaciones de los campos del formulario
+    const errors={}
+    if(!inputUsuario.current.value){
+        errors.nombreUsuario = "*Este campo es obligatorio"
+    }
+    if(!inputPasswd.current.value){
+        errors.passwd = "*Este campo es obligatorio"
+    }
+    if(!inputCorreo.current.value){
+        errors.correo = "*Este campo es obligatorio"
+    }else{
+        const expresion_regular_correo = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        if (expresion_regular_correo.test(inputCorreo.current.value)) {
+            //Correo válido
+        } else {
+            errors.correo="*Correo no válido"
+        }
+    }    
+    return errors
+  }
+
   const actualizarsesion = useCallback( async () =>{
     const parametros ={
       method: 'POST',
@@ -73,40 +99,50 @@ function App() {
   }, [sesion])
   
   const handleSubmit = async() =>{
-    const parametros ={
-      method: 'POST',
-      inputs: {
-        accion: 'instalacion',
-        nombreUsuario: inputUsuario.current.value,
-        passwd: inputPasswd.current.value,
-        correo: inputCorreo.current.value
+    const {errors,...sinErrors} = estado
+    const resultado = validate(sinErrors)
+    setEstado({
+        ...estado,
+        errors:resultado,
+    })
+    if(!Object.keys(resultado).length) {
+      const parametros ={
+        method: 'POST',
+        inputs: {
+          accion: 'instalacion',
+          nombreUsuario: inputUsuario.current.value,
+          passwd: inputPasswd.current.value,
+          correo: inputCorreo.current.value
+        }
       }
-    }
-    const responseInstalacion = await Service(parametros)
-    const responseInstalacionJson = await responseInstalacion.json();
-    console.log(responseInstalacionJson);
-
-    if(responseInstalacionJson.Respuesta == "Instalación completada."){
-      setRespuesta(
-                      <div class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-                          <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                          <div>
-                              <span class="font-medium">{responseInstalacionJson.Respuesta}👍</span>
-                          </div>
-                      </div>
-      )
-      setTimeout(() => {
-        window.location.href = "/21"
-    }, 1500);    
-    }else{
-      setRespuesta(
-                      <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-                          <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                          <div>
-                              <span class="font-medium">{responseInstalacionJson.Respuesta}😢</span>
-                          </div>
-                      </div>
-      )
+      const responseInstalacion = await Service(parametros)
+      const responseInstalacionJson = await responseInstalacion.json();
+      console.log(responseInstalacionJson);
+  
+      if(responseInstalacionJson.Respuesta == "Instalación completada."){
+        setRespuesta(
+                        <div class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <div>
+                                <span class="font-medium">{responseInstalacionJson.Respuesta}👍</span>
+                            </div>
+                        </div>
+        )
+        setTimeout(() => {
+          window.location.href = "/21"
+      }, 1500);    
+      }else{
+        setRespuesta(
+                        <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <div>
+                                <span class="font-medium">{responseInstalacionJson.Respuesta}😢</span>
+                            </div>
+                        </div>
+        )
+      }
+      
+      console.log(correo);
     }
   }
 
@@ -158,14 +194,17 @@ function App() {
                 <div class="mb-6">
                   <label class="block text-gray-700 text-sm font-bold mb-2">Nombre Usuario Admin: </label>
                   <input type="text" required ref={inputUsuario} minLength='1' name="nombreUsuario" placeholder="Nombre de usuario" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                  {errors.nombreUsuario && <p class="text-red-500 text-xs italic">{errors.nombreUsuario}</p>}
                 </div>
                 <div class="mb-6">
                   <label class="block text-gray-700 text-sm font-bold mb-2">Contraseña Admin: </label>
                   <input type="password" required ref={inputPasswd} minLength='1' name="passwd" placeholder="Contraseña" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                  {errors.passwd && <p class="text-red-500 text-xs italic">{errors.passwd}</p>}
                 </div>
                 <div class="mb-6">
                   <label class="block text-gray-700 text-sm font-bold mb-2">Correo: </label>
                   <input type="email" required ref={inputCorreo} pattern=".+@*\.com" minLength='1' name="correo" placeholder="Correo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-blue-300"/><br/>
+                  {errors.correo && <p class="text-red-500 text-xs italic">{errors.correo}</p>}
                 </div>
                 <div class="flex items-center justify-between">
                   <input type="button" onClick={handleSubmit} value="Añadir" name="enviar" class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>

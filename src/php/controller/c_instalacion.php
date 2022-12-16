@@ -6,7 +6,7 @@
         function instalacion($datos){
             if (isset($datos)) {
                 if(!empty($datos['nombreUsuario'] && !empty($datos['passwd']) && !empty($datos['correo']))){
-                    system('/opt/lampp/htdocs/21/bash/instalador.sh 2>&1', $retval);
+                    system('/opt/lampp/bin/mysql -u root < /opt/lampp/htdocs/21/sql/instalacion.sql', $retval);
                     $usuario = "'".$datos['nombreUsuario']."'";
                     $correo = "'".$datos['correo']."'";
                     $passwd = "'".password_hash($datos['passwd'], PASSWORD_DEFAULT)."'";
