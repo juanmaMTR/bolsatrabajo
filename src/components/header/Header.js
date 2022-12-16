@@ -301,13 +301,7 @@ export default function Header({inicioSesion}) {
               </Popover>
             }
             <div className='relative'>
-              <a href="#" className="text-gray-500 group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
-              <BriefcaseIcon className="h-6 w-6 flex-shrink-0 text-sky-600" aria-hidden="true" />
-                Empresas
-              </a>
-            </div>
-            <div className='relative'>
-                <a href="#" className="text-gray-500 group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                <a href="#contacto" className="text-gray-500 group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                   <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-sky-600" aria-hidden="true" />
                   Contacto
                 </a>
