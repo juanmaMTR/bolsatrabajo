@@ -1,7 +1,7 @@
 import { AcademicCapIcon, BriefcaseIcon, ComputerDesktopIcon, MapPinIcon } from "@heroicons/react/20/solid";
 import React from "react";
 import { Link } from "react-router-dom";
-import { AiFillCar } from 'react-icons/ai'
+
 
 export default function Home(){
     return(
@@ -39,45 +39,21 @@ export default function Home(){
                                 <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" className="absolute left-0 w-full block" style={{height:95+'px',top:-94+'px'}}>
                                     <polygon points="-30,95 583,95 583,65" className="text-pink-600 fill-current"></polygon>
                                 </svg>
-                                <h4 className="text-xl font-bold text-white">Great for your awesome project</h4>
-                                <p className="text-md font-light mt-2 text-white">Putting together a page has never been easier than matching together pre-made components. From landing pages presentation to login areas, you can easily customise and built your pages.</p>
+                                <h4 className="text-xl font-bold text-white">Consigue a las mejores empresas que se adapten a tus necesidades.</h4>
+                                <p className="text-md font-light mt-2 text-white">En esta web podrás encontrar muchas empresas, las cuales tengan diferentes ofertas de trabajo.Tú podrás ponerte en contacto con la empresa que mejor te convenga.</p>
                                 </blockquote>
                             </div>
                         </div>
-                        <div className="w-full md:w-6/12 px-4">
-                            <div className="flex flex-wrap">
-                                <div className="w-full md:w-6/12 px-4">
-                                <div className="relative flex flex-col mt-4">
-                                    <div className="px-4 py-5 flex-auto">
-                                        <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"><i className="fas fa-sitemap"></i></div>
-                                        <h6 className="text-xl mb-1 font-semibold">CSS Components</h6>
-                                        <p className="mb-4 text-slate-500">Tailwind Starter Kit comes with a huge number of Fully Coded CSS components.</p>
-                                    </div>
-                                </div>
-                                <div className="relative flex flex-col min-w-0">
-                                    <div className="px-4 py-5 flex-auto">
-                                        <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"><i className="fas fa-drafting-compass"></i></div>
-                                        <h6 className="text-xl mb-1 font-semibold">JavaScript Components</h6>
-                                        <p className="mb-4 text-slate-500">We also feature many dynamic components for React, Vue and Angular.</p>
-                                    </div>
-                                </div>
-                                </div>
-                                <div className="w-full md:w-6/12 px-4">
-                                <div className="relative flex flex-col min-w-0 mt-4">
-                                    <div className="px-4 py-5 flex-auto">
-                                        <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"><i className="fas fa-newspaper"></i></div>
-                                        <h6 className="text-xl mb-1 font-semibold">Pages</h6>
-                                        <p className="mb-4 text-slate-500">This extension also comes with 3 sample pages. They are fully coded so you can start working instantly.</p>
-                                    </div>
-                                </div>
-                                <div className="relative flex flex-col min-w-0">
-                                    <div className="px-4 py-5 flex-auto">
-                                        <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"><i className="fas fa-file-alt"></i></div>
-                                        <h6 className="text-xl mb-1 font-semibold">Documentation</h6>
-                                        <p className="mb-4 text-slate-500">Built by developers for developers. You will love how easy is to to work with Tailwind Starter Kit.</p>
-                                    </div>
-                                </div>
-                                </div>
+                        <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32">
+                            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-pink-600">
+                                <img alt="..." src="https://www.formacionyestudios.com/wp-content/uploads/2016/08/derechos-y-obligaciones-educacion-secundaria-grupo.jpg" className="w-full align-middle rounded-t-lg" />
+                                <blockquote className="relative p-8 mb-4">
+                                <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" className="absolute left-0 w-full block" style={{height:95+'px',top:-94+'px'}}>
+                                    <polygon points="-30,95 583,95 583,65" className="text-pink-600 fill-current"></polygon>
+                                </svg>
+                                <h4 className="text-xl font-bold text-white">Consigue los mejores alumnos para tu empresa.</h4>
+                                <p className="text-md font-light mt-2 text-white">En esta web podrás encontrar una gran diversidad de alumnos, dónde la empresas podrá ponerse en contacto con el que mejor le convenga atente a las necesidades de esta misma.</p>
+                                </blockquote>
                             </div>
                         </div>
                     </div>
@@ -121,7 +97,7 @@ export default function Home(){
                                         <p className="text-base text-white opacity-75 mt-2">Este tipo de ciclos están formados para ocupar puestos más vinculados al diseño web, las analíticas y el posicionamiento orgánico, gestionando servidores de bases de datos y aplicaciones, o implementando apps en entornos web útiles para las empresas.</p>
                                     </div>
                                     <div className="bg-emerald-500 shadow-lg rounded-lg text-center p-8 mt-8">
-                                        <AiFillCar className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
+                                        <ComputerDesktopIcon className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" />
                                         <p className="text-lg text-white mt-4 font-semibold">Electromecánica</p>
                                         <p className="text-base text-white opacity-75 mt-2">En este módulo aprenderás a realizar operaciones de mantenimiento, montaje de accesorios y transformaciones en las áreas de mecánica, hidráulica, neumática y electricidad del sector de automoción.</p>
                                     </div>
@@ -129,13 +105,13 @@ export default function Home(){
                                 <div className="my-4 w-full lg:w-6/12 px-4 lg:mt-16">
                                     <div className="bg-orange-500 shadow-lg rounded-lg text-center p-8">
                                         <img alt="..." className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/js.png" />
-                                        <p className="text-lg text-white mt-4 font-semibold">JavaScript</p>
-                                        <p className="text-base text-white opacity-75 mt-2">Object-oriented programming language that conforms to the ECMAScript specification.</p>
+                                        <p className="text-lg text-white mt-4 font-semibold">Sistema microinformáticos y redes</p>
+                                        <p className="text-base text-white opacity-75 mt-2">Este módulo se basa en realizar trabajos de instalación, configuración y mantenimiento de sistemas microinformáticos, aislados o en red, así como redes locales en pequeños entornos, asegurando su funcionalidad y aplicando los protocolos de calidad, seguridad y respeto al medio ambiente establecidos.</p>
                                     </div>
                                     <div className="bg-red-600 shadow-lg rounded-lg text-center p-8 mt-8">
                                         <img alt="..." className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/angular.jpg" />
-                                        <p className="text-lg text-white mt-4 font-semibold">Angular</p>
-                                        <p className="text-base text-white opacity-75 mt-2">a JavaScript-based open-source front-end web framework mainly maintained by Google.</p>
+                                        <p className="text-lg text-white mt-4 font-semibold">Mecatrónica Industrial</p>
+                                        <p className="text-base text-white opacity-75 mt-2">En este módulo aprenderás la capacidad para verificar, realizar ajustes y efectuar la puesta en marcha de equipos, sistemas y componentes digitales, aplicar técnicas de medición de señales digitales, técnicas de programación en bajo y alto nivel</p>
                                     </div>
                                 </div>
                             </div>
