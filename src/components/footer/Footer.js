@@ -6,7 +6,7 @@ export default function Footer(){
             <div className="md:flex md:justify-between">
                 <div className="mb-6 md:mb-0">
                     <a href="https://fundacionloyola.com/vguadalupe/" className="flex items-center">
-                        <img src="https://moodle.fundacionloyola.com/pluginfile.php/188/mod_label/intro/Logo%20Virgen%20de%20Guadalupe.png" className="mr-3 h-8" alt="EVG Logo" />
+                        <img src="https://moodle.fundacionloyola.com/pluginfile.php/188/mod_label/intro/Logo%20Virgen%20de%20Guadalupe.png" className="mr-3 h-auto" alt="EVG Logo" />
                     </a>
                 </div>
                 <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
