@@ -15,6 +15,7 @@
   require_once __DIR__. '/controller/c_login.php';
   require_once __DIR__. '/controller/c_familiasProfesionales.php';
   require_once './authentication/autenticacion.php';
+  require_once './controller/c_instalacion.php';
   require_once __DIR__. '/controller/c_ciclos.php';
   require_once __DIR__. '/controller/c_idiomas.php';
 
@@ -24,6 +25,7 @@
   $controladorCiclos = new ControladorCiclos;
   $controladorIdiomas = new ControladorIdiomas;
   $autenticacion = new Autenticacion;
+  $instalacion = new ControladorInstalacion;
   switch ($datos['accion']) {
     case 'alta_usuarios':
       $controladorUsuarios->altaUsuarios($datos);
@@ -39,6 +41,12 @@
       break;
     case 'autenticar':
       $autenticacion->autenticar();
+      break;
+    case 'autenticar_instalacion':
+      $autenticacion->autenticarInstalacion();
+      break;
+    case 'instalacion':
+      $instalacion->instalacion($datos);
       break;
     case 'borrar_usuario':
       $controladorUsuarios->borrarUsuario($datos);

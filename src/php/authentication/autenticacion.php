@@ -29,6 +29,13 @@
                 echo json_encode($error);
             }
         }
+        function autenticarInstalacion(){
+            system('/opt/lampp/htdocs/21/bash/autentificacionInstalacion.sh', $retval);
+           
+            $response['Respuesta'] = $retval;
+
+            echo json_encode($response);
+        }
     }
 
 ?>
