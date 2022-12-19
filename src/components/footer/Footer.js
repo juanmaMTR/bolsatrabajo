@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer(){
     return(
@@ -36,7 +37,7 @@ export default function Footer(){
                                 <a href="#" className="hover:underline">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="#" className="hover:underline">Terms &amp; Conditions</a>
+                                <Link to="/21/cookies" className="hover:underline">Política de Cookies</Link>
                             </li>
                         </ul>
                     </div>
