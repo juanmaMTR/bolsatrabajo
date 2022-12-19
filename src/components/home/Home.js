@@ -1,5 +1,5 @@
-import { AcademicCapIcon, BriefcaseIcon, ComputerDesktopIcon, MapPinIcon } from "@heroicons/react/20/solid";
-import React,{ useState, useEffect } from "react";
+import { AcademicCapIcon, BriefcaseIcon, ComputerDesktopIcon, CpuChipIcon, MapPinIcon } from "@heroicons/react/20/solid";
+import React from "react";
 
 import { Link } from "react-router-dom";
 

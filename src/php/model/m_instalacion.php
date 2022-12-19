@@ -7,9 +7,13 @@
         } 
         
         function instalacion($usuario, $correo, $passwd){
-            $instalacion = "INSERT INTO usuarios (nombreUsuario, correo, password, tipo)VALUES ($usuario, $correo, $passwd, 's');
+            $instalacion = "INSERT INTO usuarios (nombreUsuario, correo, password, tipo)VALUES (?,?,?,?);
 ";
-            $resultado = $this->conex->query($instalacion);
+            $tipo = 's';
+            $preparar = $this->conex->prepare($instalacion);
+            $preparar->bind_param("ssss", $usuario, $correo, $passwd, $tipo);
+            $resultado = $preparar->execute();
+            $preparar->close();
             return $resultado;
         }
     }
