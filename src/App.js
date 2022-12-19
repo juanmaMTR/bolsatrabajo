@@ -20,6 +20,7 @@ import PageNotFound from './components/404/404';
 import Alta_idiomas from './components/idiomas/Alta_idiomas';
 import Panel_usuario from './components/usuarios/Panel_usuario';
 import Panel_perfil_usuario from './components/usuarios/panel/Panel_perfil_usuario';
+import Politica_cookies from './components/footer/Politica_cookies';
 
 function App() {
   const [sesion, setsesion] = useState(0);
@@ -194,6 +195,7 @@ function App() {
                 <Route path='/21/panel_u/perfil' element={<Panel_perfil_usuario inicioSesion={sesion}/>}/>
                 <Route path="/21/panel_u/*" element={<PageNotFound/>} />
               </Route>}
+              {<Route path="/21/cookies" element={<Politica_cookies/>}></Route>}
               <Route path="*" element={<PageNotFound/>}></Route>
             </Routes>
             <Footer></Footer>
